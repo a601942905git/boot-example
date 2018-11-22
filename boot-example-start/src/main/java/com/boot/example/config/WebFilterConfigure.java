@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class WebFilterConfigure {
 
     @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
+    public FilterRegistrationBean webFilterRegistrationBean() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 
         filterRegistrationBean.setFilter(new CustomerPatternFilter());
