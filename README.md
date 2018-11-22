@@ -1,3 +1,14 @@
+# Spring Boot目录结构
+```
+|- src
+        |- main
+            |- java
+            |- resources
+                |- mapper       存放mybatis的mapper
+                |- static       存放静态资源
+                |- templates    存放页面
+        |- test
+```
 # 学习示例
 - [启动一个Sping Boot应用](https://a601942905git.github.io/2018/11/21/%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AASpring-Boot%E5%BA%94%E7%94%A8/%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AASpring-Boot%E5%BA%94%E7%94%A8/)
 - [Spring Boot启动方式](https://a601942905git.github.io/2018/11/21/Spring-Boot%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F/Spring-Boot%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F/)
