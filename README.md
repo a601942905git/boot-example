@@ -9,6 +9,18 @@
                 |- templates    存放页面
         |- test
 ```
+# Spring Boot邮件发送
+```
+spring.mail.host=smtp.163.com
+spring.mail.username=用户名
+spring.mail.password=密码
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+spring.mail.from=a601942905@163.com
+```
+示例代码配置文件账号密码已屏蔽，请填写自己的账号和密码
+
 # 学习示例
 - [启动一个Sping Boot应用](https://a601942905git.github.io/2018/11/21/%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AASpring-Boot%E5%BA%94%E7%94%A8/%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AASpring-Boot%E5%BA%94%E7%94%A8/)
 - [Spring Boot启动方式](https://a601942905git.github.io/2018/11/21/Spring-Boot%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F/Spring-Boot%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F/)
