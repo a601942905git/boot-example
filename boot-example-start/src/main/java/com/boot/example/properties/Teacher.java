@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @dateTime 2018/11/22 上午11:09
  */
 @Component
-@PropertySource(value = "test.properties", encoding = "UTF-8")
+@PropertySource(value = "classpath:test.properties", encoding = "UTF-8")
 @Data
 @ToString
 public class Teacher {

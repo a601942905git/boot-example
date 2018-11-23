@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head><title>Error Occurred</title></head>
+    <body>
+        <h1>Error Occurred!</h1>
+        <b>
+            [<span th:text="${status}">status</span>]
+            <span th:text="${error}">error</span>
+        </b>
+        <p th:text="${message}">message</p>
+        <p>
+            <span>requestPath:</span>
+            <span th:text="${path}"></span>
+        </p>
+        <p>
+            <span>requestTime</span>
+            <span th:text="${timestamp}"></span>
+        </p>
+    </body>
+</html>
