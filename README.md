@@ -35,3 +35,4 @@ spring.mail.from=a601942905@163.com
 - [Spring Boot单元测试](https://a601942905git.github.io/2018/11/23/Spring-Boot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Spring-Boot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/#more)
 - [Spring Boot发送邮件](https://a601942905git.github.io/2018/11/23/Spring-Boot%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Spring-Boot%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/)
 - [Spring Boot集成Actuator](https://a601942905git.github.io/2018/11/23/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/)
+- [Spring Boot多环境配置](https://a601942905git.github.io/2018/11/24/Spring-Boot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/Spring-Boot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/)
