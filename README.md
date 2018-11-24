@@ -30,3 +30,8 @@ spring.mail.from=a601942905@163.com
 - [Spring Boot自定义Interceptor](https://a601942905git.github.io/2018/11/22/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89Interceptor/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89Interceptor/)
 - [Spring Boot集成Thymeleaf](https://a601942905git.github.io/2018/11/22/Spring-Boot%E9%9B%86%E6%88%90Thymeleaf/Spring-Boot%E9%9B%86%E6%88%90Thymeleaf/)
 - [Spring Boot自定义Banner](https://a601942905git.github.io/2018/11/22/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89Banner/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89Banner/)
+- [Spring Boot集成Mybatis](https://a601942905git.github.io/2018/11/22/Spring-Boot%E9%9B%86%E6%88%90Mybatis/Spring-Boot%E9%9B%86%E6%88%90Mybatis/)
+- [Spring Boot配置错误页面](https://a601942905git.github.io/2018/11/23/Spring-Boot%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/Spring-Boot%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2/)
+- [Spring Boot单元测试](https://a601942905git.github.io/2018/11/23/Spring-Boot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Spring-Boot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/#more)
+- [Spring Boot发送邮件](https://a601942905git.github.io/2018/11/23/Spring-Boot%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/Spring-Boot%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/)
+- [Spring Boot集成Actuator](https://a601942905git.github.io/2018/11/23/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/)
