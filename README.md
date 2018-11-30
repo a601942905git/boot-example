@@ -39,3 +39,5 @@ spring.mail.from=a601942905@163.com
 - [Spring Boot集成Actuator](https://a601942905git.github.io/2018/11/23/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/)
 - [Spring Boot多环境配置](https://a601942905git.github.io/2018/11/24/Spring-Boot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/Spring-Boot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/)
 - [Spring Boot表单校验](https://a601942905git.github.io/2018/11/24/Spring-Boot%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C/Spring-Boot%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C/)
+- [Spring Boot Admin Server监控](https://a601942905git.github.io/2018/11/28/Spring-Boot-Admin-Server%E7%9B%91%E6%8E%A7/Spring-Boot-Admin-Server%E7%9B%91%E6%8E%A7/)
+- [Spring Boot自定义异常和异常处理器](https://a601942905git.github.io/2018/11/30/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E5%92%8C%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%99%A8/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E5%92%8C%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%99%A8/)
