@@ -11,6 +11,7 @@
     <modules>
         <module>boot-example-start</module>
         <module>boot-example-actuator-admin-server</module>
+        <module>boot-example-jetcache</module>
     </modules>
 
     <name>boot-example</name>
@@ -30,6 +31,7 @@
         <jquery.version>3.3.1-1</jquery.version>
         <admin.server.version>2.1.0</admin.server.version>
         <admin.client.version>2.1.0</admin.client.version>
+        <jetcache.starter.version>2.5.9</jetcache.starter.version>
     </properties>
 
     <dependencyManagement>
@@ -76,6 +78,12 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
                 <version>${admin.client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-starter-redis</artifactId>
+                <version>${jetcache.starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
