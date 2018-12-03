@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.UnknownHostException;
+
 /**
  * com.boot.example.cache.user.UserController
  *
@@ -30,21 +32,23 @@ public class UserController {
     }
 
     @RequestMapping("/delete")
-    public void deleteUser() {
+    public String deleteUser() {
         userService.remove(10006);
+        return "成功删除用户信息";
     }
 
     @RequestMapping("/update")
-    public void update() {
+    public String update() {
         User user = User.builder()
                 .id(10006)
                 .name("update cache")
                 .build();
         userService.updateUser(user);
+        return "成功修改用户信息";
     }
 
     @RequestMapping("/getUserFromRefreshCache")
-    public User getUserFromRefreshCache() {
+    public User getUserFromRefreshCache() throws UnknownHostException {
         return userService.getUserFromRefreshCache();
     }
 }

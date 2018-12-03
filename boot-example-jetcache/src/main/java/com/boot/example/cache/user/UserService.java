@@ -3,6 +3,8 @@ package com.boot.example.cache.user;
 import com.alicp.jetcache.anno.*;
 import com.boot.example.entity.User;
 
+import java.net.UnknownHostException;
+
 /**
  * com.boot.example.cache.user.UserService
  *
@@ -24,5 +26,5 @@ public interface UserService {
 
     @Cached(name = "UserService.getUserFromRefreshCache", expire = 10, cacheType = CacheType.BOTH)
     @CacheRefresh(refresh = 2, stopRefreshAfterLastAccess = 100)
-    User getUserFromRefreshCache();
+    User getUserFromRefreshCache() throws UnknownHostException;
 }

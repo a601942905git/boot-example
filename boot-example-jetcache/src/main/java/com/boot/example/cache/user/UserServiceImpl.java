@@ -5,9 +5,14 @@ import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CreateCache;
 import com.boot.example.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * com.boot.example.cache.user.UserService
@@ -18,6 +23,9 @@ import java.util.Objects;
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @CreateCache(name = "UserService.getUser", expire = 100, cacheType = CacheType.BOTH)
     private Cache<Integer, User> userCache;
@@ -47,20 +55,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserFromRefreshCache() {
+    public User getUserFromRefreshCache() throws UnknownHostException {
+        String ip = InetAddress.getLocalHost().getHostAddress();
+        String port = applicationContext.getEnvironment().getProperty("server.port");
+        Random random = new Random();
+        int number = random.nextInt();
+        log.info(ip + ":" + port + ",刷新缓存" + number);
         return User.builder()
                 .id(10003)
-                .name("test refersh cache")
+                .name("test refresh cache" + number)
                 .build();
     }
 
     @Override
     public void updateUser(User user) {
-        System.out.println("修改用户信息");
+        log.info("修改用户信息");
     }
 
     @Override
     public void remove(Integer id) {
-        System.out.println("删除用户信息");
+        log.info("删除用户信息");
     }
 }
