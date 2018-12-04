@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
@@ -17,6 +18,7 @@ import java.net.UnknownHostException;
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.boot.example")
+@ServletComponentScan
 @Slf4j
 public class StartApplication {
 
