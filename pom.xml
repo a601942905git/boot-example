@@ -15,6 +15,7 @@
         <module>boot-example-hystrix</module>
         <module>boot-example-sentinel</module>
         <module>boot-example-sentry</module>
+        <module>boot-example-guava-rate-limit</module>
     </modules>
 
     <name>boot-example</name>
@@ -38,6 +39,8 @@
         <hystrix.version>1.5.12</hystrix.version>
         <hystrix.metrics.version>1.5.12</hystrix.metrics.version>
         <sentry.spring.version>1.7.5</sentry.spring.version>
+        <sentinel.version>0.2.0</sentinel.version>
+        <guava.version>27.0.1-jre</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -109,6 +112,19 @@
                 <artifactId>sentry-spring</artifactId>
                 <version>${sentry.spring.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-core</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

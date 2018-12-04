@@ -14,4 +14,11 @@
     <packaging>jar</packaging>
     <name>boot-example-sentinel</name>
     <description>boot-example-sentinel</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>
