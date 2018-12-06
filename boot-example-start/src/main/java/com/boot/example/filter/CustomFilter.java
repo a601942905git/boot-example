@@ -24,7 +24,11 @@ public class CustomFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("自定义过滤器逻辑处理");
-        filterChain.doFilter(req, res);
+        try {
+            filterChain.doFilter(req, res);
+        } finally {
+            System.out.println("最后执行");
+        }
     }
 
     @Override
