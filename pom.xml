@@ -16,6 +16,7 @@
         <module>boot-example-sentinel</module>
         <module>boot-example-sentry</module>
         <module>boot-example-guava-rate-limit</module>
+        <module>boot-example-apollo</module>
     </modules>
 
     <name>boot-example</name>
@@ -43,6 +44,7 @@
         <sentinel.version>0.2.0</sentinel.version>
         <sentinel.annotation.aspectj.version>0.2.0</sentinel.annotation.aspectj.version>
         <guava.version>27.0.1-jre</guava.version>
+        <apollo.client.version>1.1.0</apollo.client.version>
     </properties>
 
     <dependencyManagement>
@@ -140,6 +142,11 @@
                 <version>${guava.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.client.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

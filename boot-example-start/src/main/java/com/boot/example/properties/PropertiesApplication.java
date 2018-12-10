@@ -41,6 +41,13 @@ public class PropertiesApplication {
         PropertiesApplication.actor = actor;
     }
 
+    private static DefaultProperties defaultProperties;
+
+    @Autowired
+    public void setTest(DefaultProperties defaultProperties) {
+        PropertiesApplication.defaultProperties = defaultProperties;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(PropertiesApplication.class, args);
         System.out.println(person);
@@ -50,5 +57,7 @@ public class PropertiesApplication {
         System.out.println(teacher);
 
         System.out.println(actor);
+
+        System.out.println(defaultProperties);
     }
 }
