@@ -1,0 +1,5 @@
+org.springframework.context.ApplicationListener=\
+  com.boot.example.listener.CustomerListener1,\
+  com.boot.example.listener.CustomerListener2,\
+  com.boot.example.listener.CustomerListener3,\
+  com.boot.example.listener.CustomerListener4
