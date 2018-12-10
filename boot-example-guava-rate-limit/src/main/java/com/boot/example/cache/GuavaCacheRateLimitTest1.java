@@ -29,20 +29,18 @@ public class GuavaCacheRateLimitTest1 {
                 .build(new CacheLoader<String, AtomicInteger>() {
                     @Override
                     public AtomicInteger load(String key) throws Exception {
-                        return new AtomicInteger(1);
+                        return new AtomicInteger(0);
                     }
                 });
 
         while (true) {
             AtomicInteger rateLimit = rateLimitCache.get("rate-limit");
-            if (rateLimit.getAndIncrement() > TIME_WINDOW_MAX_REQUEST_COUNT) {
-                System.out.println("【开始执行限流操作。。。。。。】");
+            if (rateLimit.incrementAndGet() > TIME_WINDOW_MAX_REQUEST_COUNT) {
+                System.out.println("【开始执行限流操作。。。。。。】" + rateLimit.get());
                 break;
             }
             System.out.println("【执行请求】");
-            LONG_ADDER.increment();
         }
 
-        System.out.println(LONG_ADDER.longValue());
     }
 }
