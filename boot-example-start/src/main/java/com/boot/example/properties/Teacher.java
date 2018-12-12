@@ -3,8 +3,8 @@ package com.boot.example.properties;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 /**
  * com.boot.example.properties.Teacher
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author lipeng
  * @dateTime 2018/11/22 上午11:09
  */
-@Component
+@Configuration
 @PropertySource(value = "classpath:test.properties", encoding = "UTF-8")
 @Data
 @ToString

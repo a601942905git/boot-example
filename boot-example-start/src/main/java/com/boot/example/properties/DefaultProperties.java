@@ -2,7 +2,7 @@ package com.boot.example.properties;
 
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * com.boot.example.properties.Test
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @author lipeng
  * @dateTime 2018/12/7 下午2:15
  */
-@Component
+@Configuration
 @Data
 @Builder
 @NoArgsConstructor
