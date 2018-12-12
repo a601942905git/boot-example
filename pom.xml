@@ -17,6 +17,7 @@
         <module>boot-example-sentry</module>
         <module>boot-example-guava-rate-limit</module>
         <module>boot-example-apollo</module>
+        <module>boot-example-validate</module>
     </modules>
 
     <name>boot-example</name>
