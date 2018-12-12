@@ -21,6 +21,7 @@
         <module>boot-example-internel-messge</module>
         <module>boot-example-custom-context-path</module>
         <module>boot-example-automatic-properties-expansion</module>
+        <module>boot-example-custom-errorpage</module>
     </modules>
 
     <name>boot-example</name>
