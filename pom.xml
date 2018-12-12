@@ -19,6 +19,7 @@
         <module>boot-example-apollo</module>
         <module>boot-example-validate</module>
         <module>boot-example-internel-messge</module>
+        <module>boot-example-custom-context-path</module>
     </modules>
 
     <name>boot-example</name>
