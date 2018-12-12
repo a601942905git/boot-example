@@ -18,6 +18,7 @@
         <module>boot-example-guava-rate-limit</module>
         <module>boot-example-apollo</module>
         <module>boot-example-validate</module>
+        <module>boot-example-internel-messge</module>
     </modules>
 
     <name>boot-example</name>
