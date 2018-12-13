@@ -23,6 +23,7 @@
         <module>boot-example-automatic-properties-expansion</module>
         <module>boot-example-custom-errorpage</module>
         <module>boot-example-swagger</module>
+        <module>boot-example-swagger-client</module>
     </modules>
 
     <name>boot-example</name>
