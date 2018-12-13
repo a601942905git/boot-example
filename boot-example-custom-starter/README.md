@@ -477,3 +477,10 @@ public class GreeterConfigure {
 【自定义Starter】：Hello smile, good night
 ```
 可以看到自定义Starter已经达到效果，和我们使用spring boot自带的Starter是一样的
+
+# 四、github代码
+- [Spring Boot自定义Starter](https://github.com/a601942905git/boot-example/tree/master/boot-example-custom-starter)
+- [Spring Boot自定义Starter测试端](https://github.com/a601942905git/boot-example/tree/master/boot-example-custom-starter-test)
+
+# 五、参考文献
+- [Creating a Custom Starter with Spring Boot](https://www.baeldung.com/spring-boot-custom-starter)
