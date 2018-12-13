@@ -25,6 +25,8 @@
         <module>boot-example-swagger</module>
         <module>boot-example-swagger-client</module>
         <module>boot-example-jackson</module>
+        <module>boot-example-custom-starter</module>
+        <module>boot-example-custom-starter-test</module>
     </modules>
 
     <name>boot-example</name>
