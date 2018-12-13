@@ -113,3 +113,6 @@ public class CustomErrorPageApplication {
 
 # 六、github代码
 [Spring Boot自定义错误页面](https://github.com/a601942905git/boot-example/tree/master/boot-example-custom-errorpage)
+
+# 七、参考文献
+[Spring Boot: Customize Whitelabel Error Page](https://www.baeldung.com/spring-boot-custom-error-page)
