@@ -24,13 +24,13 @@ public class UserController {
 
     @ApiOperation(value = "新增用户", notes = "新增用户信息")
     @PostMapping("/")
-    public void saveUser(User user) {
+    public void saveUser(@RequestBody User user) {
 
     }
 
     @ApiOperation(value = "修改用户", notes = "修改用户信息")
     @PutMapping("/")
-    public void modifyUser(User user) {
+    public void modifyUser(@RequestBody User user) {
 
     }
 
