@@ -27,6 +27,8 @@
         <module>boot-example-jackson</module>
         <module>boot-example-custom-starter</module>
         <module>boot-example-custom-starter-test</module>
+        <module>boot-example-bean</module>
+        <module>boot-example-security</module>
     </modules>
 
     <name>boot-example</name>
