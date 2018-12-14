@@ -29,6 +29,7 @@
         <module>boot-example-custom-starter-test</module>
         <module>boot-example-bean</module>
         <module>boot-example-security</module>
+        <module>boot-example-security1</module>
     </modules>
 
     <name>boot-example</name>
