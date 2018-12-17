@@ -30,10 +30,10 @@
         <module>boot-example-bean</module>
         <module>boot-example-security</module>
         <module>boot-example-security1</module>
+        <module>boot-example-security2</module>
     </modules>
 
     <name>boot-example</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <properties>
@@ -59,6 +59,7 @@
         <guava.version>27.0.1-jre</guava.version>
         <apollo.client.version>1.1.0</apollo.client.version>
         <springfox.version>2.9.2</springfox.version>
+        <thymeleaf.security.version>3.0.2.RELEASE</thymeleaf.security.version>
     </properties>
 
     <dependencyManagement>
@@ -172,6 +173,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${springfox.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.thymeleaf.extras</groupId>
+                <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+                <version>${thymeleaf.security.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -5,20 +5,16 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * com.boot.example.security.WebMvcConfigure
+ * com.boot.example.security.CustomerWebMvcConfigure
  *
  * @author lipeng
- * @dateTime 2018/12/14 下午1:42
+ * @dateTime 2018/12/14 下午4:27
  */
 @Configuration
-public class CustomWebMvcConfigure implements WebMvcConfigurer {
-
+public class CustomerWebMvcConfigure implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("home");
-        registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
     }
 }
