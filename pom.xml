@@ -31,6 +31,7 @@
         <module>boot-example-security</module>
         <module>boot-example-security1</module>
         <module>boot-example-security2</module>
+        <module>boot-example-security3</module>
     </modules>
 
     <name>boot-example</name>

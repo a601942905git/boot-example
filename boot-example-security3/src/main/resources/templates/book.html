@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+    </head>
+    <body>
+        <h1>
+            Logged in user: <span sec:authentication="name"></span> |
+            Roles: <span sec:authentication="principal.authorities"></span>
+        </h1>
+        <button sec:authorize="hasAuthority('/books/add')" class="btn-primary" th:href="@{/books/add}">新增</button>
+        <table class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>出版时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${bookList}">
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.name}"></td>
+                    <td th:text="${book.publishDate}"></td>
+                    <td>
+                        <a sec:authorize="hasAuthority('/books/update')" th:href="@{/books/update}">修改</a>
+                        <a sec:authorize="hasAuthority('/books/delete')" th:href="@{/books/delete}">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

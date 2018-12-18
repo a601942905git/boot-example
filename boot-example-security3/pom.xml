@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-example-security2</artifactId>
-    <name>boot-example-security2</name>
+    <artifactId>boot-example-security3</artifactId>
+    <name>boot-example-security3</name>
     <version>1.0-SNAPSHOT</version>
     <url>http://www.example.com</url>
 
