@@ -140,3 +140,6 @@ AbstractUserDetailsAuthenticationProvider.badCredentials=输入的密码有误
 
 # github代码
 [Spring Boot Security进阶(二)](https://github.com/a601942905git/boot-example/tree/master/boot-example-security3)
+
+# 参考文献
+[spring-security 实现用户名密码/图片验证码验证和记住我以及登录次数判断功能](https://tomoya92.github.io/2018/05/21/spring-security-capatch-remember-me/)
