@@ -137,3 +137,6 @@ public class LoginController {
 AbstractUserDetailsAuthenticationProvider.badCredentials=输入的密码有误
 ```
 这样我们再输入错误的密码，就可以看到我们配置的错误信息了
+
+# github代码
+[Spring Boot Security进阶(二)](https://github.com/a601942905git/boot-example/tree/master/boot-example-security3)
