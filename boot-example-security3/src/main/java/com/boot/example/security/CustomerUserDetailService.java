@@ -5,6 +5,8 @@ import com.boot.example.core.model.SystemRole;
 import com.boot.example.core.model.SystemUser;
 import com.boot.example.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,11 +30,13 @@ public class CustomerUserDetailService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    private MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SystemUser user = userService.getSystemByUsername(username);
         if (Objects.isNull(user)) {
-            throw new UsernameNotFoundException("用户名" + username + "不存在");
+            throw new UsernameNotFoundException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.username", "用户名不存在......"));
         }
 
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
