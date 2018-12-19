@@ -64,6 +64,7 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
 
         username = username.trim();
 
+        password = username + password;
         return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 

@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         User user1 = User.builder()
                 .id(10001)
                 .username("13260803861")
-                .password("$2a$10$nLedQMtNIDiVxnGyr/D9yOXcMqX3RVljeYUHjxkOdiGkKZgFhi612")
+                .password("CEF513305907A76E70DB0585A9936EBD")
                 .build();
 
         User user2 = User.builder()
