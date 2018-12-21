@@ -34,6 +34,7 @@
         <module>boot-example-security3</module>
         <module>boot-example-jwt</module>
         <module>boot-example-security-jwt</module>
+        <module>boot-example-event</module>
     </modules>
 
     <name>boot-example</name>
