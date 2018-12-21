@@ -13,7 +13,10 @@
             Logged in user: <span sec:authentication="name"></span> |
             Roles: <span sec:authentication="principal.authorities"></span>
         </h1>
-        <button sec:authorize="hasAuthority('/books/add')" class="btn-primary" th:href="@{/books/add}">新增</button>
+        <a sec:authorize="hasAuthority('/books/add')" class="btn-primary" th:href="@{/books/add}">新增</a>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">退出</button>
+        </form>
         <table class="table table-striped table-hover table-condensed">
             <thead>
                 <tr>
