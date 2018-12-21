@@ -23,9 +23,12 @@ public class CustomWebSecurityConfigure extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailServiceImpl customUserDetailService;
 
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
     @Autowired
-    public CustomWebSecurityConfigure(CustomUserDetailServiceImpl customUserDetailService) {
+    public CustomWebSecurityConfigure(CustomUserDetailServiceImpl customUserDetailService, CustomAuthenticationEntryPoint authenticationEntryPoint) {
         this.customUserDetailService = customUserDetailService;
+        this.customAuthenticationEntryPoint = authenticationEntryPoint;
     }
 
     @Override
@@ -38,12 +41,15 @@ public class CustomWebSecurityConfigure extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-                .antMatchers("/")
+                .antMatchers("/", "/users/")
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/login")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
+                    .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
                     .and()
                 .addFilterBefore(new JwtLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
