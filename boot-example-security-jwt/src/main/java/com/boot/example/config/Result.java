@@ -50,10 +50,10 @@ public class Result {
         FAIL("响应失败"),
 
         // 登录认证成功
-        LOGIN_AUTHENTICATION_SUCCESS("授权认证成功"),
+        LOGIN_AUTHENTICATION_SUCCESS("认证成功"),
 
         // 登录认证失败
-        LOGIN_AUTHENTICATION_FAIL("授权认证失败");
+        LOGIN_AUTHENTICATION_FAIL("认证失败");
 
         private String message;
 

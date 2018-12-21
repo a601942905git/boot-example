@@ -35,7 +35,7 @@ public class JwtUtils {
     public static Jws<Claims> validateToken(String token) {
         try {
             return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-        } catch (SignatureException exception) {
+        } catch (Exception exception) {
             return null;
         }
     }
