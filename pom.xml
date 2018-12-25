@@ -36,6 +36,7 @@
         <module>boot-example-event</module>
         <module>boot-example-async</module>
         <module>boot-example-prometheus</module>
+        <module>boot-example-state-machine</module>
     </modules>
 
     <name>boot-example</name>
