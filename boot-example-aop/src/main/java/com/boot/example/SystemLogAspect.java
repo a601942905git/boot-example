@@ -53,7 +53,7 @@ public class SystemLogAspect {
      * @throws Throwable
      */
     @Around("SystemLogAspect()")
-    public void doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    public void doAround(ProceedingJoinPoint joinPoint) {
         // 记录请求开始时间
         Long startTime = Clock.systemDefaultZone().millis();
         Signature signature = joinPoint.getSignature();
@@ -65,7 +65,12 @@ public class SystemLogAspect {
         log.info("Request Class Method:{}", signature.getDeclaringTypeName() + "#" + signature.getName());
         log.info("Request Method Args:{}", Arrays.toString(joinPoint.getArgs()));
 
-        Object result = joinPoint.proceed();
+        Object result = null;
+        try {
+            result = joinPoint.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         log.info("方法执行结果:{}", result);
 
         Long diffSystemMillis = Clock.systemDefaultZone().millis() - startTime;
