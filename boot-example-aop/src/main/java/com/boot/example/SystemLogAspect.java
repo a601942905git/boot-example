@@ -1,5 +1,6 @@
 package com.boot.example;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -8,6 +9,9 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.time.Clock;
 import java.util.Arrays;
 
@@ -58,7 +62,7 @@ public class SystemLogAspect {
         Long startTime = Clock.systemDefaultZone().millis();
         Signature signature = joinPoint.getSignature();
         HttpServletRequest request = WebContextUtils.getRequest();
-        log.info("==================请求开始=====================");
+        log.info("============请求开始============");
         log.info("Request IP:{}", request.getRemoteAddr());
         log.info("Request URL:{}", request.getRequestURL());
         log.info("Request Method:{}", request.getMethod());
@@ -73,9 +77,27 @@ public class SystemLogAspect {
         }
         log.info("方法执行结果:{}", result);
 
+        /**
+         * 此处做该处理的原因：
+         * 原本控制器已经使用了@RestController注解，可以直接用来响应我们返回的结果
+         * 但是由于使用了环绕通知，无法返回方法的结果，需要我们自己处理
+         *
+         * 解决方案：
+         * 1. 我们自己通过HttpServletResponse写出去
+         * 2. 不适应环绕通知，而使用前置通知和后置通知
+         */
+        HttpServletResponse response = WebContextUtils.getResponse();
+        try {
+            response.setContentType("text/html;charset=utf8");
+            response.setCharacterEncoding(Charset.defaultCharset().name());
+            response.getWriter().write(new ObjectMapper().writeValueAsString(result));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Long diffSystemMillis = Clock.systemDefaultZone().millis() - startTime;
         log.info("Request Execute Time:{}", diffSystemMillis);
-        log.info("==================请求结束=====================\n");
+        log.info("============请求结束============\n");
     }
 
     /**
