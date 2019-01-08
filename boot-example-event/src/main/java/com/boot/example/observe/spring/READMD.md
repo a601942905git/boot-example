@@ -97,6 +97,23 @@ public class User {
 }
 ```
 
+# 定义业务类
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private RegisterEventPublisher registerEventPublisher;
+
+    public User register() {
+        User user = User.builder().id(10001).name("张三").build();
+        System.out.println("【用户" + user.getName() + "注册成功！】");
+        registerEventPublisher.publishRegisterEvent(user);
+        return user;
+    }
+}
+```
+
 # 定义启动类
 ```java
 @SpringBootApplication
