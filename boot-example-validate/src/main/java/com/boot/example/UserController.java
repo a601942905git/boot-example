@@ -1,7 +1,5 @@
 package com.boot.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/validate/users")
 public class UserController {
-
-    @Autowired
-    private ReloadableResourceBundleMessageSource messageSource;
 
     @RequestMapping("/")
     public String index(@Valid User user, BindingResult bindingResult) {
