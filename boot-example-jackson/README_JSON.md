@@ -26,7 +26,7 @@ public class Output {
 @RestController
 public class OutputJsonController {
 
-    @RequestMapping("/")
+    @RequestMapping("/json")
     public Output output() {
         Output output = Output.builder()
                 .outputId(10001)
