@@ -1,5 +1,7 @@
 package com.boot.example.outputjson;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,10 @@ public class OutputJsonController {
                 .build();
 
         return output;
+    }
+
+    @PostMapping("/output/save")
+    public void save(@RequestBody Output output) {
+        System.out.println(output);
     }
 }

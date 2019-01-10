@@ -39,6 +39,8 @@
         <module>boot-example-state-machine</module>
         <module>boot-example-disruptor</module>
         <module>boot-example-aop</module>
+        <module>boot-example-properties</module>
+        <module>boot-example-log4j2</module>
     </modules>
 
     <name>boot-example</name>

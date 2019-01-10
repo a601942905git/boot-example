@@ -1,0 +1,25 @@
+student:
+  id: 10001
+  name: student properties
+
+complex:
+  list:
+    - id: 10002
+      name: list1
+    - id: 10003
+      name: list2
+
+  map:
+    key1:
+      id: 10004
+      name: map1
+    key2:
+      id: 10005
+      name: map2
+
+app:
+  id: 20001
+  name: shein
+  version: 2.1.8
+  publishDate: 2018-10-11
+  publishDateTime: 2018-10-11 12:30:36
