@@ -41,6 +41,7 @@
         <module>boot-example-aop</module>
         <module>boot-example-properties</module>
         <module>boot-example-log4j2</module>
+        <module>boot-example-rabbitmq</module>
     </modules>
 
     <name>boot-example</name>
