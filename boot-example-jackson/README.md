@@ -107,5 +107,5 @@ public class DateJsonFormat {
 第二种方式的好处就是，我们只需要自定义好序列化和反序列化的方式，就不需要在每个地方添加注解，减少不必须要的工作
 
 # 六、github代码
-[Spring Boot  Jackson](https://github.com/a601942905git/boot-example/tree/master/boot-example-jackson)
+[Spring Boot Jackson](https://github.com/a601942905git/boot-example/tree/master/boot-example-jackson)
 
