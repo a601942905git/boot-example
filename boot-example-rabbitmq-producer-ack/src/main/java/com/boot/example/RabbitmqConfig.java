@@ -1,11 +1,9 @@
 package com.boot.example;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +17,7 @@ import org.springframework.context.annotation.Scope;
  * @date 2019/1/10 下午3:04
  */
 @Configuration
-public class RabbitmqConfig {
+public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback{
 
     public static final String EXCHANGE   = "spring-boot-exchange";
     public static final String ROUTING_KEY = "spring-boot-routingKey";
@@ -36,6 +34,8 @@ public class RabbitmqConfig {
         connectionFactory.setUsername("guest");
         connectionFactory.setPassword("guest");
         connectionFactory.setVirtualHost("boot-example");
+        connectionFactory.setPublisherConfirms(true);
+        connectionFactory.setPublisherReturns(true);
         return connectionFactory;
     }
 
@@ -47,6 +47,9 @@ public class RabbitmqConfig {
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
+        template.setMandatory(true);
+        template.setConfirmCallback(this);
+        template.setReturnCallback(this);
         return template;
     }
 
@@ -82,5 +85,23 @@ public class RabbitmqConfig {
     @Bean
     public Binding binding() {
         return BindingBuilder.bind(queue()).to(defaultExchange()).with(RabbitmqConfig.ROUTING_KEY);
+    }
+
+    @Override
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        if (ack) {
+            System.out.println("【消息】：" + correlationData.getId() + "，发送成功");
+        } else {
+            System.out.println("【消息】：" + correlationData.getId() + "，发送失败");
+        }
+    }
+
+    @Override
+    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+        System.out.println("【message】：" + message);
+        System.out.println("【replyCode】：" + replyCode);
+        System.out.println("【replyText】：" + replyText);
+        System.out.println("【exchange】：" + exchange);
+        System.out.println("【routingKey】：" + routingKey);
     }
 }
