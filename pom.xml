@@ -43,6 +43,7 @@
         <module>boot-example-log4j2</module>
         <module>boot-example-rabbitmq</module>
         <module>boot-example-rabbitmq-producer-ack</module>
+        <module>boot-example-rabbitmq-consumer-ack</module>
     </modules>
 
     <name>boot-example</name>
