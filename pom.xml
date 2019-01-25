@@ -45,6 +45,7 @@
         <module>boot-example-rabbitmq-producer-ack</module>
         <module>boot-example-rabbitmq-consumer-ack</module>
         <module>boot-example-rabbitmq-send-complex-message</module>
+        <module>boot-example-rabbitmq-delayed-message</module>
     </modules>
 
     <name>boot-example</name>
