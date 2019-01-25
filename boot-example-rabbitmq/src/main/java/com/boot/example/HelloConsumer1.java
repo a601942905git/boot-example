@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RabbitListener(queues = RabbitmqConfig.QUEUE_NAME)
-public class HelloConsumer {
+public class HelloConsumer1 {
 
     @RabbitHandler
     public void helloConsumer(String message) {
-        System.out.println("【consumer1 receive message】：" + message);
+        System.out.println("【consumer2 receive message】：" + message);
     }
 }

@@ -1,16 +1,13 @@
-# RabbitMQ重要术语
-1. Broker：消息队列服务实体
-2. Exchange：交换机，通过特定的方法路由到指定的队列
-3. Queue：消息载体，每个消息都会被路由到一个或多个队列
-4. Binding：绑定，把Exchange和Queue按照路由规则绑定起来
-5. RoutingKey：路由的key，Exchange根据该值进行消息投递
-6. Vhost：一个Broker可以创建多个Vhost，用作不同用户的权限分离
-7. Producer：消息生产者
-8. Consumer：消息消费者
-9. Channel：消息通道，一个连接可以创建多个Channel，一个Channel代表一个会话任务
+# 一、添加依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+```
 
-# RabbitMQ配置
-```java
+# 二、配置
+```
 @Configuration
 public class RabbitmqConfig {
 
@@ -77,27 +74,10 @@ public class RabbitmqConfig {
     public Binding binding() {
         return BindingBuilder.bind(queue()).to(defaultExchange()).with(RabbitmqConfig.ROUTING_KEY);
     }
-}
 ```
 
-# 生产者
-```java
-@Component
-public class HelloProducer {
-
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-
-    public void sendMsg() {
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertSendAndReceive(RabbitmqConfig.EXCHANGE,
-                RabbitmqConfig.ROUTING_KEY, "hello rabbitMQ", correlationData);
-    }
-}
+# 三、消费者
 ```
-
-# 消费者
-```java
 @Component
 @RabbitListener(queues = RabbitmqConfig.QUEUE_NAME)
 public class HelloConsumer {
@@ -109,19 +89,24 @@ public class HelloConsumer {
 }
 ```
 
-# 启动类
-```java
-@SpringBootApplication
-public class RabbitmqApplication {
+# 四、生产者
+```
+@Component
+public class HelloProducer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(RabbitmqApplication.class, args);
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public void sendMsg() {
+        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE,
+                RabbitmqConfig.ROUTING_KEY, "hello rabbitMQ");
     }
+
 }
 ```
 
-# 测试类
-```java
+# 五、单元测试
+```
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RabbitmqApplication.class)
 public class RabbitmqTest {
@@ -137,4 +122,92 @@ public class RabbitmqTest {
         }
     }
 }
+
 ```
+
+# 六、验证多消费者模式消息消费情况
+消费者代码修改
+```
+@Component
+@RabbitListener(queues = RabbitmqConfig.QUEUE_NAME)
+public class HelloConsumer {
+
+    @RabbitHandler
+    public void helloConsumer(String message) {
+        System.out.println("【consumer1 receive message】：" + message);
+    }
+}
+```
+
+添加一个消费者
+```
+@Component
+@RabbitListener(queues = RabbitmqConfig.QUEUE_NAME)
+public class HelloConsumer1 {
+
+    @RabbitHandler
+    public void helloConsumer(String message) {
+        System.out.println("【consumer2 receive message】：" + message);
+    }
+}
+```
+
+生产者代码修改
+```
+@Component
+public class HelloProducer {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public void sendMsg() {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE,
+                RabbitmqConfig.ROUTING_KEY, "hello rabbitMQ：" + correlationData.getId(), correlationData);
+    }
+}
+```
+
+测试代码修改
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = RabbitmqApplication.class)
+public class RabbitmqTest {
+
+    @Autowired
+    private HelloProducer helloProducer;
+
+    @Test
+    public void sendMessage() throws InterruptedException, IOException {
+        while (true) {
+            TimeUnit.SECONDS.sleep(1);
+            helloProducer.sendMsg();
+        }
+    }
+}
+```
+
+输出结果：
+```
+【consumer1 receive message】：hello rabbitMQ：4d40f7b1-eac5-4167-a102-9b5e04fceef4
+【consumer2 receive message】：hello rabbitMQ：adfcab34-a57f-4fca-94f0-c8afc1285a1c
+【consumer1 receive message】：hello rabbitMQ：8eae2e49-388e-4648-be48-e5e6e6fc916f
+【consumer2 receive message】：hello rabbitMQ：6a98d482-6647-4d50-bbcb-b7659e255cf3
+【consumer1 receive message】：hello rabbitMQ：fa827f68-84a0-4061-b83a-3900429e56bc
+【consumer2 receive message】：hello rabbitMQ：41e0d92a-e30b-4183-a00d-09a1a81fcb97
+【consumer1 receive message】：hello rabbitMQ：e1010701-53a9-4fab-941f-f24e7f6976bc
+【consumer2 receive message】：hello rabbitMQ：06f92c82-6cff-4861-9845-bd57aa7b9bcc
+【consumer1 receive message】：hello rabbitMQ：23f8c4d9-3e54-4d93-9989-658b70548de1
+【consumer2 receive message】：hello rabbitMQ：20ea41f1-a011-41d6-85ae-2eed5633d985
+【consumer1 receive message】：hello rabbitMQ：fd0b3204-41ba-48ee-b667-7053433a4afa
+【consumer2 receive message】：hello rabbitMQ：3c210933-75a6-46da-b02e-6b1bb69b51cf
+【consumer1 receive message】：hello rabbitMQ：a927f766-28cf-487d-9b9a-2c6273f4971e
+【consumer2 receive message】：hello rabbitMQ：267e3494-d625-4fb9-bfc4-ced29aa5669e
+【consumer1 receive message】：hello rabbitMQ：806c21d1-3293-4d71-acb8-2b4db09544d0
+【consumer2 receive message】：hello rabbitMQ：a2d79fb5-9bca-4f55-b18c-a7dd8e0cdb1f
+【consumer1 receive message】：hello rabbitMQ：a360b597-8376-4eae-a0b5-1a25bf64b690
+【consumer2 receive message】：hello rabbitMQ：fefa2918-bf69-4f67-9607-2fdc10d72009
+【consumer1 receive message】：hello rabbitMQ：aa02be5d-7a20-47cf-8509-cc98da2a6cb5
+【consumer2 receive message】：hello rabbitMQ：187cb021-20da-4aa4-94a2-f6a2079bfc5f
+```
+==总结：== 从输出结果可以看出，如果存在多个消费者，那么Broker会以轮询的方式将消息发送给消费者

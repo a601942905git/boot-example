@@ -22,6 +22,6 @@ public class HelloProducer {
     public void sendMsg() {
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
         rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE,
-                RabbitmqConfig.ROUTING_KEY, "hello rabbitMQ", correlationData);
+                RabbitmqConfig.ROUTING_KEY, "hello rabbitMQ：" + correlationData.getId(), correlationData);
     }
 }

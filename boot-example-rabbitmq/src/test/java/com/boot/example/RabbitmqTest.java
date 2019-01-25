@@ -24,7 +24,9 @@ public class RabbitmqTest {
 
     @Test
     public void sendMessage() throws InterruptedException, IOException {
-        TimeUnit.SECONDS.sleep(1);
-        helloProducer.sendMsg();
+        while (true) {
+            TimeUnit.SECONDS.sleep(1);
+            helloProducer.sendMsg();
+        }
     }
 }
