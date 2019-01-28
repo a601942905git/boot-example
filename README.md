@@ -39,7 +39,16 @@ spring.mail.from=a601942905@163.com
 - [Spring Boot集成Actuator](https://a601942905git.github.io/2018/11/23/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/Spring-Boot-%E9%9B%86%E6%88%90%E7%9B%91%E6%8E%A7/)
 - [Spring Boot多环境配置](https://a601942905git.github.io/2018/11/24/Spring-Boot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/Spring-Boot%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/)
 - [Spring Boot表单校验](https://a601942905git.github.io/2018/11/24/Spring-Boot%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C/Spring-Boot%E8%A1%A8%E5%8D%95%E6%A0%A1%E9%AA%8C/)
-- [Spring Boot自定义监听器](http://note.youdao.com/noteshare?id=830c311914279b1cf66fb2c257b42285)
+- [Spring Boot自定义监听器](https://a601942905git.github.io/2018/12/10/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E5%90%AC%E5%99%A8/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9B%91%E5%90%AC%E5%99%A8/)
+- [Spring Boot Aop](https://a601942905git.github.io/2019/01/09/Spring-Boot-Aop/Spring-Boot-Aop/)
+- [Spring Boot自定义类型转换器](https://a601942905git.github.io/2019/01/09/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/Spring-Boot%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/)
+- [Spring Boot基于JsonComponent注解实现类型转换器](https://a601942905git.github.io/2019/01/28/Spring-Boot-%E5%9F%BA%E4%BA%8EJsonComponent%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/Spring-Boot-%E5%9F%BA%E4%BA%8EJsonComponent%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8/)
+- [Spring Boot Jackson命名策略](https://a601942905git.github.io/2019/01/28/Spring-Boot-Jackson%E5%91%BD%E5%90%8D%E7%AD%96%E7%95%A5/Spring-Boot-Jackson%E5%91%BD%E5%90%8D%E7%AD%96%E7%95%A5/)
+
+# 消息队列篇
+- [高性能队列Disruptor入门](https://a601942905git.github.io/2019/01/28/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor/)
+- [高性能队列Disruptor之Cpu缓存](https://a601942905git.github.io/2019/01/28/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E4%B9%8BCpu%E7%BC%93%E5%AD%98/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E4%B9%8BCpu%E7%BC%93%E5%AD%98/)
+- [高性能队列Disruptor源码分析](https://a601942905git.github.io/2019/01/28/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more)
 
 # 监控篇
 - [Spring Boot Admin Server监控](https://a601942905git.github.io/2018/11/28/Spring-Boot-Admin-Server%E7%9B%91%E6%8E%A7/Spring-Boot-Admin-Server%E7%9B%91%E6%8E%A7/)
