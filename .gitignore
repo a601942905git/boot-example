@@ -114,3 +114,5 @@ boot-example.iml
 boot-example-custom-starter-test.iml
 log/
 boot-example-rabbitmq-delayed-message/boot-example-rabbitmq-delayed-message.iml
+boot-example-rabbitmq-fanout/boot-example-rabbitmq-fanout.iml
+boot-example-rabbitmq-topic/boot-example-rabbitmq-topic.iml

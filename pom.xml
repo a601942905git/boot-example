@@ -47,6 +47,7 @@
         <module>boot-example-rabbitmq-send-complex-message</module>
         <module>boot-example-rabbitmq-delayed-message</module>
         <module>boot-example-rabbitmq-fanout</module>
+        <module>boot-example-rabbitmq-topic</module>
     </modules>
 
     <name>boot-example</name>
