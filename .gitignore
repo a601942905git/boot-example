@@ -113,3 +113,4 @@ boot-example-validate/target/
 boot-example.iml
 boot-example-custom-starter-test.iml
 log/
+boot-example-rabbitmq-delayed-message/boot-example-rabbitmq-delayed-message.iml
