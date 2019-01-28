@@ -49,6 +49,13 @@ spring.mail.from=a601942905@163.com
 - [高性能队列Disruptor入门](https://a601942905git.github.io/2019/01/28/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor/)
 - [高性能队列Disruptor之Cpu缓存](https://a601942905git.github.io/2019/01/28/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E4%B9%8BCpu%E7%BC%93%E5%AD%98/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E4%B9%8BCpu%E7%BC%93%E5%AD%98/)
 - [高性能队列Disruptor源码分析](https://a601942905git.github.io/2019/01/28/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E9%AB%98%E6%80%A7%E8%83%BD%E9%98%9F%E5%88%97Disruptor%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more)
+- [Spring Boot RabbitMQ系列之基础概念](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/)
+- [Spring Boot RabbitMQ系列之一：简单使用](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%80%EF%BC%9A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/)
+- [Spring Boot RabbitMQ系列之二：Confirmback](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8C%EF%BC%9AConfirmback/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8C%EF%BC%9AConfirmback/)
+- [Spring Boot RabbitMQ系列之三：发送复杂对象](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%89%EF%BC%9A%E5%8F%91%E9%80%81%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%89%EF%BC%9A%E5%8F%91%E9%80%81%E5%A4%8D%E6%9D%82%E5%AF%B9%E8%B1%A1/)
+- [Spring Boot RabbitMQ系列之四：ReturnCallback](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9B%9B%EF%BC%9AReturnCallback/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9B%9B%EF%BC%9AReturnCallback/)
+- [Spring Boot RabbitMQ系列之五：Ack](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%94%EF%BC%9AAck/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%94%EF%BC%9AAck/)
+- [Spring Boot RabbitMQ系列之六：实现消息延迟发送](https://a601942905git.github.io/2019/01/28/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E5%85%AD%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E5%BB%B6%E8%BF%9F/Spring-Boot-RabbitMQ%E7%B3%BB%E5%88%97%E4%B9%8B%E5%85%AD%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E5%BB%B6%E8%BF%9F/)
 
 # 监控篇
 - [Spring Boot Admin Server监控](https://a601942905git.github.io/2018/11/28/Spring-Boot-Admin-Server%E7%9B%91%E6%8E%A7/Spring-Boot-Admin-Server%E7%9B%91%E6%8E%A7/)
