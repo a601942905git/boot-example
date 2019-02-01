@@ -48,6 +48,7 @@
         <module>boot-example-rabbitmq-delayed-message</module>
         <module>boot-example-rabbitmq-fanout</module>
         <module>boot-example-rabbitmq-topic</module>
+        <module>boot-example-transaction</module>
     </modules>
 
     <name>boot-example</name>
