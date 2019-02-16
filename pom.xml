@@ -50,6 +50,7 @@
         <module>boot-example-rabbitmq-topic</module>
         <module>boot-example-transaction</module>
         <module>boot-example-rabbitmq-consumer-pull-message</module>
+        <module>boot-example-rabbitmq-dead-letter-queue</module>
     </modules>
 
     <name>boot-example</name>
