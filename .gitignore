@@ -117,3 +117,5 @@ boot-example-rabbitmq-delayed-message/boot-example-rabbitmq-delayed-message.iml
 boot-example-rabbitmq-fanout/boot-example-rabbitmq-fanout.iml
 boot-example-rabbitmq-topic/boot-example-rabbitmq-topic.iml
 boot-example-transaction/boot-example-transaction.iml
+boot-example-rabbitmq-consumer-pull-message/boot-example-rabbitmq-consumer-pull-message.iml
+boot-example-rabbitmq-dead-letter-queue/boot-example-rabbitmq-dead-letter-queue.iml
