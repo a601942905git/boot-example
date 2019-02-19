@@ -12,4 +12,20 @@
         INSERT INTO student VALUES(#{id}, #{name}, #{age})
     </insert>
 
+
+    <select id="getStudentById" parameterType="integer" resultType="com.boot.example.student.Student">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            student
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateStudentAgeById" parameterType="com.boot.example.student.Student">
+        UPDATE
+            student
+        SET
+            age = #{age} + 1
+        WHERE id = #{id}
+    </update>
 </mapper>

@@ -13,4 +13,7 @@ public interface StudentMapper {
 
     int saveStudent(Student student);
 
+    Student getStudentById(Integer id);
+
+    int updateStudentAgeById(Student student);
 }
