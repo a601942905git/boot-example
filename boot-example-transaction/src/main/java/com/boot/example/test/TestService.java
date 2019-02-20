@@ -18,12 +18,23 @@ public class TestService {
     @Autowired
     private StudentMapper studentMapper;
 
+    @Autowired
+    private TestService testService;
+
     /**
      * 非事务方法调用事务方法，会发现事务不起作用
      * @param student
      */
     public void middleMethod(Student student) {
         this.addStudent(student);
+    }
+
+    /**
+     * 非事务方法调用事务方法，事务起作用
+     * @param student
+     */
+    public void middleMethod1(Student student) {
+        testService.addStudent(student);
     }
 
     @Transactional(rollbackFor = Exception.class)

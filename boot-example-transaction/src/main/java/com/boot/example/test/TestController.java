@@ -25,6 +25,11 @@ public class TestController {
         testService.middleMethod(student);
     }
 
+    @RequestMapping("/addStudent1")
+    public void addStudent1(@RequestBody Student student) {
+        testService.middleMethod1(student);
+    }
+
     /**
      * 调用1000次，原本当前student的age应该为1000，但是通过测试发现达不到1000
      * 由于调用的service方法既是用来同步也开启了事务，事务通过动态代理来实现，可能方法执行完了，
