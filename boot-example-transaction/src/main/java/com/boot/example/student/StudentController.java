@@ -29,4 +29,9 @@ public class StudentController {
         BeanUtils.copyProperties(student, user);
         return this.studentService.saveCommon(student, user);
     }
+
+    @PostMapping("/addStudentByManualTransaction")
+    public Integer addStudentByManualTransaction(@RequestBody Student student) {
+        return studentService.addStudentByManualTransaction(student);
+    }
 }
