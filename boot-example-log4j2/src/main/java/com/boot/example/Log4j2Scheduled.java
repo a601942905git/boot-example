@@ -22,10 +22,10 @@ public class Log4j2Scheduled {
     /**
      * 2秒钟执行1次
      */
-    @Scheduled(fixedRate = 20)
+    @Scheduled(fixedRate = 2000)
     public void logging(){
         Date now = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         logger.info(simpleDateFormat.format(now));
         logger.debug("-------DEBUG---------");
         logger.warn("-------WARN---------");
