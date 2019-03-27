@@ -13,4 +13,8 @@ import java.util.List;
 public interface StudentMapper {
 
     List<StudentEntity> listStudent();
+
+    StudentEntity getStudent(Integer id);
+
+    StudentEntity getStudentByName(String desc);
 }

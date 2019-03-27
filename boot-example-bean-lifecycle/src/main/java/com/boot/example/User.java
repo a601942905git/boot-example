@@ -74,4 +74,5 @@ public class User implements InitializingBean, DisposableBean {
     public void afterDestroy() {
         System.out.println("【调用afterDestroy】");
     }
+
 }

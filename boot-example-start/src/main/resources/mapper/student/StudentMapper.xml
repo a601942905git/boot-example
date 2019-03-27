@@ -14,4 +14,20 @@
         FROM
             student
     </select>
+
+    <select id="getStudent" parameterType="int" resultType="com.boot.example.core.entity.StudentEntity">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            student
+        WHERE id = #{id}
+    </select>
+
+    <select id="getStudentByName" parameterType="string" resultType="com.boot.example.core.entity.StudentEntity">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            student
+        WHERE stu_desc = #{_parameter}
+    </select>
 </mapper>

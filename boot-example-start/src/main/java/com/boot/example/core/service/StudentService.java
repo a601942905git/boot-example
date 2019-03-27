@@ -22,4 +22,12 @@ public class StudentService {
     public List<StudentEntity> listStudent() {
         return studentMapper.listStudent();
     }
+
+    public StudentEntity getStudent(Integer id) {
+        return studentMapper.getStudent(id);
+    }
+
+    public StudentEntity getStudentByName(String desc) {
+        return studentMapper.getStudentByName(desc);
+    }
 }
