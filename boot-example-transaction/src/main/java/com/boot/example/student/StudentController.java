@@ -5,6 +5,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * com.boot.example.student.StudentController
  *
@@ -33,5 +35,10 @@ public class StudentController {
     @PostMapping("/addStudentByManualTransaction")
     public Integer addStudentByManualTransaction(@RequestBody Student student) {
         return studentService.addStudentByManualTransaction(student);
+    }
+
+    @GetMapping("/{id}")
+    public List<Student> listStudent(@PathVariable(name = "id") Integer id) {
+        return studentService.listStudent(id);
     }
 }

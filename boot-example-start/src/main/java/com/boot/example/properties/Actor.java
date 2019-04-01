@@ -6,6 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.Map;
+
 /**
  * com.boot.example.properties.Actor
  *
@@ -24,4 +26,6 @@ public class Actor {
     private String name;
 
     private String sex;
+
+    private Map<Integer, String> names;
 }

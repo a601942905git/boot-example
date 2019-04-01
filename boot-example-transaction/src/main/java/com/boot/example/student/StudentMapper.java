@@ -2,6 +2,8 @@ package com.boot.example.student;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * com.boot.example.student.StudentMapper
  *
@@ -16,4 +18,6 @@ public interface StudentMapper {
     Student getStudentById(Integer id);
 
     int updateStudentAgeById(Student student);
+
+    List<Student> listStudent(Integer id);
 }

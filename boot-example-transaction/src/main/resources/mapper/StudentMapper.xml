@@ -9,11 +9,19 @@
     </sql>
 
     <insert id="saveStudent" parameterType="com.boot.example.student.Student">
-        INSERT INTO student VALUES(#{id}, #{name}, #{age})
+        INSERT INTO student VALUES(#{id}, #{name}, #{age}, #{stuDesc})
     </insert>
 
 
     <select id="getStudentById" parameterType="integer" resultType="com.boot.example.student.Student">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            student
+        WHERE id = #{id}
+    </select>
+
+    <select id="listStudent" parameterType="integer" resultType="com.boot.example.student.Student">
         SELECT
             <include refid="BASE_SELECT_COLUMN"/>
         FROM

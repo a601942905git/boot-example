@@ -9,6 +9,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.util.List;
+
 /**
  * com.boot.example.student.StudentService
  *
@@ -53,5 +55,9 @@ public class StudentService {
             throw e;
         }
         return result;
+    }
+
+    public List<Student> listStudent(Integer id) {
+        return studentMapper.listStudent(id);
     }
 }
