@@ -119,3 +119,16 @@ boot-example-rabbitmq-topic/boot-example-rabbitmq-topic.iml
 boot-example-transaction/boot-example-transaction.iml
 boot-example-rabbitmq-consumer-pull-message/boot-example-rabbitmq-consumer-pull-message.iml
 boot-example-rabbitmq-dead-letter-queue/boot-example-rabbitmq-dead-letter-queue.iml
+boot-example-zookeeper/boot-example-zookeeper.iml
+boot-example-bean-lifecycle/boot-example-bean-lifecycle.iml
+boot-example-bean-lifecycle/src/test/
+boot-example-bean-lifecycle/target/
+boot-example-rabbitmq-consumer-pull-message/target/
+boot-example-rabbitmq-dead-letter-queue/target/
+boot-example-rabbitmq-delayed-message/target/
+boot-example-rabbitmq-fanout/target/
+boot-example-rabbitmq-topic/target/
+boot-example-transaction/src/test/
+boot-example-transaction/target/
+boot-example-zookeeper/src/main/
+boot-example-zookeeper/target/
