@@ -2,6 +2,7 @@ package com.boot.example;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ import java.util.List;
 public class UserController {
 
     @RequestMapping("/")
-    public String index(@Valid User user, BindingResult bindingResult) {
+    public String index(@RequestBody @Valid User user, BindingResult bindingResult) {
         List<FieldError> list = bindingResult.getFieldErrors();
         List<String> messageList = new ArrayList<>();
         for (FieldError fieldError : list) {
