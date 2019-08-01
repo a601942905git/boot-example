@@ -46,7 +46,6 @@ boot-example-guava-rate-limit/boot-example-guava-rate-limit.iml
 boot-example-guava-rate-limit/src/test/
 boot-example-guava-rate-limit/target/
 boot-example-hystrix/boot-example-hystrix.iml
-boot-example-hystrix/src/test/
 boot-example-hystrix/target/
 boot-example-internel-messge/boot-example-internel-messge.iml
 boot-example-internel-messge/src/test/
@@ -132,3 +131,5 @@ boot-example-transaction/src/test/
 boot-example-transaction/target/
 boot-example-zookeeper/src/main/
 boot-example-zookeeper/target/
+boot-example-internel-messge/src/main/resources/messages.properties
+hs_err_pid6271.log
