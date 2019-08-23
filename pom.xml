@@ -13,7 +13,6 @@
         <module>boot-example-actuator-admin-server</module>
         <module>boot-example-jetcache</module>
         <module>boot-example-hystrix</module>
-        <module>boot-example-sentinel</module>
         <module>boot-example-sentry</module>
         <module>boot-example-guava-rate-limit</module>
         <module>boot-example-apollo</module>
@@ -53,6 +52,7 @@
         <module>boot-example-rabbitmq-dead-letter-queue</module>
         <module>boot-example-bean-lifecycle</module>
         <module>boot-example-zookeeper</module>
+        <module>boot-example-transaction-imitate</module>
     </modules>
 
     <name>boot-example</name>
