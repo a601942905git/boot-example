@@ -40,8 +40,8 @@ public class RequestErrorCommand extends HystrixCommand<String> {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        for (int i = 0; i < 25; i++) {
-            TimeUnit.MILLISECONDS.sleep(100);
+        for (int i = 1; i <= 35; i++) {
+            TimeUnit.MILLISECONDS.sleep(500);
             RequestErrorCommand requestErrorCommand = new RequestErrorCommand("error", i);
             System.out.println(requestErrorCommand.execute() + "======>" + i + "===>【熔断器是否打开】：" + requestErrorCommand.isCircuitBreakerOpen());
         }
