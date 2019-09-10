@@ -5,6 +5,8 @@ import com.boot.example.student.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
  * com.boot.example.test.TestService
@@ -53,5 +55,24 @@ public class TestService {
     public void addStudentAge1(Integer id) throws InterruptedException {
         Student student = studentMapper.getStudentById(id);
         studentMapper.updateStudentAgeById(student);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void test(Student student) {
+        for (int i = 0; i < 2; i++) {
+            student.setId(i + 1);
+            this.save(student);
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void save(Student student) {
+        studentMapper.saveStudent(student);
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                System.out.println("transaction commit");
+            }
+        });
     }
 }

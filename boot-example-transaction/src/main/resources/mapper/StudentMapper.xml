@@ -12,6 +12,14 @@
         INSERT INTO student VALUES(#{id}, #{name}, #{age}, #{stuDesc})
     </insert>
 
+    <update id="updateStudent" parameterType="com.boot.example.student.Student">
+        UPDATE student SET
+            name = #{name},
+            age = #{age},
+            stu_desc = #{studentDesc}
+        WHERE id = #{id}
+    </update>
+
 
     <select id="getStudentById" parameterType="integer" resultType="com.boot.example.student.Student">
         SELECT

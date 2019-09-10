@@ -20,4 +20,6 @@ public interface StudentMapper {
     int updateStudentAgeById(Student student);
 
     List<Student> listStudent(Integer id);
+
+    void updateStudent(Student student);
 }

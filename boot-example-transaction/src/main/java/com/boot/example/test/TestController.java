@@ -2,10 +2,7 @@ package com.boot.example.test;
 
 import com.boot.example.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * com.boot.example.test.TestController
@@ -66,5 +63,10 @@ public class TestController {
                 }
             }).start();
         }
+    }
+
+    @PostMapping("/")
+    public void test(@RequestBody Student student) {
+        testService.test(student);
     }
 }
