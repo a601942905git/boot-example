@@ -7,7 +7,6 @@ import com.google.common.cache.LoadingCache;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.LongAdder;
 
 /**
  * com.boot.example.cache.GuavaCacheRateLimit
@@ -20,8 +19,6 @@ public class GuavaCacheRateLimitTest1 {
     public static final Integer TIME_WINDOW = 10;
 
     public static final Integer TIME_WINDOW_MAX_REQUEST_COUNT = 10;
-
-    public static final LongAdder LONG_ADDER = new LongAdder();
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         LoadingCache<String, AtomicInteger> rateLimitCache = CacheBuilder.newBuilder()

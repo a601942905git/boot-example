@@ -22,7 +22,6 @@
         <module>boot-example-automatic-properties-expansion</module>
         <module>boot-example-custom-errorpage</module>
         <module>boot-example-swagger</module>
-        <module>boot-example-swagger-client</module>
         <module>boot-example-jackson</module>
         <module>boot-example-custom-starter</module>
         <module>boot-example-custom-starter-test</module>
@@ -53,6 +52,7 @@
         <module>boot-example-bean-lifecycle</module>
         <module>boot-example-zookeeper</module>
         <module>boot-example-transaction-imitate</module>
+        <module>boot-example-request-log-print</module>
     </modules>
 
     <name>boot-example</name>
