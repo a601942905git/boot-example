@@ -6,7 +6,7 @@ public StudentEntity getStudentByName() {
     String desc = "'' and 1 = 1;DELETE FROM student;";
     return studentService.getStudentByName(desc);
 }
-```
+```之前会进
 # 业务方法
 ```java
 public StudentEntity getStudentByName(String desc) {
@@ -48,7 +48,7 @@ StudentEntity getStudentByName(String desc);
 ```
 SELECT id, name, age FROM student WHERE stu_desc = ? 
 ```
-也就是在执行SQL之前会进行预编译，输入的地方使用？代替，当真正执行的时候才将用户输入的参数替换?
+也就是在执行SQL行预编译，输入的地方使用？代替，当真正执行的时候才将用户输入的参数替换?
 
 真正执行的SQL
 ```

@@ -1,6 +1,6 @@
 package com.boot.example;
 
-import com.boot.example.async1.AsyncApplication;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,51 +9,47 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 /**
  * com.boot.example.AsyncControllerTest
  *
  * @author lipeng
  * @date 2018/12/24 上午10:34
  */
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = AsyncApplication.class)
+@SpringBootTest(classes = SpringBootAsyncApplication.class)
 public class AsyncControllerTest {
 
     @Autowired
     private RestTemplate restTemplate;
 
     @Test
-    public void testServletAsync() {
-        ResponseEntity<String> responseEntity =
-                restTemplate.getForEntity("http://localhost:8080/async/testAsync1", String.class);
-        System.out.println("响应结果======>" + responseEntity.getBody());
+    public void testListReturnCallable() {
+        ResponseEntity<List> responseEntity =
+                restTemplate.getForEntity("http://localhost:8080/listReturnCallable", List.class);
+        log.info("response result======>" + responseEntity.getBody());
     }
 
     @Test
-    public void testCallable() {
-        ResponseEntity<String> responseEntity =
-                restTemplate.getForEntity("http://localhost:8080/async/testCallable", String.class);
-        System.out.println("响应结果======>" + responseEntity.getBody());
+    public void testListReturnCompletableFuture() {
+        ResponseEntity<List> responseEntity =
+                restTemplate.getForEntity("http://localhost:8080/listReturnCompletableFuture", List.class);
+        log.info("response result======>" + responseEntity.getBody());
     }
 
     @Test
-    public void testCompletableFuture() {
-        ResponseEntity<String> responseEntity =
-                restTemplate.getForEntity("http://localhost:8080/async/testCompletableFuture", String.class);
-        System.out.println("响应结果======>" + responseEntity.getBody());
+    public void testListReturnDeferredResult() {
+        ResponseEntity<List> responseEntity =
+                restTemplate.getForEntity("http://localhost:8080/listReturnDeferredResult", List.class);
+        log.info("response result======>" + responseEntity.getBody());
     }
 
     @Test
-    public void testDeferredResult() {
-        ResponseEntity<String> responseEntity =
-                restTemplate.getForEntity("http://localhost:8080/async/testDeferredResult", String.class);
-        System.out.println("响应结果======>" + responseEntity.getBody());
-    }
-
-    @Test
-    public void testWebAsyncTask() {
-        ResponseEntity<String> responseEntity =
-                restTemplate.getForEntity("http://localhost:8080/async/testWebAsyncTask", String.class);
-        System.out.println("响应结果======>" + responseEntity.getBody());
+    public void testListReturnWebAsyncTask() {
+        ResponseEntity<List> responseEntity =
+                restTemplate.getForEntity("http://localhost:8080/listReturnWebAsyncTask", List.class);
+        System.out.println("response result======>" + responseEntity.getBody());
     }
 }
