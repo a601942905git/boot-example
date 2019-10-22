@@ -54,6 +54,7 @@
         <module>boot-example-transaction-imitate</module>
         <module>boot-example-request-log-print</module>
         <module>boot-example-web</module>
+        <module>boot-example-banner</module>
     </modules>
 
     <name>boot-example</name>
