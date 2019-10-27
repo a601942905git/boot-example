@@ -55,6 +55,8 @@
         <module>boot-example-request-log-print</module>
         <module>boot-example-web</module>
         <module>boot-example-banner</module>
+        <module>boot-example-filter</module>
+        <module>boot-example-interceptor</module>
     </modules>
 
     <name>boot-example</name>
