@@ -4,11 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
-import org.elasticsearch.search.aggregations.Aggregations;
-import org.elasticsearch.search.aggregations.metrics.avg.ParsedAvg;
-import org.elasticsearch.search.aggregations.metrics.max.ParsedMax;
+import org.elasticsearch.search.aggregations.metrics.avg.Avg;
+import org.elasticsearch.search.aggregations.metrics.max.Max;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
@@ -23,7 +21,10 @@ import org.springframework.data.elasticsearch.core.query.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * com.boot.example.EsTest
@@ -182,7 +183,7 @@ public class EsTest {
     }
 
     @Test
-    public void max() {
+    public void count() {
         SearchQuery searchQuery = new NativeSearchQueryBuilder().build();
         Long count = elasticsearchOperations.count(searchQuery, Goods.class);
         log.info("goods count：{}", count);
@@ -195,13 +196,8 @@ public class EsTest {
                 .withIndices("goods")
                 .build();
         double avgPrice = elasticsearchOperations.query(searchQuery, response -> {
-            Aggregations aggregations = response.getAggregations();
-            if (Objects.nonNull(aggregations)) {
-                Map<String, Aggregation> aggregationMap = aggregations.getAsMap();
-                ParsedAvg parsedAvg = (ParsedAvg) aggregationMap.get("avg_price");
-                return parsedAvg.getValue();
-            }
-            return null;
+            Avg avg = response.getAggregations().get("avg_price");
+            return avg.getValue();
         });
         log.info("avg_price：{}", avgPrice);
     }
@@ -213,13 +209,8 @@ public class EsTest {
                 .withIndices("goods")
                 .build();
         double maxPrice = elasticsearchOperations.query(searchQuery, response -> {
-            Aggregations aggregations = response.getAggregations();
-            if (Objects.nonNull(aggregations)) {
-                Map<String, Aggregation> aggregationMap = aggregations.getAsMap();
-                ParsedMax parsedMax = (ParsedMax) aggregationMap.get("max_price");
-                return parsedMax.getValue();
-            }
-            return null;
+            Max max = response.getAggregations().get("max_price");
+            return max.getValue();
         });
         log.info("max_price：{}", maxPrice);
     }
