@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
 import org.elasticsearch.search.aggregations.metrics.max.Max;
@@ -171,9 +172,8 @@ public class EsTest {
 
     @Test
     public void pageWithHighlight() {
-        QueryBuilder queryBuilder = new MatchQueryBuilder("title", "apple");
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
-                .withQuery(queryBuilder)
+                .withQuery(QueryBuilders.matchQuery("title", "apple"))
                 .withHighlightBuilder(new HighlightBuilder().field("title").preTags("<font color='green'>").postTags("</font>"))
                 .withPageable(PageRequest.of(0, 10))
                 .build();
