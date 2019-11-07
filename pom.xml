@@ -58,6 +58,7 @@
         <module>boot-example-filter</module>
         <module>boot-example-interceptor</module>
         <module>boot-example-elasticsearch</module>
+        <module>boot-example-factory</module>
     </modules>
 
     <name>boot-example</name>
