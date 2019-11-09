@@ -61,6 +61,7 @@
         <module>boot-example-factory</module>
         <module>boot-example-mybatis</module>
         <module>boot-example-error-page</module>
+        <module>boot-example-email</module>
     </modules>
 
     <name>boot-example</name>

@@ -1,0 +1,13 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: 邮箱用户名
+    password: 邮箱密码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            starttls:
+              required: true
