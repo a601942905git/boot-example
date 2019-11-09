@@ -1,8 +1,8 @@
 spring:
   mail:
-    host: smtp.163.com
-    username: 邮箱用户名
-    password: 邮箱密码
+    host: smtp.qq.com
+    username: xxxx@qq.com
+    password: zaaa # 需要登录qq邮箱，然后开启smtp服务，会得到一个密码
     properties:
       mail:
         smtp:

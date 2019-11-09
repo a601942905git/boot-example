@@ -20,7 +20,7 @@ public class EmailController {
 
     @GetMapping("/send")
     public String send() {
-        emailService.sendSimpleMail("xxxx@qq.com", "测试邮件", "一封来自Spring Boot应用的测试邮件！！！");
+        emailService.sendSimpleMail("xxxx@163.com", "测试邮件", "一封来自Spring Boot应用的测试邮件！！！");
         return "邮件发送成功！！！";
     }
 }
