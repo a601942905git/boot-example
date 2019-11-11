@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * com.boot.example.MybatisApplication
  *
  * @author lipeng
- * @date 2019/11/9 下午9:46
+ * @date 2019/11/9 下午9:46w
  */
 @SpringBootApplication
 // @MapperScan(basePackages = "com.boot.example.mapper")
