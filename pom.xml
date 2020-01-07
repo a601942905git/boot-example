@@ -62,6 +62,7 @@
         <module>boot-example-mybatis</module>
         <module>boot-example-error-page</module>
         <module>boot-example-email</module>
+        <module>boot-example-framework-learning</module>
     </modules>
 
     <name>boot-example</name>

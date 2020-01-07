@@ -10,9 +10,15 @@ spring:
       maximum-pool-size: 10
       auto-commit: true
       idle-timeout: 30000
-      pool-name: DatebookHikariCP
+      pool-name: Mybatis-HikariCP
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
 mybatis:
   mapperLocations: 'classpath*:mapper/**/*.xml'
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari:
+          pool: debug
