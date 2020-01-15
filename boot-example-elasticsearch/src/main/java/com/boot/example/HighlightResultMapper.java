@@ -57,7 +57,7 @@ public class HighlightResultMapper extends DefaultResultMapper {
         List<T> results = new ArrayList<>();
         for (SearchHit hit : response.getHits()) {
             if (hit != null) {
-                T result = null;
+                T result;
                 String hitSourceAsString = hit.getSourceAsString();
                 if (!StringUtils.isEmpty(hitSourceAsString)) {
                     result = mapEntity(hitSourceAsString, clazz);

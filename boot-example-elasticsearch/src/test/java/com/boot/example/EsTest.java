@@ -1,10 +1,12 @@
 package com.boot.example;
 
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
 import org.elasticsearch.search.aggregations.metrics.max.Max;
@@ -17,8 +19,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.query.*;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.query.GetQuery;
+import org.springframework.data.elasticsearch.core.query.IndexQuery;
+import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.data.elasticsearch.core.query.UpdateQuery;
+import org.springframework.data.elasticsearch.core.query.UpdateQueryBuilder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
@@ -39,7 +48,7 @@ import java.util.Map;
 public class EsTest {
 
     @Autowired
-    private ElasticsearchOperations elasticsearchOperations;
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Autowired
     private HighlightResultMapper highlightResultMapper;
@@ -59,7 +68,7 @@ public class EsTest {
          * 文档存在，执行修改操作
          * 此处只需要设置索引的对象即可，底层代码会从索引对象的@Document注解中获取索引、类型以及文档的id
          */
-        elasticsearchOperations.index(new IndexQueryBuilder().withObject(goods).build());
+        elasticsearchRestTemplate.index(new IndexQueryBuilder().withObject(goods).build());
         log.info("index document finish");
     }
 
@@ -72,7 +81,7 @@ public class EsTest {
                     .withObject(goodsList.get(i)).build());
         }
         // 使用bulk方法批量索引文档
-        elasticsearchOperations.bulkIndex(indexQueryList);
+        elasticsearchRestTemplate.bulkIndex(indexQueryList);
         log.info("batch index document finish");
     }
 
@@ -82,14 +91,23 @@ public class EsTest {
                 .id(10001L)
                 .name("AppleiPhone 11 update")
                 .title("Apple iPhone 11 (A2223) 64GB 黑色 移动联通电信4G手机 双卡双待 update")
-                .price(new BigDecimal(6688))
-                .publishDate("2019-09-11")
+                .price(new BigDecimal(6666))
+                .publishDate("2019-12-12")
                 .build();
         IndexQuery indexQuery = new IndexQueryBuilder()
                 .withObject(goods)
                 .build();
-        // 使用index方法来更新整个文档
-        elasticsearchOperations.index(indexQuery);
+        /**
+         * 使用index方法来更新整个文档
+         * 如果有字段为null，更新到es中，es文档中不会有该字段存在
+         * {
+         *           "_class" : "com.boot.example.Goods",
+         *           "id" : 10006,
+         *           "name" : "AppleiPhone 11 update",
+         *           "title" : "Apple iPhone 11 (A2223) 64GB 黑色 移动联通电信4G手机 双卡双待 update"
+         *         }
+         */
+        elasticsearchRestTemplate.index(indexQuery);
         log.info("update document");
     }
 
@@ -102,24 +120,24 @@ public class EsTest {
         UpdateQuery updateQuery = new UpdateQueryBuilder()
                 .withId("10001")
                 .withClass(Goods.class)
-                .withIndexRequest(new IndexRequest().source(map))
+                .withUpdateRequest(new UpdateRequest().doc(map))
                 .build();
         // 更新文档的部分内容
-        elasticsearchOperations.update(updateQuery);
+        elasticsearchRestTemplate.update(updateQuery);
         log.info("partial update document");
     }
 
     @Test
     public void delete() {
         // 删除文档
-        elasticsearchOperations.delete(Goods.class, "10001");
+        elasticsearchRestTemplate.delete(Goods.class, "10001");
     }
 
     @Test
     public void getById() {
         GetQuery getQuery = new GetQuery();
         getQuery.setId("10001");
-        Goods goods = elasticsearchOperations.queryForObject(getQuery, Goods.class);
+        Goods goods = elasticsearchRestTemplate.queryForObject(getQuery, Goods.class);
         log.info("get document by id result：{}", goods);
     }
 
@@ -140,7 +158,19 @@ public class EsTest {
                 .withQuery(new MatchQueryBuilder("title", "apple"))
                 .withSort(new FieldSortBuilder("publishDate").order(SortOrder.DESC))
                 .build();
-        List<Goods> goodsList = elasticsearchOperations.queryForList(nativeSearchQuery, Goods.class);
+        List<Goods> goodsList = elasticsearchRestTemplate.queryForList(nativeSearchQuery, Goods.class);
+        log.info("list document size：{}， result ：{}", goodsList.size(), goodsList);
+    }
+
+    @Test
+    public void listByMultiCondition() {
+        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+                .withQuery(new BoolQueryBuilder()
+                        .must(new MatchQueryBuilder("title", "apple"))
+                        .must(new RangeQueryBuilder("price").from(BigDecimal.ZERO).to(new BigDecimal(12800)))
+                )
+                .build();
+        List<Goods> goodsList = elasticsearchRestTemplate.queryForList(nativeSearchQuery, Goods.class);
         log.info("list document size：{}， result ：{}", goodsList.size(), goodsList);
     }
 
@@ -165,7 +195,7 @@ public class EsTest {
          *     #
          *     # {"took":0,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":2,"max_score":0.76022595,"hits":[{"_index":"goods","_type":"_doc","_id":"10001","_version":2,"_score":0.76022595,"_source":{"_class":"com.boot.example.Goods","id":10001,"name":"AppleiPhone 11","title":"Apple iPhone 11 (A2223) 64GB 黑色 移动联通电信4G手机 双卡双待","price":6666,"publishDate":"2019-09-08"}},{"_index":"goods","_type":"_doc","_id":"10002","_version":1,"_score":0.73438257,"_source":{"_class":"com.boot.example.Goods","id":10002,"name":"AppleMNYH2CH/A","title":"Apple MacBook 12 | Core m3 8G 256G SSD硬盘 银色 笔记本电脑 轻薄本 MNYH2CH/A","price":12800.0,"publishDate":"2018-09-11"}}]}}
          */
-        Page<Goods> page = elasticsearchOperations.queryForPage(nativeSearchQuery, Goods.class);
+        Page<Goods> page = elasticsearchRestTemplate.queryForPage(nativeSearchQuery, Goods.class);
         List<Goods> goodsList = page.getContent();
         log.info("page document size：{}，result：{}", goodsList.size(), goodsList);
     }
@@ -177,7 +207,7 @@ public class EsTest {
                 .withHighlightBuilder(new HighlightBuilder().field("title").preTags("<font color='green'>").postTags("</font>"))
                 .withPageable(PageRequest.of(0, 10))
                 .build();
-        Page<Goods> page = elasticsearchOperations.queryForPage(nativeSearchQuery, Goods.class, highlightResultMapper);
+        Page<Goods> page = elasticsearchRestTemplate.queryForPage(nativeSearchQuery, Goods.class, highlightResultMapper);
         List<Goods> goodsList = page.getContent();
         log.info("page document size：{}，result：{}", goodsList.size(), goodsList);
     }
@@ -185,7 +215,7 @@ public class EsTest {
     @Test
     public void count() {
         SearchQuery searchQuery = new NativeSearchQueryBuilder().build();
-        Long count = elasticsearchOperations.count(searchQuery, Goods.class);
+        Long count = elasticsearchRestTemplate.count(searchQuery, Goods.class);
         log.info("goods count：{}", count);
     }
 
@@ -195,7 +225,7 @@ public class EsTest {
                 .addAggregation(AggregationBuilders.avg("avg_price").field("price"))
                 .withIndices("goods")
                 .build();
-        double avgPrice = elasticsearchOperations.query(searchQuery, response -> {
+        double avgPrice = elasticsearchRestTemplate.query(searchQuery, response -> {
             Avg avg = response.getAggregations().get("avg_price");
             return avg.getValue();
         });
@@ -208,7 +238,7 @@ public class EsTest {
                 .addAggregation(AggregationBuilders.max("max_price").field("price"))
                 .withIndices("goods")
                 .build();
-        double maxPrice = elasticsearchOperations.query(searchQuery, response -> {
+        double maxPrice = elasticsearchRestTemplate.query(searchQuery, response -> {
             Max max = response.getAggregations().get("max_price");
             return max.getValue();
         });
