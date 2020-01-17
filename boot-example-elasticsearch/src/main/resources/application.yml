@@ -1,3 +1,7 @@
 logging:
   level:
     tracer: trace
+spring:
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200 # 指明es地址
