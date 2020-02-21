@@ -1,0 +1,11 @@
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+      - localhost:9093
+      - localhost:9094
+    producer:
+      acks: all # ack设置为all，保证消息服务器主题分区中的leader和flower同步完成并写入日志文件
+      batch-size: 16384 # 批量发送大小16k
+      buffer-memory: 33554432 # 缓存区大小为32M
+      retries: 3 # 重试次数为3次

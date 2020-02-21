@@ -13,14 +13,12 @@
         <module>boot-example-actuator-admin-server</module>
         <module>boot-example-jetcache</module>
         <module>boot-example-hystrix</module>
-        <module>boot-example-sentry</module>
         <module>boot-example-guava-rate-limit</module>
         <module>boot-example-apollo</module>
         <module>boot-example-validate</module>
         <module>boot-example-internel-messge</module>
         <module>boot-example-custom-context-path</module>
         <module>boot-example-automatic-properties-expansion</module>
-        <module>boot-example-custom-errorpage</module>
         <module>boot-example-swagger</module>
         <module>boot-example-jackson</module>
         <module>boot-example-custom-starter</module>
@@ -63,6 +61,8 @@
         <module>boot-example-error-page</module>
         <module>boot-example-email</module>
         <module>boot-example-framework-learning</module>
+        <module>boot-example-webflux</module>
+        <module>boot-example-kafka</module>
     </modules>
 
     <name>boot-example</name>
