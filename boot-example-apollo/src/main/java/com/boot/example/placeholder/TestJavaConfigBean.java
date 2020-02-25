@@ -3,6 +3,7 @@ package com.boot.example.placeholder;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * com.boot.example.TestJavaConfigBean
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
  */
 @Data
 @ToString
+@Component
 public class TestJavaConfigBean {
 
     @Value("${timeout:100}")

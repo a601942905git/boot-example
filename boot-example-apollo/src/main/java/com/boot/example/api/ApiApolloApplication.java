@@ -21,6 +21,9 @@ public class ApiApolloApplication {
         System.out.println("timeout：" + config.getProperty("timeout", "100"));
         System.out.println("batch：" + config.getProperty("batch", "100"));
 
+        Config dataSourceConfig = ConfigService.getConfig("order-service.dataSource");
+        System.out.println("spring.datasource.url：" + dataSourceConfig.getProperty("spring.datasource.url", ""));
+
         System.out.println("================监听事件==================");
         config.addChangeListener(changeEvent -> {
             System.out.println("Changes for namespace " + changeEvent.getNamespace());

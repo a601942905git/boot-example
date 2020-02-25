@@ -1,0 +1,10 @@
+server:
+  port: 8081
+app:
+  id: boot-example-apollo # 指定应用的appid，在浏览器创建项目的时候指定
+apollo:
+  bootstrap:
+    enabled: true # 在启动的时候注入application命名空间
+    namespaces: application,order-service.dataSource
+  meta: http://localhost:8080 # 指定meta服务的地址
+  cacheDir: /Users/pengli/software/idea/workspace/data/apollo-config-cache # 指定本地缓存文件地址
