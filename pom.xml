@@ -63,6 +63,7 @@
         <module>boot-example-framework-learning</module>
         <module>boot-example-webflux</module>
         <module>boot-example-kafka</module>
+        <module>boot-example-kafka-producer</module>
     </modules>
 
     <name>boot-example</name>

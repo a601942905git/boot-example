@@ -25,11 +25,17 @@ public class KafkaTest {
     private KafkaProducer<String, Object> kafkaProducer;
 
     @Test
+    public void sendSingleMessage() throws InterruptedException {
+        kafkaProducer.send("first", "kafka send single message");
+        TimeUnit.SECONDS.sleep(10);
+    }
+
+    @Test
     public void sendMessage() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
             kafkaProducer.send("first", "kafka send message：" + i);
         }
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(1000);
     }
 
     @Test

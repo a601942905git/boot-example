@@ -1,4 +1,4 @@
-package com.boot.example.producer;
+package com.boot.example;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -36,10 +36,9 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<Object, Object> producerFactory() {
+    public ProducerFactory<Object, Object> buildKafkaProducerFactory() {
         Map<String, Object> producerProperties = this.kafkaProperties.buildProducerProperties();
-        // 当缓存中的数据大小未达到指定大小的时候，超过该事件，也会将消息发送给消息服务器
-        producerProperties.put(ProducerConfig.LINGER_MS_CONFIG, 100);
+        // producerProperties.put(ProducerConfig.LINGER_MS_CONFIG, 100);
         producerProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         producerProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(producerProperties);
@@ -68,10 +67,5 @@ public class KafkaProducerConfig {
     @Bean
     public NewTopic batchTopic() {
         return new NewTopic("batch", 3, (short) 3);
-    }
-
-    @Bean
-    public NewTopic ackTopic() {
-        return new NewTopic("ack", 3, (short) 3);
     }
 }
