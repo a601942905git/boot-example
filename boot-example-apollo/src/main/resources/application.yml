@@ -3,6 +3,7 @@ server:
 app:
   id: boot-example-apollo # 指定应用的appid，在浏览器创建项目的时候指定
 apollo:
+  # cluster: SHAJQ # 指定需要读取集群的名称
   bootstrap:
     enabled: true # 在启动的时候注入application命名空间
     namespaces: application,order-service.dataSource
