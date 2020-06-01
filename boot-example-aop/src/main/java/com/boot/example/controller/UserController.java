@@ -18,7 +18,7 @@ public class UserController {
     @RequestMapping("/")
     public String listUser() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
-        return "访问用户列表信息";
+        return "访问用户列表";
     }
 
     @RequestMapping("/save")

@@ -2,6 +2,7 @@ package com.boot.example.test;
 
 import com.boot.example.student.Student;
 import com.boot.example.student.StudentMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * @date 2019-02-19 11:33
  */
 @Service
+@Slf4j
 public class TestService {
 
     @Autowired
@@ -74,5 +76,19 @@ public class TestService {
                 System.out.println("transaction commit");
             }
         });
+    }
+
+    @Transactional
+    public void transactionRollbackException() {
+        try {
+            testService.throwExceptionMethod();
+        } catch (Exception e) {
+            log.error("execute exception：", e);
+        }
+    }
+
+    @Transactional
+    public void throwExceptionMethod() {
+        throw new NullPointerException();
     }
 }

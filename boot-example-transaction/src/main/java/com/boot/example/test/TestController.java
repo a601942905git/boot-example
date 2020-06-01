@@ -65,6 +65,11 @@ public class TestController {
         }
     }
 
+    @GetMapping("/transaction/rollback/exception")
+    public void transactionRollbackException() {
+        testService.transactionRollbackException();
+    }
+
     @PostMapping("/")
     public void test(@RequestBody Student student) {
         testService.test(student);
