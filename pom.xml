@@ -66,6 +66,7 @@
         <module>boot-example-kafka-producer</module>
         <module>boot-example-rate-limit</module>
         <module>boot-example-shutdown</module>
+        <module>boot-example-exception</module>
     </modules>
 
     <name>boot-example</name>
