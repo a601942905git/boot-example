@@ -6,7 +6,7 @@ package com.boot.example;
  * @author lipeng
  * @date 2020/6/5 2:14 PM
  */
-public enum BusinessExceptionEnum implements Assert {
+public enum BusinessExceptionEnum implements Asserts {
 
     USER_NOT_FOUND(10001, "user not found"),
     ORDER_NOT_FOUND(10002, "order not found"),

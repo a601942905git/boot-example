@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author lipeng
  * @date 2020/6/5 3:16 PM
  */
-public interface Assert {
+public interface Asserts {
 
     BusinessException newException();
 
