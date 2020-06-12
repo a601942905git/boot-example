@@ -9,7 +9,9 @@ package com.boot.example;
 public enum BusinessExceptionEnum implements Asserts {
 
     USER_NOT_FOUND(10001, "user not found"),
-    ORDER_NOT_FOUND(10002, "order not found"),
+    USER_LIST_IS_EMPTY(10002, "user list is empty"),
+    ORDER_LIST_IS_EMPTY(10003, "order list is empty"),
+    ORDER_IS_NOT_PAID_STATUS(10004, "order is not paid status"),
     ;
 
 
