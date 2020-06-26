@@ -23,7 +23,6 @@
         <module>boot-example-jackson</module>
         <module>boot-example-custom-starter</module>
         <module>boot-example-custom-starter-test</module>
-        <module>boot-example-bean</module>
         <module>boot-example-security</module>
         <module>boot-example-security1</module>
         <module>boot-example-security2</module>
@@ -67,6 +66,7 @@
         <module>boot-example-rate-limit</module>
         <module>boot-example-shutdown</module>
         <module>boot-example-exception</module>
+        <module>boot-example-easycode</module>
     </modules>
 
     <name>boot-example</name>
