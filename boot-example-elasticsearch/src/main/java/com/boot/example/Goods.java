@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Document(indexName = "goods", type = "_doc")
+@Document(indexName = "goods")
 public class Goods implements Serializable {
 
     @Id
