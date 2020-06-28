@@ -23,7 +23,6 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.document.Document;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
-import org.springframework.data.elasticsearch.core.query.GetQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -125,15 +124,8 @@ public class EsTest {
     }
 
     @Test
-    public void delete() {
-        // 删除文档
-        elasticsearchRestTemplate.delete("10001", IndexCoordinates.of("goods"));
-    }
-
-    @Test
     public void getById() {
-        GetQuery getQuery = GetQuery.getById("10002");
-        Goods goods = elasticsearchRestTemplate.get(getQuery, Goods.class, IndexCoordinates.of("goods"));
+        Goods goods = elasticsearchRestTemplate.get("10006", Goods.class);
         log.info("get document by id result：{}", goods);
     }
 
@@ -237,6 +229,12 @@ public class EsTest {
         Aggregation aggregation = aggregationMap.get("max_price");
         ParsedMax parsedMax = (ParsedMax) aggregation;
         log.info("max_price：{}", parsedMax.getValue());
+    }
+
+    @Test
+    public void delete() {
+        // 删除文档
+        elasticsearchRestTemplate.delete("10001", IndexCoordinates.of("goods"));
     }
 
     private List<Goods> buildGoodsList() {
