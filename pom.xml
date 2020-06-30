@@ -67,6 +67,7 @@
         <module>boot-example-shutdown</module>
         <module>boot-example-exception</module>
         <module>boot-example-easycode</module>
+        <module>boot-example-docker</module>
     </modules>
 
     <name>boot-example</name>
