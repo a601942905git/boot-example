@@ -451,3 +451,8 @@ spring:
 ```
 
 通过本文你不仅学到如何整合SpringBoot和Elasticsearch，还可以通过ElasticsearchRestTemplate对文档进行增、删、改、查操作，最后你还了解了Elasticsearch自动配置原理，希望这些知识对你有帮助。
+
+## 8. 重要相关类
+- ElasticsearchDataAutoConfiguration
+- ElasticsearchRestClientAutoConfiguration
+- SimpleElasticsearchPersistentEntity
