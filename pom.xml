@@ -68,6 +68,8 @@
         <module>boot-example-exception</module>
         <module>boot-example-easycode</module>
         <module>boot-example-docker</module>
+        <module>boot-example-debug</module>
+        <module>boot-example-cache</module>
     </modules>
 
     <name>boot-example</name>

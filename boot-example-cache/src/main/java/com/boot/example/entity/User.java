@@ -1,7 +1,5 @@
 package com.boot.example.entity;
 
-import lombok.*;
-
 import java.io.Serializable;
 
 /**

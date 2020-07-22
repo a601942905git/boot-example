@@ -1,6 +1,5 @@
 package com.boot.example.cache.user;
 
-import com.alicp.jetcache.anno.*;
 import com.boot.example.entity.User;
 
 import java.net.UnknownHostException;
