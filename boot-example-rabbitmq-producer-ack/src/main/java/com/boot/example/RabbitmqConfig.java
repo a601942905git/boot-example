@@ -17,14 +17,15 @@ import org.springframework.context.annotation.Scope;
  * @date 2019/1/10 下午3:04
  */
 @Configuration
-public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback{
+public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
 
-    public static final String EXCHANGE   = "spring-boot-exchange";
+    public static final String EXCHANGE = "spring-boot-exchange";
     public static final String ROUTING_KEY = "spring-boot-routingKey";
     public static final String QUEUE_NAME = "boot-example-queue";
 
     /**
      * 创建连接工厂
+     *
      * @return
      */
     @Bean
@@ -34,13 +35,14 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
         connectionFactory.setUsername("guest");
         connectionFactory.setPassword("guest");
         connectionFactory.setVirtualHost("boot-example");
-        connectionFactory.setPublisherConfirms(true);
+        connectionFactory.setPublisherConfirmType(CachingConnectionFactory.ConfirmType.SIMPLE);
         connectionFactory.setPublisherReturns(true);
         return connectionFactory;
     }
 
     /**
      * 创建RabbitTemplate
+     *
      * @return
      */
     @Bean
@@ -57,7 +59,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
      * 针对消费者配置
      * 1. 设置交换机类型
      * 2. 将队列绑定到交换机
-     *
+     * <p>
      * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
      * HeadersExchange ：通过添加属性key-value匹配
      * DirectExchange:按照routingkey分发到指定队列
@@ -70,6 +72,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 创建队列
+     *
      * @return
      */
     @Bean
@@ -80,6 +83,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 将队列绑定到exchange，并表明路由的key
+     *
      * @return
      */
     @Bean
@@ -89,6 +93,10 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 当消息发送到Broker的Exchange中，该方法被调用
+     *
+     * 如果交换机没有和queue进行绑定，该方法回调是ack也为true
+     * 因此需要returnedMessage()没有被回调，并且confirm()方法的ack为true才能保证消息一定投递出去
+     *
      * @param correlationData
      * @param ack
      * @param cause
