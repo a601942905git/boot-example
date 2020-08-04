@@ -7,6 +7,7 @@ import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.ParsedAvg;
@@ -127,6 +128,31 @@ public class EsTest {
     public void getById() {
         Goods goods = elasticsearchRestTemplate.get("10006", Goods.class);
         log.info("get document by id result：{}", goods);
+    }
+
+
+    @Test
+    public void filter() {
+        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+                .withQuery(
+                        new BoolQueryBuilder()
+                                .must(new MatchQueryBuilder("title", "apple"))
+                                .filter(new TermQueryBuilder("price", 12800))
+                )
+                .build();
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        log.info("filter document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
+    }
+
+
+    @Test
+    public void filter1() {
+        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+                .withQuery(new MatchQueryBuilder("title", "apple"))
+                .withFilter(new TermQueryBuilder("price", 9988))
+                .build();
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        log.info("filter document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
     }
 
     @Test
