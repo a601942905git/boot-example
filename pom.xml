@@ -22,11 +22,6 @@
         <module>boot-example-jackson</module>
         <module>boot-example-custom-starter</module>
         <module>boot-example-custom-starter-test</module>
-        <module>boot-example-security</module>
-        <module>boot-example-security1</module>
-        <module>boot-example-security2</module>
-        <module>boot-example-security3</module>
-        <module>boot-example-security-jwt</module>
         <module>boot-example-event</module>
         <module>boot-example-async</module>
         <module>boot-example-prometheus</module>
@@ -44,24 +39,21 @@
         <module>boot-example-banner</module>
         <module>boot-example-filter</module>
         <module>boot-example-interceptor</module>
-        <module>boot-example-elasticsearch</module>
         <module>boot-example-factory</module>
         <module>boot-example-mybatis</module>
         <module>boot-example-error-page</module>
         <module>boot-example-email</module>
         <module>boot-example-framework-learning</module>
         <module>boot-example-webflux</module>
-        <module>boot-example-kafka</module>
-        <module>boot-example-kafka-producer</module>
         <module>boot-example-rate-limit</module>
         <module>boot-example-shutdown</module>
         <module>boot-example-exception</module>
         <module>boot-example-easycode</module>
-        <module>boot-example-docker</module>
         <module>boot-example-debug</module>
         <module>boot-example-cache</module>
         <module>boot-example-mq</module>
         <module>boot-example-security-integrate</module>
+        <module>boot-example-advance</module>
     </modules>
 
     <name>boot-example</name>
