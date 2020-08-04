@@ -32,7 +32,6 @@
         <module>boot-example-log4j2</module>
         <module>boot-example-transaction</module>
         <module>boot-example-bean-lifecycle</module>
-        <module>boot-example-zookeeper</module>
         <module>boot-example-transaction-imitate</module>
         <module>boot-example-request-log-print</module>
         <module>boot-example-web</module>
