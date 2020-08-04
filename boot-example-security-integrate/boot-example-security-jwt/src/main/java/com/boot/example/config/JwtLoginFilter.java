@@ -86,7 +86,7 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
      * @param request       请求对象
      * @param response      响应对象
      * @param chain         过滤器链
-     * @param authResult    认证结果对象
+     * @param authResult    认证结w果对象
      * @throws IOException  io异常
      */
     @Override
