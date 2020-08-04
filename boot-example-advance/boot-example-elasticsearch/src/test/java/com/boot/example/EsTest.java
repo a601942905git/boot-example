@@ -67,7 +67,7 @@ public class EsTest {
          * 文档存在，执行修改操作
          * 此处只需要设置索引的对象即可，底层代码会从索引对象的@Document注解中获取索引、类型以及文档的id
          */
-        elasticsearchRestTemplate.index(new IndexQueryBuilder().withObject(goods).build(), IndexCoordinates.of("goods"));
+        elasticsearchRestTemplate.index(new IndexQueryBuilder().withObject(goods).build(), IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("index document finish");
     }
 
@@ -80,7 +80,7 @@ public class EsTest {
                     .withObject(goodsList.get(i)).build());
         }
         // 使用bulk方法批量索引文档
-        elasticsearchRestTemplate.bulkIndex(indexQueryList, IndexCoordinates.of("goods"));
+        elasticsearchRestTemplate.bulkIndex(indexQueryList, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("batch index document finish");
     }
 
@@ -106,7 +106,7 @@ public class EsTest {
          *           "title" : "Apple iPhone 11 (A2223) 64GB 黑色 移动联通电信4G手机 双卡双待 update"
          *         }
          */
-        elasticsearchRestTemplate.index(indexQuery, IndexCoordinates.of("goods"));
+        elasticsearchRestTemplate.index(indexQuery, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("update document");
     }
 
@@ -120,7 +120,7 @@ public class EsTest {
         UpdateQuery updateQuery = UpdateQuery.builder("10006")
                 .withDocument(document)
                 .build();
-        elasticsearchRestTemplate.update(updateQuery, IndexCoordinates.of("goods"));
+        elasticsearchRestTemplate.update(updateQuery, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("partial update document");
     }
 
@@ -140,7 +140,7 @@ public class EsTest {
                                 .filter(new TermQueryBuilder("price", 12800))
                 )
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("filter document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
     }
 
@@ -151,7 +151,7 @@ public class EsTest {
                 .withQuery(new MatchQueryBuilder("title", "apple"))
                 .withFilter(new TermQueryBuilder("price", 9988))
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("filter document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
     }
 
@@ -172,7 +172,7 @@ public class EsTest {
                 .withQuery(new MatchQueryBuilder("title", "apple"))
                 .withSort(new FieldSortBuilder("publishDate").order(SortOrder.DESC))
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("list document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
     }
 
@@ -184,7 +184,7 @@ public class EsTest {
                         .must(new RangeQueryBuilder("price").from(BigDecimal.ZERO).to(new BigDecimal(12800)))
                 )
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("list document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
     }
 
@@ -207,9 +207,9 @@ public class EsTest {
          *     # content-type: application/json; charset=UTF-8
          *     # content-length: 730
          *     #
-         *     # {"took":0,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":2,"max_score":0.76022595,"hits":[{"_index":"goods","_type":"_doc","_id":"10001","_version":2,"_score":0.76022595,"_source":{"_class":"com.boot.example.Goods","id":10001,"name":"AppleiPhone 11","title":"Apple iPhone 11 (A2223) 64GB 黑色 移动联通电信4G手机 双卡双待","price":6666,"publishDate":"2019-09-08"}},{"_index":"goods","_type":"_doc","_id":"10002","_version":1,"_score":0.73438257,"_source":{"_class":"com.boot.example.Goods","id":10002,"name":"AppleMNYH2CH/A","title":"Apple MacBook 12 | Core m3 8G 256G SSD硬盘 银色 笔记本电脑 轻薄本 MNYH2CH/A","price":12800.0,"publishDate":"2018-09-11"}}]}}
+         *     # {"took":0,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":2,"max_score":0.76022595,"hits":[{"_index":IndexConstant.GOODS_INDEX,"_type":"_doc","_id":"10001","_version":2,"_score":0.76022595,"_source":{"_class":"com.boot.example.Goods","id":10001,"name":"AppleiPhone 11","title":"Apple iPhone 11 (A2223) 64GB 黑色 移动联通电信4G手机 双卡双待","price":6666,"publishDate":"2019-09-08"}},{"_index":"goods","_type":"_doc","_id":"10002","_version":1,"_score":0.73438257,"_source":{"_class":"com.boot.example.Goods","id":10002,"name":"AppleMNYH2CH/A","title":"Apple MacBook 12 | Core m3 8G 256G SSD硬盘 银色 笔记本电脑 轻薄本 MNYH2CH/A","price":12800.0,"publishDate":"2018-09-11"}}]}}
          */
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("page document size：{}，result：{}", searchHits, searchHits);
     }
 
@@ -220,14 +220,14 @@ public class EsTest {
                 .withHighlightBuilder(new HighlightBuilder().field("title").preTags("<font color='green'>").postTags("</font>"))
                 .withPageable(PageRequest.of(0, 10))
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("page document size：{}，result：{}", 0, searchHits);
     }
 
     @Test
     public void count() {
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder().build();
-        Long count = elasticsearchRestTemplate.count(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        Long count = elasticsearchRestTemplate.count(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("goods count：{}", count);
     }
 
@@ -236,7 +236,7 @@ public class EsTest {
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                 .addAggregation(AggregationBuilders.avg("avg_price").field("price"))
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
 
         Map<String, Aggregation> aggregationMap = Objects.requireNonNull(searchHits.getAggregations()).asMap();
         Aggregation aggregation = aggregationMap.get("avg_price");
@@ -249,7 +249,7 @@ public class EsTest {
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                 .addAggregation(AggregationBuilders.max("max_price").field("price"))
                 .build();
-        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of("goods"));
+        SearchHits<Goods> searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
 
         Map<String, Aggregation> aggregationMap = Objects.requireNonNull(searchHits.getAggregations()).asMap();
         Aggregation aggregation = aggregationMap.get("max_price");
@@ -260,7 +260,7 @@ public class EsTest {
     @Test
     public void delete() {
         // 删除文档
-        elasticsearchRestTemplate.delete("10001", IndexCoordinates.of("goods"));
+        elasticsearchRestTemplate.delete("10001", IndexCoordinates.of(IndexConstant.GOODS_INDEX));
     }
 
     private List<Goods> buildGoodsList() {
