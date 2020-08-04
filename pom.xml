@@ -11,7 +11,6 @@
     <modules>
         <module>boot-example-start</module>
         <module>boot-example-actuator-admin-server</module>
-        <module>boot-example-jetcache</module>
         <module>boot-example-hystrix</module>
         <module>boot-example-guava-rate-limit</module>
         <module>boot-example-apollo</module>
@@ -36,16 +35,7 @@
         <module>boot-example-aop</module>
         <module>boot-example-properties</module>
         <module>boot-example-log4j2</module>
-        <module>boot-example-rabbitmq</module>
-        <module>boot-example-rabbitmq-producer-ack</module>
-        <module>boot-example-rabbitmq-consumer-ack</module>
-        <module>boot-example-rabbitmq-send-complex-message</module>
-        <module>boot-example-rabbitmq-delayed-message</module>
-        <module>boot-example-rabbitmq-fanout</module>
-        <module>boot-example-rabbitmq-topic</module>
         <module>boot-example-transaction</module>
-        <module>boot-example-rabbitmq-consumer-pull-message</module>
-        <module>boot-example-rabbitmq-dead-letter-queue</module>
         <module>boot-example-bean-lifecycle</module>
         <module>boot-example-zookeeper</module>
         <module>boot-example-transaction-imitate</module>
@@ -70,6 +60,8 @@
         <module>boot-example-docker</module>
         <module>boot-example-debug</module>
         <module>boot-example-cache</module>
+        <module>boot-example-mq</module>
+        <module>boot-example-security-integrate</module>
     </modules>
 
     <name>boot-example</name>
