@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Document(indexName = "goods")
+@Document(indexName = IndexConstant.GOODS_INDEX)
 public class Goods implements Serializable {
 
     @Id
