@@ -1,11 +1,10 @@
 package com.boot.example.placeholder;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * com.boot.example.ApolloApplication
@@ -15,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 @SpringBootApplication
 @EnableApolloConfig
+@Slf4j
 public class ApolloApplication {
 
     private static TestJavaConfigBean testJavaConfigBean;
@@ -40,14 +40,11 @@ public class ApolloApplication {
 
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(ApolloApplication.class, args);
+        log.info("TestJavaConfigBean======>" + testJavaConfigBean);
+        log.info("SampleRedisConfig======>" + sampleRedisConfig);
+        log.info("DatasourceConfig======>" + datasourceConfig);
 
-        while (true) {
-            System.out.println("TestJavaConfigBean======>" + testJavaConfigBean);
-
-            System.out.println("SampleRedisConfig======>" + sampleRedisConfig);
-
-            System.out.println("DatasourceConfig======>" + datasourceConfig);
-            TimeUnit.SECONDS.sleep(1);
-        }
+        log.info("apolloApi key=batch，value=" + ApolloApi.getConfig("batch"));
+        log.info("apolloApi key=timeout，value=" + ApolloApi.getConfig("timeout"));
     }
 }
