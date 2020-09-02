@@ -23,6 +23,9 @@ public class AppRefreshConfig {
     @Autowired
     private SampleRedisConfig sampleRedisConfig;
 
+    @Autowired
+    private RabbitmqConfig rabbitmqConfig;
+
     @ApolloConfigChangeListener
     public void onChange(ConfigChangeEvent changeEvent) {
         log.info("before refresh {}", sampleRedisConfig.toString());
@@ -30,10 +33,10 @@ public class AppRefreshConfig {
         log.info("after refresh {}", sampleRedisConfig.toString());
     }
 
-    @ApolloConfigChangeListener(value = "order-service.dataSource")
+    @ApolloConfigChangeListener(value = "rabbitmq.yml")
     public void onChange1(ConfigChangeEvent changeEvent) {
-        log.info("before refresh {}", sampleRedisConfig.toString());
-        refreshScope.refresh("sampleRedisConfig");
-        log.info("after refresh {}", sampleRedisConfig.toString());
+        log.info("before refresh {}", rabbitmqConfig.toString());
+        refreshScope.refresh("rabbitmqConfig");
+        log.info("after refresh {}", rabbitmqConfig.toString());
     }
 }

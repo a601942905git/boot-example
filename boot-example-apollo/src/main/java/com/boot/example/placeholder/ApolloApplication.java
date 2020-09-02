@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * com.boot.example.ApolloApplication
  *
@@ -23,6 +25,8 @@ public class ApolloApplication {
 
     private static DatasourceConfig datasourceConfig;
 
+    private static RabbitmqConfig rabbitmqConfig;
+
     @Autowired
     public void setTestJavaConfigBean(TestJavaConfigBean testJavaConfigBean) {
         ApolloApplication.testJavaConfigBean = testJavaConfigBean;
@@ -38,13 +42,31 @@ public class ApolloApplication {
         ApolloApplication.datasourceConfig = datasourceConfig;
     }
 
+    @Autowired
+    public void setRabbitmqConfig(RabbitmqConfig rabbitmqConfig) {
+        ApolloApplication.rabbitmqConfig = rabbitmqConfig;
+    }
+
     public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(ApolloApplication.class, args);
-        log.info("TestJavaConfigBean======>" + testJavaConfigBean);
-        log.info("SampleRedisConfig======>" + sampleRedisConfig);
-        log.info("DatasourceConfig======>" + datasourceConfig);
+        while (true) {
+            // @value方式读取配置
+            log.info("TestJavaConfigBean======>" + testJavaConfigBean);
+            log.info("DatasourceConfig======>" + datasourceConfig);
 
-        log.info("apolloApi key=batch，value=" + ApolloApi.getConfig("batch"));
-        log.info("apolloApi key=timeout，value=" + ApolloApi.getConfig("timeout"));
+            // @ConfigurationProperties方式读取配置
+            log.info("SampleRedisConfig======>" + sampleRedisConfig);
+
+            // api方式读取properties配置
+            log.info("apolloApi key=batch，value=" + ApolloApi.getDefaultIntegerConfig("batch"));
+            log.info("apolloApi key=timeout，value=" + ApolloApi.getDefaultIntegerConfig("timeout"));
+
+            // api方式读取yml配置
+            log.info("apolloApi key=spring.rabbitmq.address，value=" + ApolloApi.getRabbitmqStringConfig("spring.rabbitmq.address"));
+            log.info("apolloApi key=spring.rabbitmq.port，value=" + ApolloApi.getRabbitmqIntegerConfig("spring.rabbitmq.port"));
+            log.info("RabbitmqConfig======>" + rabbitmqConfig);
+
+            TimeUnit.SECONDS.sleep(10);
+        }
     }
 }

@@ -6,6 +6,6 @@ apollo:
   # cluster: SHAJQ # 指定需要读取集群的名称
   bootstrap:
     enabled: true # 在启动的时候注入application命名空间
-    namespaces: application,order-service.dataSource
+    namespaces: application,order-service.dataSource,rabbitmq.yml
   meta: http://localhost:8080 # 指定meta服务的地址
   cacheDir: /Users/pengli/software/idea/workspace/data/apollo-config-cache # 指定本地缓存文件地址
