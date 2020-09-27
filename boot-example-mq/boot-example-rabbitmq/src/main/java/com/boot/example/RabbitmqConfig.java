@@ -46,8 +46,7 @@ public class RabbitmqConfig {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public RabbitTemplate rabbitTemplate() {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory());
-        return template;
+        return new RabbitTemplate(connectionFactory());
     }
 
     /**
