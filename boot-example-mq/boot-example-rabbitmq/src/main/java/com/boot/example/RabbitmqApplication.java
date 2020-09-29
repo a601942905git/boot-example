@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * com.boot.example.RabbitmqApplication
  *
  * @author lipeng
- * @date 2019/1/10 下午3:17
+ * @date 2020/9/27 3:30 PM
  */
 @SpringBootApplication
 public class RabbitmqApplication {

@@ -6,27 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 /**
- * com.boot.example.RabbitmqTest
+ * com.boot.example.MqSenderTest
  *
  * @author lipeng
- * @date 2019/1/10 下午3:12
+ * @date 2020/9/27 4:11 PM
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RabbitmqApplication.class)
-public class RabbitmqTest {
+public class MqSenderTest {
 
     @Autowired
-    private HelloProducer helloProducer;
+    private MqSender mqSender;
 
     @Test
-    public void sendMessage() throws InterruptedException, IOException {
-        while (true) {
-            TimeUnit.SECONDS.sleep(1);
-            helloProducer.sendMsg();
-        }
+    public void send() {
+        mqSender.send("hello rabbitmq");
     }
 }
