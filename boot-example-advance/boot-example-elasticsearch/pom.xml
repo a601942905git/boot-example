@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.boot.example</groupId>
-        <artifactId>boot-example</artifactId>
+        <artifactId>boot-example-advance</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>boot-example-elasticsearch</artifactId>
