@@ -6,5 +6,5 @@ package com.boot.example.factory;
  * @author lipeng
  * @date 2019/11/7 下午4:34
  */
-public interface FactorySupportType {
+public interface FactoryServiceType {
 }

@@ -1,6 +1,6 @@
 package com.boot.example;
 
-import com.boot.example.factory.FactoryAble;
+import com.boot.example.factory.FactoryService;
 
 /**
  * com.boot.example.OrderService
@@ -8,7 +8,7 @@ import com.boot.example.factory.FactoryAble;
  * @author lipeng
  * @date 2019/11/7 下午5:09
  */
-public interface OrderService extends FactoryAble<OrderTypeEnum> {
+public interface OrderService extends FactoryService<OrderTypeEnum> {
 
     /**
      * 创建订单

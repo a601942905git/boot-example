@@ -17,12 +17,12 @@ import java.util.Map;
  * @author lipeng
  * @date 2019/11/7 下午4:24
  */
-public abstract class BaseFactory<T extends FactoryAble<?>> implements InitializingBean {
+public abstract class BaseFactory<T extends FactoryService<?>> implements InitializingBean {
 
     @Autowired
     private ApplicationContext applicationContext;
 
-    private final Map<FactorySupportType, T> factoryMap = new HashMap<>();
+    private final Map<FactoryServiceType, T> factoryMap = new HashMap<>();
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -44,18 +44,18 @@ public abstract class BaseFactory<T extends FactoryAble<?>> implements Initializ
         }
 
         for (Map.Entry<String, T> entry : serviceInstanceMap.entrySet()) {
-            List<? extends FactorySupportType> supportTypeList = entry.getValue().supportType();
+            List<? extends FactoryServiceType> supportTypeList = entry.getValue().supportType();
             if (CollectionUtils.isEmpty(supportTypeList)) {
                 throw new NullPointerException("please set support type");
             }
 
-            for (FactorySupportType supportType : supportTypeList) {
+            for (FactoryServiceType supportType : supportTypeList) {
                 factoryMap.put(supportType, entry.getValue());
             }
         }
     }
 
-    public T getBean(FactorySupportType factoryObjectType) {
+    public T getBean(FactoryServiceType factoryObjectType) {
         return factoryMap.get(factoryObjectType);
     }
 }

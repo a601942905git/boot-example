@@ -1,6 +1,6 @@
 package com.boot.example;
 
-import com.boot.example.factory.FactorySupportType;
+import com.boot.example.factory.FactoryServiceType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author lipeng
  * @date 2019/11/7 下午5:15
  */
-public enum OrderTypeEnum implements FactorySupportType {
+public enum OrderTypeEnum implements FactoryServiceType {
 
     GROUP_ORDER(1, "拼团订单"),
     DISCOUNT_ORDER(2, "折扣订单"),
