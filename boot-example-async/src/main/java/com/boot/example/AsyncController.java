@@ -10,6 +10,7 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
@@ -47,7 +48,9 @@ public class AsyncController {
     @GetMapping("/listReturnDeferredResult")
     public DeferredResult listReturnDeferredResult() {
         log.info("listReturnDeferredResult execute start......");
-        DeferredResult deferredResult = new DeferredResult();
+        DeferredResult deferredResult = new DeferredResult(1000L);
+        deferredResult.onTimeout(() -> log.info("execute timeout======>" + new Date()));
+        deferredResult.onCompletion(() -> log.info("execute completion======>" + new Date()));
         threadPoolTaskExecutor.execute(() -> deferredResult.setResult(doBusiness()));
         log.info("listReturnDeferredResult execute start......");
         return deferredResult;
