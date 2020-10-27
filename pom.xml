@@ -44,6 +44,7 @@
         <module>boot-example-mq</module>
         <module>boot-example-security-integrate</module>
         <module>boot-example-advance</module>
+        <module>boot-example-primary</module>
     </modules>
 
     <name>boot-example</name>
