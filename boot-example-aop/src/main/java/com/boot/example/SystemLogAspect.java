@@ -40,6 +40,7 @@ public class SystemLogAspect {
      */
     @Before("SystemLogAspect()")
     public void doBefore(JoinPoint joinPoint) {
+        log.info("============doBefore============");
     }
 
     /**
@@ -47,7 +48,7 @@ public class SystemLogAspect {
      */
     @AfterReturning("SystemLogAspect()")
     public void doAfterReturning() {
-
+        log.info("============doAfterReturning============");
     }
 
     /**
