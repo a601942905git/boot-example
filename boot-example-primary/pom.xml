@@ -8,10 +8,33 @@
         <groupId>com.boot.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>boot-example-primary</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <name>boot-example-primary</name>
     <url>http://www.example.com</url>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>boot-example-aop</module>
+        <module>boot-example-async</module>
+        <module>boot-example-banner</module>
+        <module>boot-example-bean-lifecycle</module>
+        <module>boot-example-email</module>
+        <module>boot-example-error-page</module>
+        <module>boot-example-event</module>
+        <module>boot-example-exception</module>
+        <module>boot-example-filter</module>
+        <module>boot-example-internel-messge</module>
+        <module>boot-example-jackson</module>
+        <module>boot-example-log4j2</module>
+        <module>boot-example-mybatis</module>
+        <module>boot-example-prometheus</module>
+        <module>boot-example-properties</module>
+        <module>boot-example-state-machine</module>
+        <module>boot-example-transaction</module>
+        <module>boot-example-transaction-imitate</module>
+        <module>boot-example-validate</module>
+    </modules>
 </project>
