@@ -1,10 +1,14 @@
 package com.boot.example;
 
+import com.boot.example.entity.User;
+import com.boot.example.event.RegisterEvent;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.Arrays;
+import org.springframework.context.annotation.Bean;
 
 /**
  * com.boot.example.DebugApplicaiton
@@ -13,11 +17,29 @@ import java.util.Arrays;
  * @date 2020/7/2 2:30 PM
  */
 @SpringBootApplication
+@Slf4j
 public class DebugApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(DebugApplication.class, args);
-        Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
+        publishEvent(applicationContext);
+        ConfigurableBeanFactory beanFactory = applicationContext.getBeanFactory();
+        log.info("===>" + beanFactory.resolveEmbeddedValue("${inject.value}"));
+        log.info("===>" + beanFactory.getBean("&rpcFactoryBean"));
+        log.info("===>" + beanFactory.getBean("rpcFactoryBean"));
+        // Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
+    }
 
+    public static void publishEvent(ApplicationContext applicationContext) {
+        User user = User.builder()
+                .id(10001)
+                .name("新注册用户01")
+                .build();
+        applicationContext.publishEvent(new RegisterEvent(user));
+    }
+
+    @Bean
+    public Person person() {
+        return new Person();
     }
 }

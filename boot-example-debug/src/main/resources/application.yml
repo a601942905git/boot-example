@@ -1,0 +1,4 @@
+server:
+  shutdown: graceful
+inject:
+  value: injectValueInYml
