@@ -31,6 +31,7 @@ public class DebugController {
 
     @GetMapping("/gracefulShutdown")
     public String gracefulShutdown() throws InterruptedException {
+        log.info("任务开始执行....");
         TimeUnit.SECONDS.sleep(20);
         log.info("关闭应用，任务可以继续执行....");
         return "关闭应用，任务可以继续执行....";
