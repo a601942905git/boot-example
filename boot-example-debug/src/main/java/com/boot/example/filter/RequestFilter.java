@@ -25,5 +25,6 @@ public class RequestFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         log.info("请求路径：{}", req.getRequestURL());
+        chain.doFilter(request, response);
     }
 }

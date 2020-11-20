@@ -2,3 +2,6 @@ server:
   shutdown: graceful
 inject:
   value: injectValueInYml
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 60s

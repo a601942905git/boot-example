@@ -1,6 +1,6 @@
 server:
-  shutdown: graceful # 设置优雅关闭，该功能在Spring Boot2.3版本中才有。注意：需要使用Kill -2 触发来关闭应用，该命令会触发shutDownHook
+  shutdown: graceful # 设置优雅关闭，该功能在Spring Boot2.3版本中才有。注意：需要使用Kill -2 触发来关闭应用，该命令会触发shutdownHook
 
 spring:
   lifecycle:
-    timeout-per-shutdown-phase: 30s # 设置缓冲时间，注意需要带上时间单位
+    timeout-per-shutdown-phase: 30s # 设置缓冲时间，注意需要带上时间单位(该时间用于等待任务执行完成)
