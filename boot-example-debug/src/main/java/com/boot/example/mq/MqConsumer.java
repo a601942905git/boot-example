@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * com.boot.example.mq.MqConsumer
@@ -34,18 +35,27 @@ public class MqConsumer {
      * @param channel
      * @param content
      */
-    @RabbitListener(id = "consumerMessage1", queues = "test1", ackMode = "MANUAL")
+    @RabbitListener(id = "consumerMessage1", queues = "test", ackMode = "MANUAL")
     public void consumeMessage1(Message message, Channel channel, String content) {
-        log.info("receive message1：{}", content);
+        log.info("receive message1 start：{}", content);
         try {
+            TimeUnit.SECONDS.sleep(10);
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (IOException e) {
             log.error("channel basic ack exception：", e);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        log.info("receive message1 end：{}", content);
     }
 
     @RabbitListener(id = "consumerMessage2", queues = "test2")
     public void consumeMessage2(String message) {
         log.info("receive message2：{}", message);
+    }
+
+    @RabbitListener(queues = "test3", containerFactory = "rabbitListenerContainerFactory")
+    public void consumeComplexMessage(Order order) {
+        log.info("receive complex message：{}", order);
     }
 }

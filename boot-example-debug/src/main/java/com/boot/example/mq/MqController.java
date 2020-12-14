@@ -22,6 +22,9 @@ public class MqController {
     @Autowired
     private RabbitListenerEndpointRegistry rabbitListenerEndpointRegistry;
 
+    @Autowired
+    private MqProducer mqProducer;
+
     /**
      * 开始监听容器
      *
@@ -44,5 +47,26 @@ public class MqController {
     public String stopRabbitMessageListenerContainer(@PathVariable(value = "containerId") String containerId) {
         rabbitListenerEndpointRegistry.getListenerContainer(containerId).stop();
         return "container id：" + containerId + " stop";
+    }
+
+    @GetMapping("/sendMessage")
+    public void sendMessage() {
+        mqProducer.sendMessage();
+    }
+
+    @GetMapping("/sendComplexMessage")
+    public void sendComplexMessage() {
+        mqProducer.sendComplexMessage();
+    }
+
+    @GetMapping("/sendUnRoutableMessage")
+    public void sendUnRoutableMessage() {
+        mqProducer.sendUnRoutableMessage();
+    }
+
+
+    @GetMapping("/sendMessageWithUnKnowExchange")
+    public void sendMessageWithUnKnowExchange() {
+        mqProducer.sendMessageWithUnKnowExchange();
     }
 }

@@ -11,3 +11,5 @@ spring:
     username: guest
     password: guest
     virtual-host: boot-example
+    publisher-confirm-type: correlated
+    publisher-returns: true # 该属性设置为true之后,生产者发送的消息就是强制性消息,与template.mandatory类似org.springframework.boot.autoconfigure.amqp.RabbitTemplateConfigurer.determineMandatoryFlag
