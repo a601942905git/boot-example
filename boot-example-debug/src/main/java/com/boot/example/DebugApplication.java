@@ -24,9 +24,13 @@ public class DebugApplication {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(DebugApplication.class, args);
         publishEvent(applicationContext);
         ConfigurableBeanFactory beanFactory = applicationContext.getBeanFactory();
+        // 解析内嵌值
         log.info("===>" + beanFactory.resolveEmbeddedValue("${inject.value}"));
+        // 获取FactoryBean
         log.info("===>" + beanFactory.getBean("&rpcFactoryBean"));
+        // 获取getObject()返回的bean
         log.info("===>" + beanFactory.getBean("rpcFactoryBean"));
+        log.info("container singleton count===>" + beanFactory.getSingletonCount());
         // Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
     }
 

@@ -6,11 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.Lifecycle;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +28,11 @@ import javax.annotation.PreDestroy;
  */
 @Component
 @Slf4j
-public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware, InitializingBean, DisposableBean {
+public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware, InitializingBean, DisposableBean, Lifecycle, SmartInitializingSingleton {
+
+    private ApplicationContext applicationContext;
+
+    private Environment environment;
 
     @Value("${inject.value}")
     private String injectValue;
@@ -52,11 +59,13 @@ public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware,
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
         log.error("execute setApplicationContext method");
     }
 
     @Override
     public void setEnvironment(Environment environment) {
+        this.environment = environment;
         log.error("execute setEnvironment method");
     }
 
@@ -68,5 +77,26 @@ public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware,
     @Override
     public void destroy() throws Exception {
         log.error("execute DisposableBean interface destroy method");
+    }
+
+    @Override
+    public void afterSingletonsInstantiated() {
+        GenericApplicationContext genericApplicationContext = (GenericApplicationContext) applicationContext;
+        log.error("container single bean count：{}", genericApplicationContext.getBeanFactory().getSingletonCount());
+    }
+
+    @Override
+    public void start() {
+        log.error("the application start");
+    }
+
+    @Override
+    public void stop() {
+        log.error("the application stop");
+    }
+
+    @Override
+    public boolean isRunning() {
+        return true;
     }
 }
