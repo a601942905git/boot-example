@@ -1,7 +1,8 @@
 package com.boot.example.listener;
 
-import lombok.extern.slf4j.Slf4j;
+import com.boot.example.util.ApplicationContextUtils;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Component;
  * @date 2020/1/6 下午6:53
  */
 @Component
-@Slf4j
 public class ApplicationStartedListener implements ApplicationListener<ApplicationStartedEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
-        log.info("spring application started......");
+        ApplicationContext applicationContext = event.getApplicationContext();
+        ApplicationContextUtils.setApplicationContext(applicationContext);
     }
 }
