@@ -18,7 +18,6 @@
         <module>boot-example-web</module>
         <module>boot-example-interceptor</module>
         <module>boot-example-factory</module>
-        <module>boot-example-framework-learning</module>
         <module>boot-example-debug</module>
         <module>boot-example-mq</module>
         <module>boot-example-security-integrate</module>
