@@ -131,7 +131,7 @@ public class ComplexController {
 ```
 app:
   id: 20001
-  name: shein
+  name: test
   version: 2.1.8
   publishDate: 2018-10-11
   publishDateTime: 2018-10-11 12:30:36
@@ -261,5 +261,5 @@ public class LocalDateTimeConvert implements Converter<String, LocalDateTime> {
 ```
 定义好了2个转换器后，再次启动我们的程序，发现可以了，然后访问 http://localhost:8080/convert就可以看到结果了
 ```
-{"id":20001,"name":"shein","version":"2.1.8","publishDate":"2018-10-11","publishDateTime":"2018-10-11 12:30:36"}
+{"id":20001,"name":"test","version":"2.1.8","publishDate":"2018-10-11","publishDateTime":"2018-10-11 12:30:36"}
 ```

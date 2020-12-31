@@ -19,7 +19,7 @@ complex:
 
 app:
   id: 20001
-  name: shein
+  name: test
   version: 2.1.8
   publishDate: 2018-10-11
   publishDateTime: 2018-10-11 12:30:36
