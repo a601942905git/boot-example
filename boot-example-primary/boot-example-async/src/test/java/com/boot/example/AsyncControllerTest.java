@@ -1,12 +1,10 @@
 package com.boot.example;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -18,7 +16,6 @@ import java.util.List;
  * @date 2018/12/24 上午10:34
  */
 @Slf4j
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpringBootAsyncApplication.class)
 public class AsyncControllerTest {
 

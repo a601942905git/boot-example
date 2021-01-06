@@ -2,7 +2,7 @@ package com.boot.example;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.zookeeper.data.Stat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 

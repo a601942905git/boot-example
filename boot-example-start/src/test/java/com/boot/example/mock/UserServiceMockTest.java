@@ -2,9 +2,9 @@ package com.boot.example.mock;
 
 import com.boot.example.core.mapper.mock.MockMapper;
 import com.boot.example.core.service.mock.MockService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -27,7 +27,7 @@ public class UserServiceMockTest {
     @Mock
     private MockMapper mockMapper;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
@@ -37,6 +37,6 @@ public class UserServiceMockTest {
 
     @Test
     public void testMockService() throws Exception {
-        Assert.assertEquals(Integer.valueOf(1), mockService.getMock(1).getId());
+        Assertions.assertEquals(Integer.valueOf(1), mockService.getMock(1).getId());
     }
 }

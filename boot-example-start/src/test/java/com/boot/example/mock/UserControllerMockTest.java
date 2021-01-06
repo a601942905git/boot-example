@@ -2,8 +2,8 @@ package com.boot.example.mock;
 
 import com.boot.example.controller.mock.MockController;
 import com.boot.example.core.service.mock.MockService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -38,7 +38,7 @@ public class UserControllerMockTest {
 
     private String json = "{\"id\":1,\"name\":\"model from mock\"}";
 
-    @Before
+    @BeforeAll
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 

@@ -1,10 +1,8 @@
 package com.boot.example;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +13,6 @@ import java.util.concurrent.TimeUnit;
  * @author lipeng
  * @date 2019/1/10 下午3:12
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RabbitmqApplication.class)
 public class RabbitmqTest {
 

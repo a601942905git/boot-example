@@ -1,11 +1,9 @@
 package com.boot.example.request;
 
 import com.boot.example.StartApplication;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -14,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
  * @author lipeng
  * @dateTime 2018/11/23 上午10:47
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = StartApplication.class)
 public class RequestTest {
 
