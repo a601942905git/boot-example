@@ -15,8 +15,10 @@
         <module>boot-example-docker</module>
         <module>boot-example-elasticsearch</module>
         <module>boot-example-guava-rate-limit</module>
+        <module>boot-example-hystrix</module>
         <module>boot-example-rate-limit</module>
         <module>boot-example-zookeeper</module>
+        <module>boot-example-shutdown</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>

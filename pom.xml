@@ -43,21 +43,18 @@
         <jetcache.starter.version>2.5.9</jetcache.starter.version>
         <hystrix.version>1.5.12</hystrix.version>
         <hystrix.metrics.version>1.5.12</hystrix.metrics.version>
-        <spring.cloud.starter.hystrix>1.3.0.RELEASE</spring.cloud.starter.hystrix>
         <sentry.spring.version>1.7.5</sentry.spring.version>
-        <sentinel.version>0.2.0</sentinel.version>
-        <sentinel.annotation.aspectj.version>0.2.0</sentinel.annotation.aspectj.version>
         <guava.version>28.2-jre</guava.version>
         <apollo.client.version>1.7.0</apollo.client.version>
         <springfox.version>2.9.2</springfox.version>
-        <thymeleaf.security.version>3.0.2.RELEASE</thymeleaf.security.version>
+        <thymeleaf.security.version>3.0.4.RELEASE</thymeleaf.security.version>
         <jwt.version>0.9.0</jwt.version>
-        <prometheus.simple.client.version>0.4.0</prometheus.simple.client.version>
         <spring.statemachine.core.version>2.0.3.RELEASE</spring.statemachine.core.version>
         <disruptor.version>3.4.2</disruptor.version>
         <curator.version>2.12.0</curator.version>
         <fastjson.version>1.2.51</fastjson.version>
         <spring.cloud.context.version>2.2.0.RELEASE</spring.cloud.context.version>
+        <prometheus.simple.client.version>0.6.0</prometheus.simple.client.version>
     </properties>
 
     <dependencyManagement>
@@ -125,28 +122,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-hystrix</artifactId>
-                <version>${spring.cloud.starter.hystrix}</version>
-            </dependency>
-
-
-            <dependency>
                 <groupId>io.sentry</groupId>
                 <artifactId>sentry-spring</artifactId>
                 <version>${sentry.spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-core</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-annotation-aspectj</artifactId>
-                <version>${sentinel.annotation.aspectj.version}</version>
             </dependency>
 
             <dependency>
@@ -175,7 +153,7 @@
 
             <dependency>
                 <groupId>org.thymeleaf.extras</groupId>
-                <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+                <artifactId>thymeleaf-extras-springsecurity5</artifactId>
                 <version>${thymeleaf.security.version}</version>
             </dependency>
 
@@ -188,12 +166,6 @@
             <dependency>
                 <groupId>io.prometheus</groupId>
                 <artifactId>simpleclient</artifactId>
-                <version>${prometheus.simple.client.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.prometheus</groupId>
-                <artifactId>simpleclient_spring_boot</artifactId>
                 <version>${prometheus.simple.client.version}</version>
             </dependency>
 

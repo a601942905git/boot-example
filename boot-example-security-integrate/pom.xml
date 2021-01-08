@@ -7,11 +7,19 @@
         <groupId>com.boot.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modules>
+        <module>boot-example-security</module>
+        <module>boot-example-security1</module>
+        <module>boot-example-security2</module>
+        <module>boot-example-security3</module>
+        <module>boot-example-security-jwt</module>
+    </modules>
+
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>boot-example-security-integrate</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <name>boot-example-security-integrate</name>
     <url>http://www.example.com</url>
+    <packaging>pom</packaging>
 </project>
