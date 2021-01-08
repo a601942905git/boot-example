@@ -3,7 +3,7 @@ package com.boot.example.command;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandProperties;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * com.boot.example.command.FallBackCommand
