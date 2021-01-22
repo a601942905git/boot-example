@@ -4,7 +4,7 @@ inject:
   value: injectValueInYml
 spring:
   lifecycle:
-    timeout-per-shutdown-phase: 60s
+    timeout-per-shutdown-phase: 60s # 设置服务停机的最大等待时间
   rabbitmq:
     host: localhost
     port: 5672
@@ -49,3 +49,7 @@ management:
   endpoint:
     health:
       show-details: ALWAYS # /health默认情况下不显示各个组件的详细信息，该配置可以展示各个组件的详细信息
+  endpoints:
+    web:
+      exposure:
+        include: health, info, custom
