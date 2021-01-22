@@ -9,14 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>boot-example-start</module>
         <module>boot-example-actuator-admin-server</module>
-        <module>boot-example-swagger</module>
         <module>boot-example-custom-starter</module>
         <module>boot-example-custom-starter-test</module>
         <module>boot-example-disruptor</module>
-        <module>boot-example-web</module>
-        <module>boot-example-interceptor</module>
         <module>boot-example-debug</module>
         <module>boot-example-mq</module>
         <module>boot-example-security-integrate</module>
