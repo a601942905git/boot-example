@@ -33,15 +33,15 @@ public class MethodUtilsTest {
 
     @Test
     public void operateGreetMethod() throws InvocationTargetException, IllegalAccessException {
-
-        Map<Method, Object> map = MethodIntrospector.selectMethods(Person.class, (MethodIntrospector.MetadataLookup) method -> {
+        MethodIntrospector.MetadataLookup<String> metadataLookup = method -> {
             if (AnnotatedElementUtils.hasAnnotation(method, Greet.class)) {
                 return method.getName();
             }
             return null;
-        });
+        };
+        Map<Method, String> map = MethodIntrospector.selectMethods(Person.class, metadataLookup);
 
-        for (Map.Entry<Method, Object> entry : map.entrySet()) {
+        for (Map.Entry<Method, String> entry : map.entrySet()) {
             if (Objects.nonNull(entry.getValue())) {
                 log.info("key===>" + entry.getKey().getName() + "，value===>" + entry.getValue());
             }
