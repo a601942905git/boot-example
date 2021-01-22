@@ -4,6 +4,7 @@ import com.boot.example.filter.RequestFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * com.boot.example.config.WebConfig
@@ -25,5 +26,10 @@ public class WebConfig {
         filterRegistrationBean.setFilter(new RequestFilter());
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

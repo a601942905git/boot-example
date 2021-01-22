@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * com.boot.example.entity.User
  *
@@ -17,8 +20,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
 
+    @NotNull(message = "id can not be null")
     private Integer id;
 
+    @NotBlank(message = "name can not be blank")
     private String name;
 
     private Integer age;

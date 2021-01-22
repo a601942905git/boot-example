@@ -15,6 +15,11 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Component
 public class ThreadPoolConfiguration {
 
+    /**
+     * 如果不自定义线程池，异步任务会使用TaskExecutionAutoConfiguration配置类中定的线程池
+     *
+     * @return 线程池
+     */
     @Bean
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
