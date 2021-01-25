@@ -22,16 +22,25 @@ public class DebugApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(DebugApplication.class, args);
+        // 发布事件
         publishEvent(applicationContext);
         ConfigurableBeanFactory beanFactory = applicationContext.getBeanFactory();
         // 解析内嵌值
         log.info("===>" + beanFactory.resolveEmbeddedValue("${inject.value}"));
-        // 获取FactoryBean
-        log.info("===>" + beanFactory.getBean("&rpcFactoryBean"));
+        getFactoryBean(beanFactory);
         // 获取getObject()返回的bean
-        log.info("===>" + beanFactory.getBean("rpcFactoryBean"));
         log.info("container singleton count===>" + beanFactory.getSingletonCount());
         // Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
+    }
+
+    private static void getFactoryBean(ConfigurableBeanFactory beanFactory) {
+        // 从IOC容器中获取名称为"rpcFactoryBean"对象，也就是RpcFactoryBean，
+        // 由于名称不是以"&"开头，会从factoryBeanObjectCache中获取名称为"rpcFactoryBean"对象，
+        // 也就是通过RpcFactoryBean.getObject()方法创建出来的对象
+        log.info("get by bean name rpcFactoryBean===>" + beanFactory.getBean("rpcFactoryBean"));
+        // 从IOC容器中获取名称为"rpcFactoryBean"对象，也就是RpcFactoryBean，
+        // 由于名称是以"&"开头，直接返回对象
+        log.info("get by bean name &rpcFactoryBean===>" + beanFactory.getBean("&rpcFactoryBean"));
     }
 
     public static void publishEvent(ApplicationContext applicationContext) {

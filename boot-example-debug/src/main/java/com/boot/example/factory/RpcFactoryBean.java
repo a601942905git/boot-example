@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
  * @date 2020/11/3 4:09 PM
  */
 @Component
-public class RpcFactoryBean implements FactoryBean {
+public class RpcFactoryBean implements FactoryBean<User> {
 
     @Override
-    public Object getObject() throws Exception {
+    public User getObject() throws Exception {
         return new User();
     }
 
