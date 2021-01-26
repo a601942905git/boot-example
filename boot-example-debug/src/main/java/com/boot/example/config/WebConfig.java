@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * com.boot.example.config.WebConfig
  *
@@ -22,14 +24,16 @@ public class WebConfig {
      */
     @Bean
     public FilterRegistrationBean<RequestFilter> filterRegistrationBean() {
-        FilterRegistrationBean<RequestFilter> filterRegistrationBean = new FilterRegistrationBean();
+        FilterRegistrationBean<RequestFilter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new RequestFilter());
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
     }
 
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate restTemplate() throws InterruptedException {
+        // 设置睡眠时间的目的是通过localhost:8080/actuator/startup查看应用启动过程中耗时情况
+        TimeUnit.SECONDS.sleep(1);
         return new RestTemplate();
     }
 }

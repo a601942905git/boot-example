@@ -7,8 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,10 @@ public class DebugApplication {
 
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(DebugApplication.class, args);
+        // 设置应用启动的缓存大小，用于记录启动过程中耗时情况
+        ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(DebugApplication.class)
+                .applicationStartup(new BufferingApplicationStartup(20480))
+                .run(args);
         // 发布事件
         publishEvent(applicationContext);
         ConfigurableBeanFactory beanFactory = applicationContext.getBeanFactory();

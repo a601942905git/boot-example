@@ -52,4 +52,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, custom
+        include: startup, health, info, custom # startup断点用于查看应用启动过程中的耗时请求
