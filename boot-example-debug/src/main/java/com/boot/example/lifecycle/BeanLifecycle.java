@@ -1,6 +1,5 @@
 package com.boot.example.lifecycle;
 
-import com.boot.example.entity.User;
 import com.boot.example.service.DebugService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -39,9 +38,6 @@ public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware,
 
     @Autowired
     private DebugService debugService;
-
-    @Autowired
-    private User user;
 
     public BeanLifecycle() {
         log.error("execute construct method");

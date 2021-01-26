@@ -5,13 +5,14 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
 /**
- * com.boot.example.factory.RpcFactoryBean
+ * com.boot.example.factory.UserFactoryBean
  *
  * @author lipeng
- * @date 2020/11/3 4:09 PM
+ * @date 2021/1/26 1:28 PM
  */
+
 @Component
-public class RpcFactoryBean implements FactoryBean<User> {
+public class UserFactoryBean implements FactoryBean<User> {
 
     @Override
     public User getObject() throws Exception {

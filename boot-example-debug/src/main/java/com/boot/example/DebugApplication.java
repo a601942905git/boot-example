@@ -4,6 +4,7 @@ import com.boot.example.entity.User;
 import com.boot.example.event.RegisterEvent;
 import com.boot.example.factory.Tiger;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
@@ -48,10 +49,11 @@ public class DebugApplication {
         // 从IOC容器中获取名称为"rpcFactoryBean"对象，也就是RpcFactoryBean，
         // 由于名称不是以"&"开头，会从factoryBeanObjectCache中获取名称为"rpcFactoryBean"对象，
         // 也就是通过RpcFactoryBean.getObject()方法创建出来的对象
-        log.info("get by bean name rpcFactoryBean===>" + beanFactory.getBean("rpcFactoryBean"));
+        log.info("get by bean name rpcFactoryBean===>" + beanFactory.getBean("userFactoryBean"));
         // 从IOC容器中获取名称为"rpcFactoryBean"对象，也就是RpcFactoryBean，
         // 由于名称是以"&"开头，直接返回对象
-        log.info("get by bean name &rpcFactoryBean===>" + beanFactory.getBean("&rpcFactoryBean"));
+        log.info("get by bean name &rpcFactoryBean===>" +
+                beanFactory.getBean(BeanFactory.FACTORY_BEAN_PREFIX + "userFactoryBean"));
     }
 
     private static void proxyFactoryBeanTest() {
