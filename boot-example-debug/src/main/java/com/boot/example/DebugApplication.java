@@ -2,7 +2,9 @@ package com.boot.example;
 
 import com.boot.example.entity.User;
 import com.boot.example.event.RegisterEvent;
+import com.boot.example.factory.Tiger;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +22,14 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class DebugApplication {
 
+    private static Tiger tiger;
+
+    @Autowired
+    public void setPerson(Tiger tiger) {
+        DebugApplication.tiger = tiger;
+    }
+
+
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(DebugApplication.class, args);
         // 发布事件
@@ -28,6 +38,7 @@ public class DebugApplication {
         // 解析内嵌值
         log.info("===>" + beanFactory.resolveEmbeddedValue("${inject.value}"));
         getFactoryBean(beanFactory);
+        proxyFactoryBeanTest();
         // 获取getObject()返回的bean
         log.info("container singleton count===>" + beanFactory.getSingletonCount());
         // Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
@@ -41,6 +52,10 @@ public class DebugApplication {
         // 从IOC容器中获取名称为"rpcFactoryBean"对象，也就是RpcFactoryBean，
         // 由于名称是以"&"开头，直接返回对象
         log.info("get by bean name &rpcFactoryBean===>" + beanFactory.getBean("&rpcFactoryBean"));
+    }
+
+    private static void proxyFactoryBeanTest() {
+        tiger.hello();
     }
 
     public static void publishEvent(ApplicationContext applicationContext) {
