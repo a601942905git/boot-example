@@ -33,8 +33,8 @@ spring:
       min-idle: 10 # 最小连接数
       max-wait: 60000 # 配置获取连接等待超时的时间
       time-between-eviction-runs-millis: 2000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-      min-evictable-idle-time-millis: 600000 # 配置一个连接在池中最小生存的时间，单位是毫秒
-      max-evictable-idle-time-millis: 9000000 # 配置一个连接在池中最大生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 1800000 # 配置一个连接在池中最小生存的时间，单位是毫秒
+      max-evictable-idle-time-millis: 3600000 # 配置一个连接在池中最大生存的时间，单位是毫秒，该配置值一定要大于min-evictable-idle-time-millis的默认值1800000，详见：DruidAbstractDataSource.setMaxEvictableIdleTimeMillis
       validation-query: select 1 # 检测连接有效性要执行的sql
       test-while-idle: true # 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
       test-on-borrow: false # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
