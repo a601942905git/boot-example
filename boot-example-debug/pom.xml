@@ -61,4 +61,14 @@
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
+
+    <!-- 该配置用去在yml中读取pom中的变量信息 -->
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

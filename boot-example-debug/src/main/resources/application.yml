@@ -3,6 +3,8 @@ server:
 inject:
   value: injectValueInYml
 spring:
+  application:
+    name: 'boot-example'
   lifecycle:
     timeout-per-shutdown-phase: 60s # 设置服务停机的最大等待时间
   rabbitmq:
@@ -53,3 +55,7 @@ management:
     web:
       exposure:
         include: startup, health, info, custom # startup断点用于查看应用启动过程中的耗时请求
+info:
+  'boot.version': '@spring.boot.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml文件
+  'project.version': '@project.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml文件
+  'project.name': '${spring.application.name}' # 读取yml文件的的变量
