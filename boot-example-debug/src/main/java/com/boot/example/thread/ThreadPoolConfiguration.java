@@ -23,14 +23,23 @@ public class ThreadPoolConfiguration {
     @Bean
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        // 设置核心线程数大小
         threadPoolTaskExecutor.setCorePoolSize(10);
+        // 设置最大线程数大小
         threadPoolTaskExecutor.setMaxPoolSize(10);
+        // 设置队列大小
         threadPoolTaskExecutor.setQueueCapacity(5000);
+        // 是否允许核心线程数超时
         threadPoolTaskExecutor.setAllowCoreThreadTimeOut(true);
+        // 线程存活时间
         threadPoolTaskExecutor.setKeepAliveSeconds(120);
+        // 线程池关闭等待时间
         threadPoolTaskExecutor.setAwaitTerminationSeconds(120);
+        // 当线程池关闭时是否等待任务执行完成
         threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);
+        // 线程名称前缀
         threadPoolTaskExecutor.setThreadNamePrefix("thread-pool-task-executor");
+        // 设置拒绝策略
         threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         return threadPoolTaskExecutor;
     }
