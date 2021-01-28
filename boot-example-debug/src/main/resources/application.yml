@@ -1,5 +1,8 @@
 server:
   shutdown: graceful
+  tomcat:
+    mbeanregistry:
+      enabled: true # 开启tomcat相关指标监控，访问地址：http://localhost:8080/actuator/metrics
 inject:
   value: injectValueInYml
 spring:
@@ -54,7 +57,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: startup, health, info, custom # startup断点用于查看应用启动过程中的耗时请求
+        include: '*' # startup断点用于查看应用启动过程中的耗时请求
 info:
   'boot.version': '@spring.boot.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml文件
   'project.version': '@project.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml文件
