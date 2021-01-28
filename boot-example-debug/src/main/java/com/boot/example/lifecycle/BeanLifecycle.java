@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.Lifecycle;
+import org.springframework.context.SmartLifecycle;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -22,12 +22,16 @@ import javax.annotation.PreDestroy;
 /**
  * com.boot.example.lifecycle.BeanLifecycle
  *
+ *
  * @author lipeng
  * @date 2020/11/3 5:50 PM
  */
 @Component
 @Slf4j
-public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware, InitializingBean, DisposableBean, Lifecycle, SmartInitializingSingleton {
+public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware, InitializingBean, DisposableBean,
+        SmartLifecycle, SmartInitializingSingleton {
+
+    private volatile boolean running = false;
 
     private ApplicationContext applicationContext;
 
@@ -75,6 +79,9 @@ public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware,
         log.error("execute DisposableBean interface destroy method");
     }
 
+    /**
+     * 该实现在容器中所有Bean创建完成后进行回调
+     */
     @Override
     public void afterSingletonsInstantiated() {
         GenericApplicationContext genericApplicationContext = (GenericApplicationContext) applicationContext;
@@ -84,15 +91,17 @@ public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware,
     @Override
     public void start() {
         log.error("the application start");
+        running = true;
     }
 
     @Override
     public void stop() {
+        running = false;
         log.error("the application stop");
     }
 
     @Override
     public boolean isRunning() {
-        return true;
+        return running;
     }
 }
