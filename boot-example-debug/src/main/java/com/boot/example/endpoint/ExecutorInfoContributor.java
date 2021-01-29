@@ -12,6 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * com.boot.example.endpoint.ExecutorInfoContributor
+ * 线程池信息监控
  *
  * @author lipeng
  * @date 2021/1/28 3:03 PM
