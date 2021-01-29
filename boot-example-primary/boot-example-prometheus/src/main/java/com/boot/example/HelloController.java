@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class HelloController {
 
-    private Counter helloCounter = Metrics.counter("request_total", "uri", "/hello");
+    private final Counter helloCounter = Metrics.counter("request_total", "uri", "/hello");
 
-    private Counter hiCounter = Metrics.counter("request_total", "uri", "/hi");
+    private final Counter hiCounter = Metrics.counter("request_total", "uri", "/hi");
 
     @RequestMapping("/hello")
     public void hello() throws InterruptedException {
