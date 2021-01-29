@@ -33,14 +33,14 @@ public class ExecutorInfoContributor implements InfoContributor {
         ThreadPoolExecutor executor = threadPoolTaskExecutor.getThreadPoolExecutor();
         Map<String, Object> info = new HashMap<>(8);
         info.put("terminated", executor.isTerminated());
-        info.put("poolSize", executor.getPoolSize());
-        info.put("corePoolSize", executor.getCorePoolSize());
-        info.put("maximumPoolSize", executor.getMaximumPoolSize());
-        info.put("largestPoolSize", executor.getLargestPoolSize());
-        info.put("completedTaskCount", executor.getCompletedTaskCount());
-        info.put("taskCount", executor.getTaskCount());
-        info.put("queueSize", executor.getQueue().size());
-        info.put("queueRemainingCapacity", executor.getQueue().remainingCapacity());
+        info.put("pool.size", executor.getPoolSize());
+        info.put("core.pool.size", executor.getCorePoolSize());
+        info.put("maximum.pool.size", executor.getMaximumPoolSize());
+        info.put("largest.pool.size", executor.getLargestPoolSize());
+        info.put("completed.task.count", executor.getCompletedTaskCount());
+        info.put("task.count", executor.getTaskCount());
+        info.put("queue.size", executor.getQueue().size());
+        info.put("queue.remaining.capacity", executor.getQueue().remainingCapacity());
         return info;
     }
 }
