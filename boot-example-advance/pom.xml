@@ -11,7 +11,6 @@
 
     <modules>
         <module>boot-example-apollo</module>
-        <module>boot-example-cache</module>
         <module>boot-example-docker</module>
         <module>boot-example-elasticsearch</module>
         <module>boot-example-guava-rate-limit</module>
@@ -19,6 +18,7 @@
         <module>boot-example-rate-limit</module>
         <module>boot-example-zookeeper</module>
         <module>boot-example-shutdown</module>
+        <module>boot-example-redis</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
