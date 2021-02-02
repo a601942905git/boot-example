@@ -27,6 +27,10 @@ public class RedisService {
     private StringRedisTemplate stringRedisTemplate;
 
     /**
+     * 加锁存在的异常场景：
+     * 1.加锁成功，在执行锁删除逻辑前机器宕机，解决方案：设置过期时间
+     * 2.加锁成功，在设置锁超时时间前机器宕机，解决方案：使用原子操作进行加锁 + 设置过期时间 SET KEY VALUE NX EX max-lock-time
+     *
      * 加锁使用 SET resource-name any-string NX EX max-lock-time
      *
      * @param key 加锁key
