@@ -14,6 +14,8 @@
 - [Aop没你想的那么复杂](https://juejin.cn/post/6893077403582529544)
 - [探秘Mybatis接口如何实现增删改查](https://juejin.cn/post/6917068499873431565)
 - [暴力关机与优雅关机](https://juejin.cn/post/6897085632036749319)
+- [让你不再恐惧Bean生命周期](https://juejin.cn/post/6922340983896014856)
+- [FactoryBean不来了解下嘛？](https://juejin.cn/post/6921955277948321806)
 
 ## 4.远程服务调用由浅入深
 - [分布式服务远程调用演进之反向代理](https://juejin.im/post/6844904116888535054)
