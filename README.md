@@ -5,3 +5,6 @@
 ## SpringBoot源码分析篇
 - [你必须懂也可以懂的@Async原理](https://juejin.im/post/6858854987280809997)
 - [SpringBoot配置你不知道的秘密](https://juejin.im/post/6885181293374816264)
+- [Aop没你想的那么复杂](https://juejin.cn/post/6893077403582529544)
+- [探秘Mybatis接口如何实现增删改查](https://juejin.cn/post/6917068499873431565)
+- [暴力关机与优雅关机](https://juejin.cn/post/6897085632036749319)
