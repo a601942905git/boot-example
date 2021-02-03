@@ -1,0 +1,55 @@
+{
+  "hints": [
+    {
+      "name": "person.name",
+      "values": [
+        {
+          "value": "person1",
+          "description": "person1."
+        },
+        {
+          "value": "person2",
+          "description": "person2."
+        },
+        {
+          "value": "person3",
+          "description": "person3."
+        }
+      ]
+    },
+    {
+      "name": "person.teacher.name",
+      "values": [
+        {
+          "value": "teacher1",
+          "description": "teacher1."
+        },
+        {
+          "value": "teacher2",
+          "description": "teacher2."
+        },
+        {
+          "value": "teacher3",
+          "description": "teacher3."
+        }
+      ]
+    },
+    {
+      "name": "person.teacher.student.name",
+      "values": [
+        {
+          "value": "student1",
+          "description": "student1."
+        },
+        {
+          "value": "student2",
+          "description": "student2."
+        },
+        {
+          "value": "student3",
+          "description": "student3."
+        }
+      ]
+    }
+  ]
+}

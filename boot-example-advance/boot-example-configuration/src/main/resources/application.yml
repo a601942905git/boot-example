@@ -1,0 +1,9 @@
+person:
+  id: 101
+  name: person1
+  teacher:
+    id: 1001
+    name: teacher1
+    student:
+      id: 10001
+      name: student1
