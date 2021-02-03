@@ -8,3 +8,8 @@
 - [Aop没你想的那么复杂](https://juejin.cn/post/6893077403582529544)
 - [探秘Mybatis接口如何实现增删改查](https://juejin.cn/post/6917068499873431565)
 - [暴力关机与优雅关机](https://juejin.cn/post/6897085632036749319)
+
+
+## 消息中间件相关
+- [消息中间件你该了解的秘密](https://juejin.cn/post/6909406888136278024)
+- [一探@RabbitListener注解的神秘](https://juejin.cn/post/6914232794638090254)
