@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true # 以HikariConfig类中set方法名称为准
+      username: root # 以HikariConfig类中set方法名称为准
+      password: root # 以HikariConfig类中set方法名称为准
+      minimum-idle: 10 # 以HikariConfig类中set方法名称为准
+      maximum-pool-size: 20 # 以HikariConfig类中set方法名称为准
+    slave:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: root
+      minimum-idle: 5
+      maximum-pool-size: 10
