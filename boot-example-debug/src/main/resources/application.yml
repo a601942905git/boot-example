@@ -35,6 +35,10 @@ spring:
       maximum-pool-size: 20
       pool-name: '${spring.application.name}-dataSource'
       connection-test-query: SELECT 1
+#  boot:
+#    admin:
+#      client:
+#        url: 'http://localhost:8880' # adminService访问地址
 #    druid:
 #      initial-size: 10 # 初始化连接数
 #      max-active: 20 # 最大连接数
@@ -67,3 +71,7 @@ info:
   'boot.version': '@spring.boot.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml中的<build>元素
   'project.version': '@project.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml中的<build>元素
   'project.name': '${spring.application.name}' # 读取yml文件的的变量
+
+logging:
+  level:
+    root: debug
