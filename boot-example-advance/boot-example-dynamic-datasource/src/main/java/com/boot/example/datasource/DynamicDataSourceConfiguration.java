@@ -36,6 +36,12 @@ public class DynamicDataSourceConfiguration {
         return DataSourceBuilder.create().build();
     }
 
+    /**
+     * 创建DataSource对象
+     * @ConfigurationProperties 注解用于设置数据源属性配置，如url、账号、密码
+     *
+     * @return 数据源对象
+     */
     @Bean(DynamicDataSourceConstants.DYNAMIC_DATA_SOURCE_KEY_SLAVE)
     @ConfigurationProperties(prefix = "spring.datasource.slave")
     public DataSource slaveDataSource() {
