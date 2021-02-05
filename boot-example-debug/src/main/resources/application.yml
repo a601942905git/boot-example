@@ -71,7 +71,3 @@ info:
   'boot.version': '@spring.boot.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml中的<build>元素
   'project.version': '@project.version@' # 读取pom文件中的变量，需要在pom文件中添加配置，详情参考pom.xml中的<build>元素
   'project.name': '${spring.application.name}' # 读取yml文件的的变量
-
-logging:
-  level:
-    root: debug
