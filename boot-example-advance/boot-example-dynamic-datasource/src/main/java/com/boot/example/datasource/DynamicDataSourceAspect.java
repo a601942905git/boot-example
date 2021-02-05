@@ -30,9 +30,9 @@ public class DynamicDataSourceAspect {
         // 默认走master
         String dynamicDataSourceKey = dynamicDataSource.value();
         DynamicDataSourceContextHolder.set(dynamicDataSourceKey);
-        try{
+        try {
             return joinPoint.proceed();
-        }finally {
+        } finally {
             DynamicDataSourceContextHolder.remove();
         }
     }
