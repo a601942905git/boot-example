@@ -31,10 +31,14 @@ spring:
     password: root
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
-      minimum-idle: 10
-      maximum-pool-size: 20
-      pool-name: '${spring.application.name}-dataSource'
-      connection-test-query: SELECT 1
+      auto-commit: true # 是否自动提交
+      connection-timeout: 30000 # 从连接池中获取连接的最大等待时间，超时未获取到连接会抛出SQLException
+      idle-timeout: 600000 # 连接空闲超时时间，该配置只有在minimumIdle < maximumPoolSize的情况下才有效。会清退超过minimum-idle数量、处于空闲状态且空闲时间超过该值的连接，逻辑参照：com.zaxxer.hikari.pool.HikariPool.HouseKeeper中的run()
+      max-lifetime: 1800000 # 连接的最大存活时间，活跃连接用于不会被清退。创建连接时会指定定时任务用于清退超过该值的空闲连接
+      connection-test-query: SELECT 1 # 如果驱动支持JDBC4，官方强烈建议不要设置该属性
+      minimum-idle: 10 # 最小空闲连接数，为了获得最佳性能和应对峰值需求，官方建议不要设置该属性，默认与maximumPoolSize保持一致，使其充当固定连接池
+      maximum-pool-size: 10 # 最大连接数，当到达最大连接数并且没有空闲连接时调用getConnection()将会阻塞connectionTimeout
+      pool-name: '${spring.application.name}-dataSource' # 连接池名称，默认情况下会自动生成
 #  boot:
 #    admin:
 #      client:
