@@ -16,6 +16,7 @@
 - [暴力关机与优雅关机](https://juejin.cn/post/6897085632036749319)
 - [让你不再恐惧Bean生命周期](https://juejin.cn/post/6922340983896014856)
 - [FactoryBean不来了解下嘛？](https://juejin.cn/post/6921955277948321806)
+- [SpringBoot与Hikari数据源分析](https://juejin.cn/post/6926431612166995982)
 
 ## 4.远程服务调用由浅入深
 - [分布式服务远程调用演进之反向代理](https://juejin.im/post/6844904116888535054)
