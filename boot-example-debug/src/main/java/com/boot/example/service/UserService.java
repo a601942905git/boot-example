@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,12 @@ public class UserService {
     private UserMapper userMapper;
 
     public List<User> listUser() {
-        return userMapper.list();
+        List<User> userList = new ArrayList<>();
+        List<User> userList1 = userMapper.list();
+        List<User> userList2 = userMapper.list();
+        userList.addAll(userList1);
+        userList.addAll(userList2);
+        return userList;
     }
 
     @Transactional(rollbackFor = Exception.class)
