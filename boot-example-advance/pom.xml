@@ -21,6 +21,7 @@
         <module>boot-example-redis</module>
         <module>boot-example-configuration</module>
         <module>boot-example-dynamic-datasource</module>
+        <module>boot-example-leaf</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>

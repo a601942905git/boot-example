@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.example.mapper.LeafAllocMapper">
+
+    <resultMap type="com.boot.example.entity.LeafAlloc" id="baseResultMap">
+        <result property="id" column="id"/>
+        <result property="bizTag" column="biz_tag"/>
+        <result property="maxId" column="max_id"/>
+        <result property="step" column="step"/>
+        <result property="description" column="description"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="baseColumnList">
+        id, biz_tag, max_id, step, description, update_time
+    </sql>
+
+    <select id="list" resultMap="baseResultMap">
+        SELECT
+            <include refid="baseColumnList"/>
+        from leaf_alloc
+    </select>
+
+    <select id="getByTag" parameterType="string" resultMap="baseResultMap">
+        SELECT
+            <include refid="baseColumnList"/>
+        from leaf_alloc
+        where biz_tag = #{bizTag}
+    </select>
+
+    <!--通过主键修改数据-->
+    <update id="update" parameterType="com.boot.example.entity.LeafAlloc">
+        UPDATE leaf_alloc
+        <set>
+            <if test="bizTag != null">
+                biz_tag = #{bizTag},
+            </if>
+            <if test="maxId != null">
+                max_id = #{maxId},
+            </if>
+            <if test="step != null">
+                step = #{step},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateMaxIdByTag" parameterType="string">
+        UPDATE leaf_alloc SET max_id = max_id + step where biz_tag = #{bizTag}
+    </update>
+
+    <update id="updateMaxIdAndCustomStepByTag" parameterType="com.boot.example.entity.LeafAlloc">
+        UPDATE leaf_alloc SET max_id = max_id + #{step} WHERE biz_tag = #{bizTag}
+    </update>
+</mapper>
