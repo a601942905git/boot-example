@@ -1,12 +1,5 @@
 package com.boot.example;
 
-/**
- * com.boot.example.KafkaTest
- *
- * @author lipeng
- * @date 2020/2/20 下午9:27
- */
-
 import com.boot.example.entity.Student;
 import com.boot.example.producer.KafkaProducer;
 import org.junit.jupiter.api.Test;
@@ -15,8 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.TimeUnit;
 
-@SpringBootTest(classes = KafkaApplication.class)
-public class KafkaTest {
+/**
+ * com.boot.example.KafkaApplicationTest
+ *
+ * @author lipeng
+ * @date 2021/3/2 7:48 PM
+ */
+@SpringBootTest
+public class KafkaApplicationTest {
 
     @Autowired
     private KafkaProducer<String, Object> kafkaProducer;
@@ -67,18 +66,5 @@ public class KafkaTest {
             kafkaProducer.send("third", student);
         }
         TimeUnit.SECONDS.sleep(10);
-    }
-
-    @Test
-    public void sendBatchStudentRecord() throws InterruptedException {
-        for (int i = 0; i < 10; i++) {
-            Student student = Student.builder()
-                    .id(i + 1)
-                    .name("student" + (i + 1))
-                    .age((i + 1))
-                    .build();
-            kafkaProducer.send("batch", student);
-        }
-        TimeUnit.SECONDS.sleep(60);
     }
 }
