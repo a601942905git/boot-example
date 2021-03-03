@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers:
+    bootstrap-servers: # 设置kafka服务器列表
       - localhost:55000
       - localhost:55001
       - localhost:55002
@@ -9,5 +9,12 @@ spring:
       batch-size: 16384 # 批量发送大小16k
       buffer-memory: 33554432 # 缓存区大小为32M
       retries: 3 # 重试次数为3次
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 设置生产者key序列化方式，具体可参考org.apache.kafka.common.serialization.Serializer的实现
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # 设置生产者value序列化方式，具体可参考org.apache.kafka.common.serialization.Serializer的实现
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer # 设置消费key反序列化方式，具体可参考org.apache.kafka.common.serialization.Deserializer的实现
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # 设置消费者value反序列化方式，具体可参考org.apache.kafka.common.serialization.Deserializer的实现
+    properties:
+      'spring.json.trusted.packages': 'com.boot.example.*' # 参考：JsonDeserializer，用于解决该异常： The class 'com.boot.example.entity.Student' is not in the trusted packages: [java.util, java.lang]. If you believe this class is safe to deserialize, please provide its name. If the serialization is only done by a trusted source, you can also enable trust all (*).
     listener:
-      ack-mode: MANUAL
+      ack-mode: manual # 设置监听器ack为手动模式

@@ -1,7 +1,10 @@
 package com.boot.example.consumer;
 
+import com.boot.example.constant.TopicConstant;
+import com.boot.example.entity.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
@@ -15,21 +18,44 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "first", groupId = "consumer_first", containerFactory = "kafkaListenerContainerFactory")
-    public void consume(String content, Acknowledgment ack) {
-        log.info("receive content：" + content);
+    /**
+     * 当传入Acknowledgment参数是，需要指定监听器的模式为手动模式
+     * @see ContainerProperties.AckMode
+     *
+     * 1.定义三个消费者订阅主题为：first-topic的消息
+     * 2.第1个和第2个消费者属于同一消费者组，那么同一个分区中的消息只能被该消费者组中的一个消费者消费。
+     *   可以通过执行com.boot.example.KafkaApplicationTest#sendSingleMessage()单元测试进行观察
+     * 3. 执行结果1：
+     *      receive simple message1 content：
+     *      receive simple message3 content：
+     *    执行结果2：
+     *      receive simple message1 content：
+     *      receive simple message3 content：
+     *
+     * @param content 消息内容
+     * @param ack ack对象
+     */
+    @KafkaListener(topics = TopicConstant.FIRST_TOPIC_NAME, groupId = "consumer_first1")
+    public void consumeSimpleMessage1(String content, Acknowledgment ack) {
+        log.error("receive simple message1 content：{}", content);
         ack.acknowledge();
     }
 
-//    @KafkaListener(topics = "second", groupId = "consumer_student")
-//    public void consumeStudent(Student student, Acknowledgment ack) {
-//        log.info("receive student：" + student);
-//        ack.acknowledge();
-//    }
-//
-//    @KafkaListener(topics = "third", groupId = "consumer_third")
-//    public void consumeRecord(ConsumerRecord<?, ?> consumerRecord, Acknowledgment ack) {
-//        log.info("receive record：" + consumerRecord);
-//        ack.acknowledge();
-//    }
+    @KafkaListener(topics = TopicConstant.FIRST_TOPIC_NAME, groupId = "consumer_first1")
+    public void consumeSimpleMessage2(String content, Acknowledgment ack) {
+        log.error("receive simple message2 content：{}", content);
+        ack.acknowledge();
+    }
+
+    @KafkaListener(topics = TopicConstant.FIRST_TOPIC_NAME, groupId = "consumer_first2")
+    public void consumeSimpleMessage3(String content, Acknowledgment ack) {
+        log.error("receive simple message3 content：{}", content);
+        ack.acknowledge();
+    }
+
+    @KafkaListener(topics = TopicConstant.SECOND_TOPIC_NAME, groupId = "consumer_second")
+    public void consume(Student student, Acknowledgment ack) {
+        log.error("receive student：{}", student);
+        ack.acknowledge();
+    }
 }
