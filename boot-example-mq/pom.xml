@@ -10,7 +10,6 @@
 
     <modules>
         <module>boot-example-kafka</module>
-        <module>boot-example-kafka-producer</module>
         <module>boot-example-rabbitmq</module>
         <module>boot-example-rabbitmq-consumer-ack</module>
         <module>boot-example-rabbitmq-consumer-pull-message</module>
