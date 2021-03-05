@@ -3,6 +3,7 @@ package com.boot.example.consumer;
 import com.boot.example.constant.TopicConstant;
 import com.boot.example.entity.Student;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.Acknowledgment;
@@ -53,9 +54,16 @@ public class KafkaConsumer {
         ack.acknowledge();
     }
 
-    @KafkaListener(topics = TopicConstant.SECOND_TOPIC_NAME, groupId = "consumer_second")
-    public void consume(Student student, Acknowledgment ack) {
-        log.error("receive student：{}", student);
+
+    @KafkaListener(topics = TopicConstant.SECOND_TOPIC_NAME, groupId = "consumer_second1")
+    public void consumeComplexMessage1(Student student, Acknowledgment ack) {
+        log.error("receive complex message1 content：{}", student);
+        ack.acknowledge();
+    }
+
+    @KafkaListener(topics = TopicConstant.SECOND_TOPIC_NAME, groupId = "consumer_second2")
+    public void consumeComplexMessage2(ConsumerRecord<String, Student> consumerRecords, Acknowledgment ack) {
+        log.error("receive complex message2 content：{}", consumerRecords);
         ack.acknowledge();
     }
 }

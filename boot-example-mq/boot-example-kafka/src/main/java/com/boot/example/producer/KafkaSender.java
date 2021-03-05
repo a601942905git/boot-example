@@ -39,6 +39,11 @@ public class KafkaSender<K, V> {
 
     @Bean
     public NewTopic firstTopic() {
-        return new NewTopic(TopicConstant.FIRST_TOPIC_NAME, 3, (short) 2);
+        return new NewTopic(TopicConstant.FIRST_TOPIC_NAME, 3, (short) 3);
+    }
+
+    @Bean
+    public NewTopic secondTopic() {
+        return new NewTopic(TopicConstant.SECOND_TOPIC_NAME, 3, (short) 3);
     }
 }
