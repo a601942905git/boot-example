@@ -1,6 +1,7 @@
 package com.boot.example.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.CooperativeStickyAssignor;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -11,6 +12,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -42,6 +44,9 @@ public class KafkaConsumerConfig {
         consumerProperties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);
         // 关闭自动提交，enable.auto.commit:true意味着会自动提交偏移量，依赖于auto.commit.interval.ms设置的评率
         consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+        // 设置消费者分区策略：范围、轮询、粘性
+        consumerProperties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG,
+                Collections.singletonList(CooperativeStickyAssignor.class));
         return new DefaultKafkaConsumerFactory<>(consumerProperties);
     }
 }
