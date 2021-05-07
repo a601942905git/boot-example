@@ -18,7 +18,6 @@
         <module>boot-example-security-integrate</module>
         <module>boot-example-advance</module>
         <module>boot-example-primary</module>
-        <module>boot-example-advance/boot-example-cache</module>
     </modules>
 
     <name>boot-example</name>
