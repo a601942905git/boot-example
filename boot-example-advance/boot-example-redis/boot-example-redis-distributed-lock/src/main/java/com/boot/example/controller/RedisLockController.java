@@ -1,6 +1,6 @@
 package com.boot.example.controller;
 
-import com.boot.example.redis.RedisService;
+import com.boot.example.redis.RedisLockService;
 import com.boot.example.request.RedisLockRequest;
 import com.boot.example.request.RedisUnlockRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ import java.util.Objects;
  * @date 2021/2/2 10:52 AM
  */
 @RestController
-public class RedisController {
+public class RedisLockController {
 
     @Autowired
-    private RedisService redisService;
+    private RedisLockService redisService;
 
     @RequestMapping("/lock")
     public String lock(@RequestBody RedisLockRequest request) {
@@ -34,7 +34,7 @@ public class RedisController {
     }
 
     @RequestMapping("/unlock")
-    public Long lock(@RequestBody RedisUnlockRequest request) {
+    public Boolean lock(@RequestBody RedisUnlockRequest request) {
         return redisService.unlock(request.getKey());
     }
 }

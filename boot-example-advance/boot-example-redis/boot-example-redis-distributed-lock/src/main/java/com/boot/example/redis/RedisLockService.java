@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/2/1 5:20 PM
  */
 @Component
-public class RedisService {
+public class RedisLockService {
 
     private final ThreadLocal<String> threadLocal = new ThreadLocal<>();
 
@@ -52,12 +53,22 @@ public class RedisService {
      * @param key 解锁key
      * @return 返回1：解锁成功 返回0：解锁失败
      */
-    public Long unlock(String key) {
-        String lockValue = threadLocal.get();
-        return stringRedisTemplate.execute(redisScript, Collections.singletonList(key), lockValue);
+    public Boolean unlock(String key) {
+        String lockValue = getLockValue();
+        Long executeResult = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), lockValue);
+        removeLockValue();
+        return Objects.equals(executeResult, 1L);
     }
 
     private void setLockValue(String lockValue) {
         threadLocal.set(lockValue);
+    }
+
+    private String getLockValue() {
+        return threadLocal.get();
+    }
+
+    private void removeLockValue() {
+        threadLocal.remove();
     }
 }

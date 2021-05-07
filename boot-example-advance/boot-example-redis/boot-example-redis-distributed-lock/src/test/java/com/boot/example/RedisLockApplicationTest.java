@@ -1,6 +1,7 @@
 package com.boot.example;
 
-import com.boot.example.redis.RedisService;
+import com.boot.example.redis.RedisLockService;
+import com.boot.example.redis.RedisReentrantLockService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,17 @@ import java.util.concurrent.TimeUnit;
  */
 @SpringBootTest
 @Slf4j
-public class RedisApplicationTest {
+public class RedisLockApplicationTest {
 
     private static final Integer MAX_THREAD_SIZE = 20;
 
     private final CountDownLatch countDownLatch = new CountDownLatch(1);
 
     @Autowired
-    private RedisService redisService;
+    private RedisLockService redisService;
+
+    @Autowired
+    private RedisReentrantLockService redisReentrantLockService;
 
     @Test
     public void test() {
@@ -43,6 +47,27 @@ public class RedisApplicationTest {
             log.error("thread interrupted exception");
             Thread.currentThread().interrupt();
         }
+    }
+
+    @Test
+    public void testReentrantLock() {
+        Boolean lockResult1 = redisReentrantLockService.lock("key2", 10, TimeUnit.SECONDS);
+        log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult1);
+
+        Boolean lockResult2 = redisReentrantLockService.lock("key2", 10, TimeUnit.SECONDS);
+        log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult2);
+
+        Boolean lockResult3 = redisReentrantLockService.lock("key2", 10, TimeUnit.SECONDS);
+        log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult3);
+
+        Boolean unlockResult1 = redisReentrantLockService.unlock("key2");
+        log.info("current thread：{}，release redis lock result：{}", Thread.currentThread().getName(), unlockResult1);
+
+        Boolean unlockResult2 = redisReentrantLockService.unlock("key2");
+        log.info("current thread：{}，release redis lock result：{}", Thread.currentThread().getName(), unlockResult2);
+
+        Boolean unlockResult3 = redisReentrantLockService.unlock("key2");
+        log.info("current thread：{}，release redis lock result：{}", Thread.currentThread().getName(), unlockResult3);
     }
 
     class Task implements Runnable {
@@ -70,7 +95,7 @@ public class RedisApplicationTest {
                 log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult);
 
                 // 解锁
-                Long unlockResult = redisService.unlock("key1");
+                Boolean unlockResult = redisService.unlock("key1");
                 log.info("current thread：{}，release redis lock result：{}", Thread.currentThread().getName(), unlockResult);
             } catch (Exception e) {
                 log.error("execute exception：", e);
