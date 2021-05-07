@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2021/2/1 5:17 PM
  */
 @SpringBootApplication
-public class RedisApplication {
+public class RedisDistributedLockApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RedisApplication.class, args);
+        SpringApplication.run(RedisDistributedLockApplication.class, args);
     }
 }

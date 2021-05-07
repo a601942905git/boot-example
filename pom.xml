@@ -18,6 +18,7 @@
         <module>boot-example-security-integrate</module>
         <module>boot-example-advance</module>
         <module>boot-example-primary</module>
+        <module>boot-example-advance/boot-example-cache</module>
     </modules>
 
     <name>boot-example</name>
@@ -36,7 +37,7 @@
         <jquery.version>3.3.1-1</jquery.version>
         <admin.server.version>2.3.1</admin.server.version>
         <admin.client.version>2.3.1</admin.client.version>
-        <jetcache.starter.version>2.5.9</jetcache.starter.version>
+        <jetcache.starter.version>2.6.0</jetcache.starter.version>
         <hystrix.version>1.5.12</hystrix.version>
         <hystrix.metrics.version>1.5.12</hystrix.metrics.version>
         <sentry.spring.version>1.7.5</sentry.spring.version>
@@ -201,36 +202,6 @@
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-
-                <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.version}</version>
@@ -239,15 +210,6 @@
         </pluginManagement>
 
         <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

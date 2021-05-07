@@ -1,7 +1,7 @@
 package com.boot.example.controller;
 
-import com.boot.example.request.RedisLockRequest;
 import com.boot.example.redis.RedisService;
+import com.boot.example.request.RedisLockRequest;
 import com.boot.example.request.RedisUnlockRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
