@@ -16,5 +16,6 @@
 
     <modules>
         <module>boot-example-redis-distributed-lock</module>
+        <module>boot-example-redis-cluster</module>
     </modules>
 </project>
