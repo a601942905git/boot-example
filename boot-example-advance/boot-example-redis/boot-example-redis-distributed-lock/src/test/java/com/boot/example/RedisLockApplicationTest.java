@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -32,8 +33,11 @@ public class RedisLockApplicationTest {
     @Autowired
     private RedisReentrantLockService redisReentrantLockService;
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
     @Test
-    public void test() {
+    public void testLock() {
         ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREAD_SIZE);
 
         for (int i = 0; i < MAX_THREAD_SIZE; i++) {
@@ -68,6 +72,12 @@ public class RedisLockApplicationTest {
 
         Boolean unlockResult3 = redisReentrantLockService.unlock("key2");
         log.info("current thread：{}，release redis lock result：{}", Thread.currentThread().getName(), unlockResult3);
+    }
+
+    @Test
+    public void test() throws InterruptedException {
+        stringRedisTemplate.opsForValue().set("hello", "world");
+        TimeUnit.SECONDS.sleep(3);
     }
 
     class Task implements Runnable {

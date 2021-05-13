@@ -4,6 +4,7 @@ import com.boot.example.redis.RedisLockService;
 import com.boot.example.request.RedisLockRequest;
 import com.boot.example.request.RedisUnlockRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,9 @@ public class RedisLockController {
     @Autowired
     private RedisLockService redisService;
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
     @RequestMapping("/lock")
     public String lock(@RequestBody RedisLockRequest request) {
         Boolean lockFlag = redisService.lock(request.getKey(),
@@ -36,5 +40,11 @@ public class RedisLockController {
     @RequestMapping("/unlock")
     public Boolean lock(@RequestBody RedisUnlockRequest request) {
         return redisService.unlock(request.getKey());
+    }
+
+    @RequestMapping("/set")
+    public String set() {
+        stringRedisTemplate.opsForValue().set("key1", "value1");
+        return "OK";
     }
 }
