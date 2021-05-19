@@ -33,3 +33,8 @@
 ## 6.消息中间件相关
 - [消息中间件你该了解的秘密](https://juejin.cn/post/6909406888136278024)
 - [一探@RabbitListener注解的神秘](https://juejin.cn/post/6914232794638090254)
+
+## 7.缓存相关
+- [jedis连接池如何实现？](https://juejin.cn/post/6961691134825332749)
+- [你觉得RedisCluster的从节点可以进行读操作嘛？](https://juejin.cn/post/6961980011330928671)
+- [带你玩转Redis集群](https://juejin.cn/post/6963552181349777438)
