@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019-02-01 10:23
  */
 @SpringBootApplication
-public class BootTransactionApplication {
+public class TransactionApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BootTransactionApplication.class, args);
+        SpringApplication.run(TransactionApplication.class, args);
     }
 }
