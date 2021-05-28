@@ -20,6 +20,7 @@
 - [面试官：请求是如何达到DispatcherServlet？](https://juejin.cn/post/6932735968109658126)
 - [SpringBoot异步实现DeferredResult实战与原理分析](https://juejin.cn/post/6934963596765954084)
 - [@ControllerAdvice到底是怎么一回事？](https://juejin.cn/post/6935665164339396639)
+- [细聊分布式配置中心](https://juejin.cn/post/6966962045803560967)
 
 ## 4.远程服务调用由浅入深
 - [分布式服务远程调用演进之反向代理](https://juejin.im/post/6844904116888535054)
