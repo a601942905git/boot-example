@@ -1,9 +1,11 @@
 package com.boot.example.controller;
 
+import com.boot.example.request.UserListRequest;
 import com.boot.example.service.UserService;
 import com.boot.example.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +25,7 @@ public class CacheController {
     private UserService userService;
 
     @GetMapping("/list")
-    public List<Student> list() {
-        return userService.list();
+    public List<Student> list(@RequestBody UserListRequest request) {
+        return userService.list(request);
     }
 }
