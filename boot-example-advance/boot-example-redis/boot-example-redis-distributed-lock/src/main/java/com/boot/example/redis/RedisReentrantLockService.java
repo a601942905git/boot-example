@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 /**
  * com.boot.example.redis.RedisReentrantLockService
@@ -24,7 +23,7 @@ public class RedisReentrantLockService {
     @Autowired
     private RedisLockService redisLockService;
 
-    public Boolean lock(String key, long expireTime, TimeUnit timeUnit) {
+    public Boolean lock(String key, long expireTime) {
         Map<String, Integer> map = threadLocal.get();
         Integer state = map.get(key);
         if (Objects.nonNull(state)) {
@@ -35,7 +34,7 @@ public class RedisReentrantLockService {
 
 
         log.info("get key：{} lock", key);
-        Boolean lockResult = redisLockService.lock(key, expireTime, timeUnit);
+        Boolean lockResult = redisLockService.lock(key, expireTime);
         if (lockResult) {
             map.put(key, 1);
         }

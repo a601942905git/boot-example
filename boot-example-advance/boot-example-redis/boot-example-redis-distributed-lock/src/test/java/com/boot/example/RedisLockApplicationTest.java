@@ -54,14 +54,24 @@ public class RedisLockApplicationTest {
     }
 
     @Test
+    public void testLockWithWaitTime() {
+        // true
+        redisService.lock("key1", 3000, 3000);
+        // false
+        redisService.lock("key1", 3000, 2000);
+        // true
+        redisService.lock("key1", 3000, 3000);
+    }
+
+    @Test
     public void testReentrantLock() {
-        Boolean lockResult1 = redisReentrantLockService.lock("key2", 10, TimeUnit.SECONDS);
+        Boolean lockResult1 = redisReentrantLockService.lock("key2", 10000);
         log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult1);
 
-        Boolean lockResult2 = redisReentrantLockService.lock("key2", 10, TimeUnit.SECONDS);
+        Boolean lockResult2 = redisReentrantLockService.lock("key2", 10000);
         log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult2);
 
-        Boolean lockResult3 = redisReentrantLockService.lock("key2", 10, TimeUnit.SECONDS);
+        Boolean lockResult3 = redisReentrantLockService.lock("key2", 10000);
         log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult3);
 
         Boolean unlockResult1 = redisReentrantLockService.unlock("key2");
@@ -101,7 +111,7 @@ public class RedisLockApplicationTest {
                 log.info("current thread：{} execute task", Thread.currentThread().getName());
 
                 // 加锁
-                Boolean lockResult = redisService.lock("key1", 20, TimeUnit.SECONDS);
+                Boolean lockResult = redisService.lock("key1", 20);
                 log.info("current thread：{}，get redis lock result：{}", Thread.currentThread().getName(), lockResult);
 
                 // 解锁

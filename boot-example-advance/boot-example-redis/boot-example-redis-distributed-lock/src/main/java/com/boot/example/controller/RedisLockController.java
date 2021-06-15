@@ -29,7 +29,7 @@ public class RedisLockController {
     @RequestMapping("/lock")
     public String lock(@RequestBody RedisLockRequest request) {
         Boolean lockFlag = redisService.lock(request.getKey(),
-                request.getExpireTime(), request.getTimeUnit());
+                request.getExpireTime());
         if (Objects.equals(lockFlag, Boolean.TRUE)) {
             return "加锁成功";
         } else {

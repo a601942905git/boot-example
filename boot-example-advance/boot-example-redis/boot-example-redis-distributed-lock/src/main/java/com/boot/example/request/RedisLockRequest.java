@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * com.boot.example.RedisLockRequest
  *
@@ -19,6 +17,4 @@ public class RedisLockRequest {
     private String key;
 
     private Long expireTime;
-
-    private TimeUnit timeUnit;
 }
