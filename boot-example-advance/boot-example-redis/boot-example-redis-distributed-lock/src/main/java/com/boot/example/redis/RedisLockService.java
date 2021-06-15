@@ -85,7 +85,7 @@ public class RedisLockService {
             }
 
             // 过期时间小于等待时间
-            if (pTtl < waitTime) {
+            if (pTtl <= waitTime) {
                 sleepTimeEachTime = pTtl;
                 totalSleepTime += sleepTimeEachTime;
                 try {
