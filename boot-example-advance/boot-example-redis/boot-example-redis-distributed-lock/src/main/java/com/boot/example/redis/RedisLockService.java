@@ -68,7 +68,7 @@ public class RedisLockService {
         // 每次休眠时间
         long sleepTimeEachTime;
         ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
-        while (totalSleepTime < waitTime) {
+        while (totalSleepTime <= waitTime) {
             // 执行加锁
             Boolean lockResult = stringRedisTemplate.opsForValue()
                     .setIfAbsent(key, lockValue, expireTime, TimeUnit.MILLISECONDS);
@@ -76,6 +76,12 @@ public class RedisLockService {
             if (Objects.equals(Boolean.TRUE, lockResult)) {
                 log.info("get {} redis lock success", key);
                 return Boolean.TRUE;
+            }
+
+            // 达到最大等待时间还未获取到锁
+            if (totalSleepTime == waitTime) {
+                log.warn("get {} redis lock fail，exceed limit time：{}", key, waitTime);
+                return Boolean.FALSE;
             }
 
             // 当前key剩余过期时间
