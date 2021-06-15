@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,7 +48,11 @@ public class RedisLockService {
     }
 
     /**
-     * 加锁
+     * 加锁，带有等待时间
+     *
+     * 1.执行加锁操作
+     * 2.加锁失败，随机时间进行休眠(随机时间休眠的原因是加锁的业务可能在锁过期之前释放锁)
+     * 3.休眠之后执行把步骤1直到 总休眠时间 > 等待时间
      *
      * @param key 加锁key
      * @param expireTime 过期时间，单位ms
@@ -59,9 +64,10 @@ public class RedisLockService {
         setLockValue(lockValue);
 
         // 总休眠时间
-        long totalSleepTime = 0L;
+        long totalSleepTime = 0;
         // 每次休眠时间
         long sleepTimeEachTime;
+        ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
         while (totalSleepTime < waitTime) {
             // 执行加锁
             Boolean lockResult = stringRedisTemplate.opsForValue()
@@ -84,20 +90,17 @@ public class RedisLockService {
                 continue;
             }
 
-            // 过期时间小于等待时间
-            if (pTtl <= waitTime) {
-                sleepTimeEachTime = pTtl;
-                totalSleepTime += sleepTimeEachTime;
-                try {
-                    TimeUnit.MILLISECONDS.sleep(sleepTimeEachTime);
-                } catch (InterruptedException e) {
-                    log.warn("get redis lock interrupted exception：", e);
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException("get redis lock interrupted exception");
-                }
-                continue;
+            // 随机睡眠时间
+            long randomSleepTime = threadLocalRandom.nextLong(100, 1000);
+            sleepTimeEachTime = Math.min(pTtl < randomSleepTime ? pTtl : randomSleepTime, waitTime - totalSleepTime);
+            try {
+                TimeUnit.MILLISECONDS.sleep(sleepTimeEachTime);
+            } catch (InterruptedException e) {
+                log.warn("get redis lock interrupted exception：", e);
+                Thread.currentThread().interrupt();
+                throw new RuntimeException("get redis lock interrupted exception");
             }
-            break;
+            totalSleepTime += sleepTimeEachTime;
         }
 
         log.warn("get {} redis lock fail", key);
