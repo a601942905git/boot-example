@@ -52,7 +52,7 @@
         <spring.cloud.context.version>3.0.2</spring.cloud.context.version>
         <prometheus.simple.client.version>0.6.0</prometheus.simple.client.version>
         <commons.lang.version>2.6</commons.lang.version>
-        <commons.collections.version>3.2.1</commons.collections.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
     </properties>
 
     <dependencyManagement>
