@@ -5,11 +5,30 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * com.boot.example.ApolloApplication
+ *
+ * 1.app.id 配置请参考：
+ * @see com.ctrip.framework.apollo.spring.boot.ApolloApplicationContextInitializer#postProcessEnvironment(ConfigurableEnvironment, SpringApplication)
+ * @see com.ctrip.framework.foundation.internals.provider.DefaultApplicationProvider
+ *
+ * 2.apollo.bootstrap.enabled 配置请参考：
+ * @see com.ctrip.framework.apollo.spring.boot.ApolloApplicationContextInitializer#initialize(ConfigurableApplicationContext)
+ *
+ * 3.apollo.bootstrap.namespaces 配置请参考：
+ * @see com.ctrip.framework.apollo.spring.boot.ApolloApplicationContextInitializer#initialize(ConfigurableEnvironment)
+ *
+ * 4.apollo.meta 配置请参考：
+ * @see com.ctrip.framework.apollo.internals.DefaultMetaServerProvider
+ *
+ * 5.apollo-env.properties 配置请参考：
+ * @see com.ctrip.framework.apollo.core.internals.LegacyMetaServerProvider
+ *
  *
  * @author lipeng
  * @dateTime 2018/12/10 上午9:55
