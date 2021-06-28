@@ -51,6 +51,8 @@
         <fastjson.version>1.2.51</fastjson.version>
         <spring.cloud.context.version>3.0.2</spring.cloud.context.version>
         <prometheus.simple.client.version>0.6.0</prometheus.simple.client.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.collections.version>3.2.1</commons.collections.version>
     </properties>
 
     <dependencyManagement>
@@ -193,6 +195,18 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-context</artifactId>
                 <version>${spring.cloud.context.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons.lang.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons.collections.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
