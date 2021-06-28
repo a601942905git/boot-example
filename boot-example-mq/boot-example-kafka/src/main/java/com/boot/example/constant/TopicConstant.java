@@ -11,4 +11,6 @@ public interface TopicConstant {
     String FIRST_TOPIC_NAME = "first-topic";
 
     String SECOND_TOPIC_NAME = "second-topic";
+
+    String THIRD_TOPIC_NAME = "third-topic";
 }

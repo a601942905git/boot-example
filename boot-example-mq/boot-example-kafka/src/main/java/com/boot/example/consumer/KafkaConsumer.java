@@ -10,6 +10,8 @@ import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * com.boot.example.consumer.KafkaConsumer
  *
@@ -72,6 +74,29 @@ public class KafkaConsumer {
             containerFactory = "batchKafkaListenerContainerFactory")
     public void batchConsumeComplexMessage(ConsumerRecords<String, Student> consumerRecords, Acknowledgment ack) {
         log.error("batch receive complex message content count：{}", consumerRecords.count());
+        ack.acknowledge();
+    }
+
+    /**
+     *
+     * @param consumerRecords
+     * @param ack
+     */
+    @KafkaListener(topics = TopicConstant.THIRD_TOPIC_NAME, groupId = "consumer_third1",
+            containerFactory = "batchKafkaListenerContainerFactory")
+    public void batchConsumeMessage(ConsumerRecords<String, String> consumerRecords, Acknowledgment ack) {
+        for (ConsumerRecord<String, String> record : consumerRecords) {
+            String messageDetail = String.format("message partition：%d, message offset：%d, message：%s",
+                    record.partition(), record.offset(), record.value());
+            log.info("receive message detail：{}", messageDetail);
+
+            // 模拟业务异常
+            if (Objects.equals("message_6", record.value())) {
+                throw new RuntimeException("handle message exception: " + messageDetail);
+            }
+        }
+
+        // 手动提交消息偏移量
         ack.acknowledge();
     }
 }

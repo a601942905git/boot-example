@@ -37,4 +37,14 @@ public class KafkaApplicationTest {
         kafkaSender.sendComplexMessage(TopicConstant.SECOND_TOPIC_NAME, student);
         TimeUnit.SECONDS.sleep(10);
     }
+
+    @Test
+    public void sendMessage() throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            kafkaSender.sendSimpleMessage(TopicConstant.THIRD_TOPIC_NAME, "message_" + i);
+        }
+
+        // 休眠10s保证发送的消息被消费者消费
+        TimeUnit.SECONDS.sleep(10);
+    }
 }
