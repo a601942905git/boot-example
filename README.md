@@ -7,6 +7,7 @@
 - [SpringBoot2.x集成分布式搜索引擎Elasticsearch](https://juejin.im/post/6844904085213151239)
 - [分布式服务必备神器配置中心](https://juejin.im/post/6867336643095822343)
 - [如何监控你的应用？](https://juejin.cn/post/6924117701568757773)
+- [ApplicationContext、Environment原来可以这样获取](https://juejin.cn/post/6974950847419514910)
 
 ## 3.源码分析相关
 - [你必须懂也可以懂的@Async原理](https://juejin.im/post/6858854987280809997)
@@ -21,6 +22,7 @@
 - [SpringBoot异步实现DeferredResult实战与原理分析](https://juejin.cn/post/6934963596765954084)
 - [@ControllerAdvice到底是怎么一回事？](https://juejin.cn/post/6935665164339396639)
 - [细聊分布式配置中心](https://juejin.cn/post/6966962045803560967)
+- [你必须懂也可以懂的@Transactional原理](https://juejin.cn/post/6968384376824561671)
 
 ## 4.远程服务调用由浅入深
 - [分布式服务远程调用演进之反向代理](https://juejin.im/post/6844904116888535054)
