@@ -1,5 +1,6 @@
 server:
   shutdown: graceful
+  port: 8088
   tomcat:
     mbeanregistry:
       enabled: true # 开启tomcat相关指标监控如tomcat.threads.*，访问地址：http://localhost:8080/actuator/metrics
