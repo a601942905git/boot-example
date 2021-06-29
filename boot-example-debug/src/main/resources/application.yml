@@ -25,7 +25,7 @@ spring:
         max-concurrency: 10
         batch-size: 100
         prefetch: 100
-        acknowledge-mode: MANUAL
+        acknowledge-mode: MANUAL # 默认值为AUTO，参考org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer#acknowledgeMode
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
     username: root
