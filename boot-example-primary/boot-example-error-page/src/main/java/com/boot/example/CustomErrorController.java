@@ -17,11 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class CustomErrorController implements ErrorController {
 
-    @Override
-    public String getErrorPath() {
-        return "error";
-    }
-
     @GetMapping("/error")
     public String error(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
