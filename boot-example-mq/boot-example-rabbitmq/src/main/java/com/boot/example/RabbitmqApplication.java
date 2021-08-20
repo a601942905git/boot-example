@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * com.boot.example.RabbitmqApplication
  *
+ * 框架自动提交：
+ *  @see org.springframework.amqp.rabbit.listener.BlockingQueueConsumer#commitIfNecessary(boolean)
+ *
  * @author lipeng
  * @date 2020/9/27 3:30 PM
  */
