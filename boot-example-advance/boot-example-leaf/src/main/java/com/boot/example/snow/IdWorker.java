@@ -9,6 +9,9 @@ package com.boot.example.snow;
  * 机器码：10位(机器id + 数据中心id)
  * 序列号：12位(毫秒内生成的序列号)
  *
+ * |运算：一个为1结果为1
+ * &运算：都为1结果为1
+ *
  * @author lipeng
  * @date 2021/6/28 5:49 PM
  */
@@ -66,7 +69,9 @@ public class IdWorker {
 
     /**
      * 结果为4095
-     * 得到0000000000000000000000000000000000000000000000000000111111111111
+     * 0000000000000000000000000000000000000000000000000000111111111111(4095)
+     * 0000000000000000000000000000000000000000000000000000111110100000(4000)
+     * 0000000000000000000000000000000000000000000000000001000000000000(4096)
      */
     private final long sequenceMask = ~(-1L << sequenceBits);
 
@@ -78,20 +83,34 @@ public class IdWorker {
         this.datacenterId = datacenterId;
     }
 
+    /**
+     * 雪花算法生成唯一id逻辑：
+     * 1.当前生成的时间与上次生成的时间比较
+     *  1.1 如果相等，则说明是同一毫秒生成唯一id，判断序列号
+     *      1.1.1 序列号大于最大序列号4096，则需要在下一毫秒生成唯一id
+     *      1.1.2 序列号小于最大序列号4096，直接将序列号 + 1
+     *  1.2 如果不相等，则说明不是同一毫秒生成唯一id，直接将序列号设置为0
+     *
+     * @return 唯一id
+     */
     public synchronized long nextId() {
         long timestamp = timeGen();
-        //时间回拨，抛出异常
+        // 时间回拨，抛出异常
         if (timestamp < lastTimestamp) {
             System.err.printf("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp);
             throw new RuntimeException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
                     lastTimestamp - timestamp));
         }
 
+        // 同一毫秒内生成唯一id，需要对序列号 + 1
         if (lastTimestamp == timestamp) {
             sequence = (sequence + 1) & sequenceMask;
+            // 同一毫秒内序列号超过4096，则需要在下一毫秒生成唯一id
             if (sequence == 0) {
                 timestamp = tilNextMillis(lastTimestamp);
             }
+
+        // 非同一毫秒内生成唯一id，直接将序列号设置为0
         } else {
             sequence = 0;
         }
@@ -104,7 +123,8 @@ public class IdWorker {
     }
 
     /**
-     * 当前ms已经满了
+     * 阻塞到下一个毫秒，直到获得新的时间戳
+     *
      * @param lastTimestamp 最后生成时间戳
      * @return 新时间戳
      */
