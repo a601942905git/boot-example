@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * com.boot.example.IdWorkerTest
+ * 1.雪花算法id长度18位
+ * 2.bigint最大长度20位
  *
  * 雪花算法生成18为id如下：
  * next id：420283455004348416
@@ -36,6 +38,7 @@ public class IdWorkerTest {
     public void nextId() throws InterruptedException {
         IdWorker idWorker = new IdWorker(1, 1);
         while (true) {
+            TimeUnit.SECONDS.sleep(1);
             Set<Long> idSet = new HashSet<>();
             int loopCount = 30;
             for (int i = 0; i < loopCount; i++) {
