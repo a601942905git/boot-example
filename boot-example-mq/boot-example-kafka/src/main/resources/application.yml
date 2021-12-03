@@ -1,6 +1,6 @@
 spring:
   kafka:
     bootstrap-servers: # 设置kafka服务器列表
-      - localhost:55007
-      - localhost:55008
-      - localhost:55009
+      - localhost:62077
+      - localhost:62078
+      - localhost:62079

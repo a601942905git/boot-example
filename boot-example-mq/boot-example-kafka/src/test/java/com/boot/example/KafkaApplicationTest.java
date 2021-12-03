@@ -23,7 +23,10 @@ public class KafkaApplicationTest {
 
     @Test
     public void sendSingleMessage() throws InterruptedException {
-        kafkaSender.sendSimpleMessage(TopicConstant.FIRST_TOPIC_NAME, "kafka send single message");
+        for (int i = 0; i < 5; i++) {
+            kafkaSender.sendSimpleMessage(TopicConstant.FIRST_TOPIC_NAME, "kafka send single message：" + (i + 1));
+            TimeUnit.SECONDS.sleep(1);
+        }
         TimeUnit.SECONDS.sleep(10);
     }
 
@@ -44,6 +47,13 @@ public class KafkaApplicationTest {
             kafkaSender.sendSimpleMessage(TopicConstant.THIRD_TOPIC_NAME, "message_" + i);
         }
 
+        // 休眠10s保证发送的消息被消费者消费
+        TimeUnit.SECONDS.sleep(10);
+    }
+
+    @Test
+    public void sendExceptionMessage() throws InterruptedException {
+        kafkaSender.sendSimpleMessage(TopicConstant.FOUR_TOPIC_NAME, "send exception message");
         // 休眠10s保证发送的消息被消费者消费
         TimeUnit.SECONDS.sleep(10);
     }

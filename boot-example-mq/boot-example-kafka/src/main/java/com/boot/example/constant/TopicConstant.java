@@ -8,9 +8,11 @@ package com.boot.example.constant;
  */
 public interface TopicConstant {
 
-    String FIRST_TOPIC_NAME = "first-topic";
+    String FIRST_TOPIC_NAME = "topic01";
 
-    String SECOND_TOPIC_NAME = "second-topic";
+    String SECOND_TOPIC_NAME = "topic02";
 
-    String THIRD_TOPIC_NAME = "third-topic";
+    String THIRD_TOPIC_NAME = "topic03";
+
+    String FOUR_TOPIC_NAME = "topic04";
 }
