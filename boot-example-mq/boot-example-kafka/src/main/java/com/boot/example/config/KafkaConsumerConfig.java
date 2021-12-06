@@ -31,7 +31,7 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<Object, Object> kafkaConsumerFactory(KafkaProperties kafkaProperties) {
         // 手动ack，由使用者控制偏移量的提交
         kafkaProperties.getListener().setAckMode(ContainerProperties.AckMode.MANUAL);
-        Map<String, Object> consumerProperties = kafkaProperties.buildProducerProperties();
+        Map<String, Object> consumerProperties = kafkaProperties.buildConsumerProperties();
         // 设置key反序列化方式
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         // 设置value反序列化方式，采用何种方式将字节数组转换为目标对象
