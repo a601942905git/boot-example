@@ -88,12 +88,22 @@ public class BeanLifecycle implements ApplicationContextAware, EnvironmentAware,
         log.error("container single bean count：{}", genericApplicationContext.getBeanFactory().getSingletonCount());
     }
 
+    /**
+     * 执行start()方法之前会通过isRunning()方法进行判断
+     * 如果isRunning()返回true则不会调用start()方法
+     * 如果isRunning()返回false才会调用start()方法
+     */
     @Override
     public void start() {
         log.error("the application start");
         running = true;
     }
 
+    /**
+     * 执行stop()方法之前会通过isRunning()方法进行判断
+     * 如果isRunning()返回true才会调用stop()方法
+     * 如果isRunning()返回false则不会调用start()方法
+     */
     @Override
     public void stop() {
         running = false;
