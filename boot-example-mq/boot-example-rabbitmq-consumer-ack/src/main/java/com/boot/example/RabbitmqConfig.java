@@ -1,5 +1,6 @@
 package com.boot.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import java.util.Objects;
+
 /**
  * com.boot.example.RabbitmqConfig
  *
@@ -19,11 +22,16 @@ import org.springframework.context.annotation.Scope;
  * @date 2019/1/10 下午3:04
  */
 @Configuration
+@Slf4j
 public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback{
 
     public static final String EXCHANGE   = "spring-boot-exchange";
     public static final String ROUTING_KEY = "spring-boot-routingKey";
     public static final String QUEUE_NAME = "boot-example-queue";
+
+    public static final String BUSINESS_EXCHANGE   = "business-exchange";
+    public static final String BUSINESS_ROUTING_KEY = "business-routingKey";
+    public static final String BUSINESS_QUEUE_NAME = "business-queue";
 
     /**
      * 创建连接工厂
@@ -110,18 +118,18 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         if (ack) {
-            System.out.println("【消息】：" + correlationData.getId() + "，发送成功");
+            log.info("【消息】：{} 发送成功", Objects.nonNull(correlationData) ? correlationData.getId() : "");
         } else {
-            System.out.println("【消息】：" + correlationData.getId() + "，发送失败");
+            log.info("【消息】：{} 发送失败", Objects.nonNull(correlationData) ? correlationData.getId() : "");
         }
     }
 
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        System.out.println("【message】：" + message);
-        System.out.println("【replyCode】：" + replyCode);
-        System.out.println("【replyText】：" + replyText);
-        System.out.println("【exchange】：" + exchange);
-        System.out.println("【routingKey】：" + routingKey);
+        log.info("【message】：{}", message);
+        log.info("【replyCode】：{}", replyCode);
+        log.info("【replyText】：{}", replyText);
+        log.info("【exchange】：{}", exchange);
+        log.info("【routingKey】：{}", routingKey);
     }
 }
