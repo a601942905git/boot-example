@@ -10,15 +10,16 @@ import java.io.IOException;
 
 /**
  * com.boot.example.HelloConsumer
+ * @RabbitListener 注解中的concurrency属性用来设置消费者并发数，如果是纯数字，那么就是固定并发数；如果非纯数字，那么就是动态并发数
+ * 比如设置1-5，在负载较低的情况下，就只有1个消费者；在负载较高的情况下，消费者最多可达5个
  *
  * @author lipeng
  * @date 2019-01-13 15:24
  */
 @Component
-@RabbitListener(queues = RabbitmqConfig.QUEUE_NAME)
 public class HelloConsumer {
 
-    @RabbitHandler
+    @RabbitListener(queues = RabbitmqConfig.QUEUE_NAME, concurrency = "1-5")
     public void helloConsumer(String content, Channel channel, Message message) throws IOException {
         Long deliveryTag = message.getMessageProperties().getDeliveryTag();
         try {
