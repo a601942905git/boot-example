@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 @Configuration
 @Slf4j
-public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback{
+public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnsCallback{
 
     public static final String EXCHANGE   = "spring-boot-exchange";
     public static final String ROUTING_KEY = "spring-boot-routingKey";
@@ -59,7 +59,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setMandatory(true);
         template.setConfirmCallback(this);
-        template.setReturnCallback(this);
+        template.setReturnsCallback(this);
         return template;
     }
 
@@ -125,11 +125,9 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
     }
 
     @Override
-    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        log.info("【message】：{}", message);
-        log.info("【replyCode】：{}", replyCode);
-        log.info("【replyText】：{}", replyText);
-        log.info("【exchange】：{}", exchange);
-        log.info("【routingKey】：{}", routingKey);
+    public void returnedMessage(ReturnedMessage returnedMessage) {
+        log.error("receive return message：{} from broker server，reply code：{}，reply text：{}，" +
+                        "exchange：{}，routing key：{}", returnedMessage.getMessage().toString(), returnedMessage.getReplyCode(),
+                returnedMessage.getReplyText(), returnedMessage.getExchange(), returnedMessage.getRoutingKey());
     }
 }
