@@ -1,10 +1,7 @@
 package com.boot.example.producer;
 
-import com.boot.example.constant.TopicConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
@@ -18,7 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  */
 @Component
 @Slf4j
-public class KafkaSender<K, V> {
+public class KafkaMessageSender<K, V> {
 
     @Autowired
     private KafkaTemplate<K, V> kafkaTemplate;
@@ -35,20 +32,5 @@ public class KafkaSender<K, V> {
         listenableFuture.addCallback(
                 result -> log.info("send message success，result：" + result),
                 ex -> log.info("send message exception：" + ex));
-    }
-
-    @Bean
-    public NewTopic firstTopic() {
-        return new NewTopic(TopicConstant.FIRST_TOPIC_NAME, 3, (short) 3);
-    }
-
-    @Bean
-    public NewTopic secondTopic() {
-        return new NewTopic(TopicConstant.SECOND_TOPIC_NAME, 3, (short) 3);
-    }
-
-    @Bean
-    public NewTopic thirdTopic() {
-        return new NewTopic(TopicConstant.THIRD_TOPIC_NAME, 3, (short) 3);
     }
 }
