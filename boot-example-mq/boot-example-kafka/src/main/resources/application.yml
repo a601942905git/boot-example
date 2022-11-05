@@ -1,3 +1,5 @@
+server:
+  port: 8082
 spring:
   kafka:
     bootstrap-servers: # 设置kafka服务器列表
@@ -15,5 +17,14 @@ spring:
           interval:
             ms: 3000 # 设置心跳间隔，默认值3秒
       max-poll-records: 500 # 设置最大拉取记录数，默认值500
+      auto-offset-reset: latest # 默认值latest
+      enable-auto-commit: false # 默认值true
     listener:
       ack-mode: manual # 设置手动提交
+    producer:
+      retries: 5 # 设置重试次数
+      properties:
+        retry:
+          backoff:
+            ms: 100 # 设置重试间隔，默认值100毫秒
+      acks: all # 设置确认模式，默认值all 0：生产者不需要等待server确认 1：生产者将消息发送给leader副本，leader副本在写入本地日志成功后才会告知生产者消息已经提交成功 -1：生产者将消息发送给leader副本，leader副本在写入本地日志成功后还需要等待ISR中所有flower副本同步完成后才会告知生产者消息已经提交成功

@@ -89,7 +89,7 @@ public class KafkaMessageConsumer {
      * @param consumerRecord 消息记录
      * @param ack ack对象
      */
-//    @KafkaListener(topics = "product", groupId = "product2")
+    @KafkaListener(topics = "product", groupId = "product2")
     public void consumeMessage2(ConsumerRecord<String, String> consumerRecord, Acknowledgment ack) {
         log.info("receive message topic：{}, partition：{}，offset：{}，message：{}", consumerRecord.topic(),
                 consumerRecord.partition(), consumerRecord.offset(), consumerRecord.value());
