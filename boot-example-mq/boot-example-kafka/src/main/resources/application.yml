@@ -27,4 +27,10 @@ spring:
         retry:
           backoff:
             ms: 100 # 设置重试间隔，默认值100毫秒
+        linger:
+          ms: 10 # 设置延迟发送时间，默认值0毫秒
       acks: all # 设置确认模式，默认值all 0：生产者不需要等待server确认 1：生产者将消息发送给leader副本，leader副本在写入本地日志成功后才会告知生产者消息已经提交成功 -1：生产者将消息发送给leader副本，leader副本在写入本地日志成功后还需要等待ISR中所有flower副本同步完成后才会告知生产者消息已经提交成功
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 设置key序列化器
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer # 设置value序列化器
+      batch-size: 16384 # 设置批量发送大小，默认值16384
+      buffer-memory: 33554432 # 设置缓冲区大小，默认值33554432

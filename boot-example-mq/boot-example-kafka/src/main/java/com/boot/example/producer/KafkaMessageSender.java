@@ -26,11 +26,4 @@ public class KafkaMessageSender<K, V> {
                 result -> log.info("send message success，result：" + result),
                 ex -> log.info("send message exception：" + ex));
     }
-
-    public void sendComplexMessage(String topic, V value) {
-        ListenableFuture<SendResult<K, V>> listenableFuture = kafkaTemplate.send(topic, value);
-        listenableFuture.addCallback(
-                result -> log.info("send message success，result：" + result),
-                ex -> log.info("send message exception：" + ex));
-    }
 }
