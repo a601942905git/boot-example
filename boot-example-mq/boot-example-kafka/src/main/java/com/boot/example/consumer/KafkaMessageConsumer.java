@@ -3,6 +3,7 @@ package com.boot.example.consumer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.boot.autoconfigure.kafka.KafkaAnnotationDrivenConfiguration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.listener.*;
 import org.springframework.kafka.support.Acknowledgment;
@@ -13,6 +14,8 @@ import java.util.List;
 /**
  * com.boot.example.consumer.KafkaConsumer
  *
+ * 自定义异常处理器：
+ * @see KafkaAnnotationDrivenConfiguration#KafkaAnnotationDrivenConfiguration
  * @author lipeng
  * @date 2020/2/20 下午9:21
  */
