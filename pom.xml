@@ -51,6 +51,7 @@
         <prometheus.simple.client.version>0.6.0</prometheus.simple.client.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.collections.version>3.2.2</commons.collections.version>
+        <commons.pool.version>2.11.1</commons.pool.version>
     </properties>
 
     <dependencyManagement>
@@ -187,6 +188,12 @@
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
                 <version>${commons.collections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons.pool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
