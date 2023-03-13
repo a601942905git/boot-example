@@ -2,12 +2,16 @@ package com.boot.example;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.ReturnedMessage;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.connection.PublisherCallbackChannelImpl;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.autoconfigure.amqp.RabbitTemplateConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Objects;
 
 /**
  * com.boot.example.RabbitmqConfiguration
@@ -26,24 +30,27 @@ public class RabbitmqConfiguration {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         rabbitTemplateConfigurer.configure(rabbitTemplate, connectionFactory);
         rabbitTemplate.setConfirmCallback(new RabbitTemplateConfirmCallback());
-        rabbitTemplate.setReturnCallback(new RabbitTemplateReturnCallback());
+        rabbitTemplate.setReturnsCallback(new RabbitTemplateReturnCallback());
         return rabbitTemplate;
     }
 
+    /**
+     * @see com.rabbitmq.client.impl.ChannelN#callConfirmListeners(com.rabbitmq.client.Command, com.rabbitmq.client.impl.AMQImpl.Basic.Ack)
+     * @see PublisherCallbackChannelImpl#handleAck(long, boolean)
+     *
+     */
     public static class RabbitTemplateConfirmCallback implements RabbitTemplate.ConfirmCallback {
-
         @Override
         public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-            log.info("call back confirm execute");
+            log.info("call back confirm execute，correlation data id：{}", correlationData.getId());
         }
     }
 
-    public static class RabbitTemplateReturnCallback implements RabbitTemplate.ReturnCallback {
-        @Override
-        public void returnedMessage(Message message, int replyCode, String replyText, String exchange,
-                                    String routingKey) {
+    public static class RabbitTemplateReturnCallback implements RabbitTemplate.ReturnsCallback {
 
-            log.info("call back return message execute");
+        @Override
+        public void returnedMessage(ReturnedMessage returnedMessage) {
+            log.info("reply code：{}，reply text：{}", returnedMessage.getReplyCode(), returnedMessage.getReplyText());
         }
     }
 

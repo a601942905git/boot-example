@@ -18,5 +18,6 @@
         <module>boot-example-redis-distributed-lock</module>
         <module>boot-example-redis-cluster</module>
         <module>boot-example-redis-cache</module>
+        <module>boot-example-redis-sentinel</module>
     </modules>
 </project>

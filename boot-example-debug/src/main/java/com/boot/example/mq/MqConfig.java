@@ -2,6 +2,7 @@ package com.boot.example.mq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.ReturnedMessage;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -23,7 +24,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Slf4j
-public class MqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
+public class MqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnsCallback {
 
     /**
      * 消息服务器返回的basic.ack
@@ -37,26 +38,18 @@ public class MqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.
         log.info("receive ack confirm：{} from broker server", ack);
     }
 
-    /**
-     * 消息服务器返回的basic.return
-     *
-     * @param message 消息对象
-     * @param replyCode 响应code
-     * @param replyText 响应文本
-     * @param exchange 交换机
-     * @param routingKey 路由key
-     */
     @Override
-    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+    public void returnedMessage(ReturnedMessage returnedMessage) {
         log.error("receive return message：{} from broker server，reply code：{}，reply text：{}，" +
-                "exchange：{}，routing key：{}", message.toString(), replyCode, replyText, exchange, routingKey);
+                "exchange：{}，routing key：{}", returnedMessage.getMessage().toString(), returnedMessage.getReplyCode(),
+                returnedMessage.getReplyText(), returnedMessage.getExchange(), returnedMessage.getRoutingKey());
     }
 
     @Bean
     public RabbitTemplate rabbitTemplate(RabbitTemplateConfigurer configurer, ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         configurer.configure(rabbitTemplate, connectionFactory);
-        rabbitTemplate.setReturnCallback(this);
+        rabbitTemplate.setReturnsCallback(this);
         rabbitTemplate.setConfirmCallback(this);
         rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
         return rabbitTemplate;

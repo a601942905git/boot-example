@@ -1,5 +1,6 @@
 package com.boot.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -22,7 +23,8 @@ import java.util.Map;
  * @date 2019/1/10 下午3:04
  */
 @Configuration
-public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback{
+@Slf4j
+public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnsCallback{
 
     public static final String EXCHANGE = "dead-letter-exchange";
     public static final String REDIRECT_ROUTING_KEY = "redirect-routingKey";
@@ -56,7 +58,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setMandatory(true);
         template.setConfirmCallback(this);
-        template.setReturnCallback(this);
+        template.setReturnsCallback(this);
         return template;
     }
 
@@ -127,11 +129,9 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
     }
 
     @Override
-    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        System.out.println("【message】：" + message);
-        System.out.println("【replyCode】：" + replyCode);
-        System.out.println("【replyText】：" + replyText);
-        System.out.println("【exchange】：" + exchange);
-        System.out.println("【routingKey】：" + routingKey);
+    public void returnedMessage(ReturnedMessage returnedMessage) {
+        log.error("receive return message：{} from broker server，reply code：{}，reply text：{}，" +
+                        "exchange：{}，routing key：{}", returnedMessage.getMessage().toString(), returnedMessage.getReplyCode(),
+                returnedMessage.getReplyText(), returnedMessage.getExchange(), returnedMessage.getRoutingKey());
     }
 }
