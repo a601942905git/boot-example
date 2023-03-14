@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * com.boot.example.DockerApplication
  *
@@ -18,7 +21,11 @@ public class DockerApplication {
 
     @GetMapping("/")
     public String home() {
-        return "Hello Docker World";
+        try {
+            return "Hello Docker World：" + InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            return "Hello Docker World";
+        }
     }
 
     public static void main(String[] args) {
