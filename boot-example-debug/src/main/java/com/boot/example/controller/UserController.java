@@ -2,6 +2,7 @@ package com.boot.example.controller;
 
 import com.boot.example.entity.User;
 import com.boot.example.service.UserService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.async.DeferredResult;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 

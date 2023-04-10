@@ -26,14 +26,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.version>3.2</maven.compiler.version>
-        <java.version>1.8</java.version>
-        <spring.boot.version>2.5.2</spring.boot.version>
-        <lombok.version>1.16.10</lombok.version>
+        <java.version>17</java.version>
+        <spring.boot.version>3.0.5</spring.boot.version>
         <druid.starter.version>1.2.8</druid.starter.version>
-        <mybatis.starter.version>1.3.0</mybatis.starter.version>
+        <mybatis.starter.version>3.0.1</mybatis.starter.version>
         <admin.server.version>2.3.1</admin.server.version>
         <admin.client.version>2.3.1</admin.client.version>
         <hystrix.version>1.5.12</hystrix.version>
@@ -48,9 +47,7 @@
         <curator.version>2.12.0</curator.version>
         <fastjson.version>1.2.51</fastjson.version>
         <spring.cloud.context.version>3.0.2</spring.cloud.context.version>
-        <prometheus.simple.client.version>0.6.0</prometheus.simple.client.version>
-        <commons.lang.version>2.6</commons.lang.version>
-        <commons.collections.version>3.2.2</commons.collections.version>
+        <commons.collections.version>4.4</commons.collections.version>
         <commons.pool.version>2.11.1</commons.pool.version>
     </properties>
 
@@ -62,12 +59,6 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
             </dependency>
 
             <dependency>
@@ -143,12 +134,6 @@
             </dependency>
 
             <dependency>
-                <groupId>io.prometheus</groupId>
-                <artifactId>simpleclient</artifactId>
-                <version>${prometheus.simple.client.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework.statemachine</groupId>
                 <artifactId>spring-statemachine-core</artifactId>
                 <version>${spring.statemachine.core.version}</version>
@@ -179,14 +164,8 @@
             </dependency>
 
             <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons.lang.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
                 <version>${commons.collections.version}</version>
             </dependency>
 
