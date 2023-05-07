@@ -1,11 +1,10 @@
 package com.boot.example;
 
 import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationBuilders;
-import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.RangeQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.*;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -121,9 +120,18 @@ public class EsTest {
 
     @Test
     public void filter() {
+        Query matchQuery = QueryBuilders.match()
+                .field("title")
+                .query("apple")
+                .build()
+                ._toQuery();
+        Query boolQuery = QueryBuilders.bool()
+                .must(matchQuery)
+                .filter(QueryBuilders.term().field("price").value(12800).build()._toQuery())
+                .build()
+                ._toQuery();
         NativeQuery nativeQuery = new NativeQueryBuilder()
-                .withQuery(new MatchQuery.Builder().field("title").query("apple").build()._toQuery())
-                .withFilter(new TermQuery.Builder().field("price").value(12800).build()._toQuery())
+                .withQuery(boolQuery)
                 .build();
         SearchHits<Goods> searchHits = elasticsearchTemplate.search(nativeQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
         log.info("filter document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
@@ -153,9 +161,23 @@ public class EsTest {
 
     @Test
     public void listByMultiCondition() {
+        Query matchQuery = QueryBuilders.match()
+                .field("title")
+                .query("apple")
+                .build().
+                _toQuery();
+        Query rangeQuery = QueryBuilders.range()
+                .field("price")
+                .from("0")
+                .to("12800")
+                .build()
+                ._toQuery();
+        Query boolQuery = QueryBuilders.bool()
+                .must(Lists.newArrayList(matchQuery, rangeQuery))
+                .build()
+                ._toQuery();
         NativeQuery nativeQuery = new NativeQueryBuilder()
-                .withQuery(new MatchQuery.Builder().field("title").query("apple").build()._toQuery())
-                .withQuery(new RangeQuery.Builder().from("0").to("12800").build()._toQuery())
+                .withQuery(boolQuery)
                 .build();
         SearchHits<Goods> searchHits = elasticsearchTemplate.search(nativeQuery, Goods.class,
                 IndexCoordinates.of(IndexConstant.GOODS_INDEX));
@@ -215,8 +237,9 @@ public class EsTest {
 
     @Test
     public void avgPrice() {
+        Aggregation aggregation = AggregationBuilders.avg().field("price").build()._toAggregation();
         NativeQuery nativeQuery = new NativeQueryBuilder()
-                .withAggregation("avg_price", AggregationBuilders.avg().field("price").build()._toAggregation())
+                .withAggregation("avg_price", aggregation)
                 .build();
         SearchHits<Goods> searchHits = elasticsearchTemplate.search(nativeQuery, Goods.class,
                 IndexCoordinates.of(IndexConstant.GOODS_INDEX));
