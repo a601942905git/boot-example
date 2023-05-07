@@ -1,7 +1,8 @@
 package com.boot.example;
 
+import com.rabbitmq.client.Command;
+import com.rabbitmq.client.impl.ChannelN;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.ReturnedMessage;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -10,8 +11,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.autoconfigure.amqp.RabbitTemplateConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Objects;
 
 /**
  * com.boot.example.RabbitmqConfiguration
@@ -35,6 +34,7 @@ public class RabbitmqConfiguration {
     }
 
     /**
+     * @see ChannelN#processAsync(Command)
      * @see com.rabbitmq.client.impl.ChannelN#callConfirmListeners(com.rabbitmq.client.Command, com.rabbitmq.client.impl.AMQImpl.Basic.Ack)
      * @see PublisherCallbackChannelImpl#handleAck(long, boolean)
      *
