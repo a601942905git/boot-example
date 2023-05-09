@@ -3,8 +3,12 @@ package com.boot.example;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationBuilders;
-import co.elastic.clients.elasticsearch._types.query_dsl.*;
+import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -12,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.client.elc.*;
+import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.document.Document;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
@@ -119,7 +124,7 @@ public class EsTest {
     }
 
     @Test
-    public void filter() {
+    public void filter() throws JsonProcessingException {
         Query matchQuery = QueryBuilders.match()
                 .field("title")
                 .query("apple")
@@ -134,6 +139,11 @@ public class EsTest {
                 .withQuery(boolQuery)
                 .build();
         SearchHits<Goods> searchHits = elasticsearchTemplate.search(nativeQuery, Goods.class, IndexCoordinates.of(IndexConstant.GOODS_INDEX));
+        List<SearchHit<Goods>> searchHitList = searchHits.getSearchHits();
+        for (SearchHit<Goods> hit : searchHitList) {
+            Goods goods = hit.getContent();
+            log.info("goods result：{}", new ObjectMapper().writeValueAsString(goods));
+        }
         log.info("filter document size：{}， result ：{}", searchHits.getTotalHits(), searchHits);
     }
 
