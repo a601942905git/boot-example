@@ -49,6 +49,8 @@
         <spring.cloud.context.version>3.0.2</spring.cloud.context.version>
         <commons.collections.version>4.4</commons.collections.version>
         <commons.pool.version>2.11.1</commons.pool.version>
+        <shardingsphere.version>5.4.1</shardingsphere.version>
+        <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
     </properties>
 
     <dependencyManagement>
@@ -173,6 +175,18 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>${commons.pool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${shardingsphere.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

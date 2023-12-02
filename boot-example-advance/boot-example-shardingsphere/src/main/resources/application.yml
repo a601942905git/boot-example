@@ -1,0 +1,6 @@
+
+# 配置 DataSource Driver
+spring:
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:shardingSphere.yml
