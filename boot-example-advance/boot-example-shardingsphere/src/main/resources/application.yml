@@ -3,4 +3,5 @@
 spring:
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
-    url: jdbc:shardingsphere:classpath:shardingSphere.yml
+    # url: jdbc:shardingsphere:classpath:readWrite.yml # 读写分离配置文件
+    url: jdbc:shardingsphere:classpath:sharding.yml # 分片配置文件
