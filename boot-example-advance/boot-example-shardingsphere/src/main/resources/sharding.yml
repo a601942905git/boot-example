@@ -16,7 +16,7 @@ rules:
   - !SHARDING
     tables:
       t_order: # 逻辑表
-        actualDataNodes: ds_${0..1}.t_order_${0..1}
+        actualDataNodes: ds_${0..1}.t_order_${0..1} # 真实数据节点，由数据中心.表名组成
         tableStrategy: # 分表策略
           standard:
             shardingColumn: order_id # 分片字段
