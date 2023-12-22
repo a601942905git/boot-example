@@ -19,14 +19,14 @@ public class ReadWriteTest {
     @Test
     public void write() {
         SingleTable singleTable = new SingleTable();
-        singleTable.setId(10002L);
-        singleTable.setKey1("shardingsphere-key2");
-        singleTable.setKey2(10002);
-        singleTable.setKey3("shardingsphere-key2");
-        singleTable.setKeyPart1("shardingsphere-keyPart2");
-        singleTable.setKeyPart2("shardingsphere-keyPart2");
-        singleTable.setKeyPart3("shardingsphere-keyPart2");
-        singleTable.setCommonField("commen-field2");
+        singleTable.setId(20001L);
+        singleTable.setKey1("shardingsphere-key20001");
+        singleTable.setKey2(20001);
+        singleTable.setKey3("shardingsphere-key20001");
+        singleTable.setKeyPart1("shardingsphere-keyPart20001");
+        singleTable.setKeyPart2("shardingsphere-keyPart20001");
+        singleTable.setKeyPart3("shardingsphere-keyPart20001");
+        singleTable.setCommonField("commen-field20001");
         singleTableMapper.insert(singleTable);
     }
 

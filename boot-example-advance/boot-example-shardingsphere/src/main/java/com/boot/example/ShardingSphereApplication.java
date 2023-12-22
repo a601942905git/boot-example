@@ -76,6 +76,8 @@ import java.util.Properties;
  * @see ShardingSpherePreparedStatement#getResultSet()
  * </p>
  *
+ * 分片配置类：
+ * @see org.apache.shardingsphere.sharding.api.config.ShardingRuleConfiguration
  */
 @SpringBootApplication
 public class ShardingSphereApplication {

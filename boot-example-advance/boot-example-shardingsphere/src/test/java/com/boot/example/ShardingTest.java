@@ -30,13 +30,13 @@ public class ShardingTest {
         Order order = new Order();
         order.setOrderId(null);
         order.setPrice(new BigDecimal(800));
-        order.setUserId(10000002L);
+        order.setUserId(10000003L);
         orderMapper.insert(order);
 
         OrderItem orderItem = new OrderItem();
         orderItem.setOrderItemId(null);
         orderItem.setOrderId(order.getOrderId());
-        orderItem.setUserId(10000002L);
+        orderItem.setUserId(10000003L);
         orderItem.setProductName("test");
         orderItem.setProductPrice(new BigDecimal(400));
         orderItem.setProductQuantity(2);
