@@ -1,24 +1,24 @@
-#mode:
-#  type: Cluster
-#  repository:
-#    type: zookeeper
-#    props:
-#      namespace: governance_ds
-#      server-lists: localhost:2181
-#      retryIntervalMilliseconds: 500
-#      timeToLiveSeconds: 60
-#      maxRetries: 3
-#      operationTimeoutMilliseconds: 500
-
 mode:
   type: Cluster
   repository:
-    type: consul
+    type: zookeeper
     props:
       namespace: governance_ds
-      server-lists: localhost
-      timeToLiveSeconds: 30
-      blockQueryTimeToSeconds: 60
+      server-lists: localhost:2181
+      retryIntervalMilliseconds: 500
+      timeToLiveSeconds: 60
+      maxRetries: 3
+      operationTimeoutMilliseconds: 500
+
+#mode:
+#  type: Cluster
+#  repository:
+#    type: consul
+#    props:
+#      namespace: governance_ds
+#      server-lists: localhost
+#      timeToLiveSeconds: 30
+#      blockQueryTimeToSeconds: 60
 
 dataSources:
   ds_0:
