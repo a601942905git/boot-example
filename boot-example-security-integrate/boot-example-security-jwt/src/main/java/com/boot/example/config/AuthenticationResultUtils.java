@@ -4,9 +4,9 @@ import com.boot.example.BaseResponse;
 import com.boot.example.constants.AuthorizationConstants;
 import com.boot.example.jwt.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Clock;
 import java.util.HashMap;

@@ -3,8 +3,8 @@ spring:
     addresses: 127.0.0.1:5672 # 连接地址
     username: guest # 用户名
     password: guest # 密码
-    virtual-host: boot-example # 虚拟机名称
+    virtual-host: test # 虚拟机名称
     publisher-returns: true # 是否开启发送消息确认功能
     publisher-confirm-type: correlated # 发送消息确认类型
     template:
-      mandatory: true # 是否开启强制性消息
+      mandatory: true # 是否开启强制性消息 参考：org.springframework.amqp.rabbit.core.RabbitTemplate.doSend

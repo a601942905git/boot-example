@@ -1,0 +1,51 @@
+mode:
+  type: Standalone
+  repository:
+    type: JDBC
+
+# 配置属性参考：org.apache.shardingsphere.infra.datasource.pool.hikari.metadata.HikariDataSourcePoolMetaData
+dataSources:
+  write_ds:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:3307/test
+    username: root
+    password: root
+    minimumIdle: 1 # 配置参考org.apache.shardingsphere.infra.datasource.pool.hikari.metadata.HikariDataSourcePoolMetaData.buildPropertySynonyms
+    maximumPoolSize: 1 # 配置参考org.apache.shardingsphere.infra.datasource.pool.hikari.metadata.HikariDataSourcePoolMetaData.buildPropertySynonyms
+  read_ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:3308/test
+    username: root
+    password: root
+    minimumIdle: 1
+    maximumPoolSize: 1
+  read_ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:3309/test
+    username: root
+    password: root
+    minimumIdle: 1
+    maximumPoolSize: 1
+
+
+rules:
+  - !SINGLE
+    tables:
+      - "*.*" # 加载全部单表
+  - !READWRITE_SPLITTING
+    dataSources:
+      readwrite_ds:
+        writeDataSourceName: write_ds
+        readDataSourceNames:
+          - read_ds_0
+          - read_ds_1
+        transactionalReadQueryStrategy: PRIMARY
+        loadBalancerName: random
+    loadBalancers:
+      random:
+        type: RANDOM
+props:
+  sql-show: true

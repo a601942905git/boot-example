@@ -2,12 +2,12 @@ package com.boot.example;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.GetResponse;
+import jakarta.annotation.PostConstruct;
 import org.springframework.amqp.rabbit.core.ChannelCallback;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.nio.charset.Charset;
 
 /**

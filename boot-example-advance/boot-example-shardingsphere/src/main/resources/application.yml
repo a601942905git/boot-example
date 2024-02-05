@@ -1,0 +1,7 @@
+
+# 配置 DataSource Driver
+spring:
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    # url: jdbc:shardingsphere:classpath:readWriteSplit.yml # 读写分离配置文件
+    url: jdbc:shardingsphere:classpath:sharding.yml # 分片配置文件

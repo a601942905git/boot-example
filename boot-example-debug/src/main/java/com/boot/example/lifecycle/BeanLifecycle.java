@@ -1,6 +1,8 @@
 package com.boot.example.lifecycle;
 
 import com.boot.example.service.DebugService;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
@@ -16,8 +18,6 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 /**
  * com.boot.example.lifecycle.BeanLifecycle

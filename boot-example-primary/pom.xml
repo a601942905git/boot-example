@@ -39,5 +39,6 @@
         <module>boot-example-interceptor</module>
         <module>boot-example-web</module>
         <module>boot-example-swagger</module>
+        <module>boot-example-mybatis-plus</module>
     </modules>
 </project>

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * com.boot.example.MqSenderTest
  *
@@ -17,7 +19,10 @@ public class MqSenderTest {
     private MqSender mqSender;
 
     @Test
-    public void send() {
-        mqSender.send("hello rabbitmq");
+    public void send() throws InterruptedException {
+        while (true) {
+            TimeUnit.SECONDS.sleep(1);
+            mqSender.send("hello rabbitmq");
+        }
     }
 }

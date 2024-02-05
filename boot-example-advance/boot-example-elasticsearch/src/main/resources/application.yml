@@ -3,5 +3,6 @@ logging:
     tracer: trace
 spring:
   elasticsearch:
-    rest:
-      uris: http://localhost:9200 # 指明es地址
+    uris: https://localhost:9200 # 指明es地址
+    username: elastic
+    password: +kDXDenCEo2shDeqwoSa

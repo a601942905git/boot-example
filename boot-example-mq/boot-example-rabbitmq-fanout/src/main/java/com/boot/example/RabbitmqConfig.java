@@ -1,5 +1,6 @@
 package com.boot.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -17,14 +18,16 @@ import org.springframework.context.annotation.Scope;
  * @date 2019/1/10 下午3:04
  */
 @Configuration
-public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback{
+@Slf4j
+public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnsCallback {
 
-    public static final String EXCHANGE   = "spring-boot-fanout-exchange";
+    public static final String EXCHANGE = "spring-boot-fanout-exchange";
     public static final String QUEUE_NAME = "boot-example-fanout-queue";
     public static final String QUEUE_NAME1 = "boot-example-fanout-queue1";
 
     /**
      * 创建连接工厂
+     *
      * @return
      */
     @Bean
@@ -41,6 +44,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 创建RabbitTemplate
+     *
      * @return
      */
     @Bean
@@ -49,7 +53,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setMandatory(true);
         template.setConfirmCallback(this);
-        template.setReturnCallback(this);
+        template.setReturnsCallback(this);
         return template;
     }
 
@@ -57,7 +61,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
      * 针对消费者配置
      * 1. 设置交换机类型
      * 2. 将队列绑定到交换机
-     *
+     * <p>
      * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
      * HeadersExchange ：通过添加属性key-value匹配
      * DirectExchange:按照routingkey分发到指定队列
@@ -70,6 +74,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 创建队列
+     *
      * @return
      */
     @Bean
@@ -86,6 +91,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 将队列绑定到exchange，并表明路由的key
+     *
      * @return
      */
     @Bean
@@ -95,6 +101,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 将队列绑定到exchange，并表明路由的key
+     *
      * @return
      */
     @Bean
@@ -104,6 +111,7 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
 
     /**
      * 当消息发送到Broker的Exchange中，该方法被调用
+     *
      * @param correlationData
      * @param ack
      * @param cause
@@ -118,11 +126,9 @@ public class RabbitmqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
     }
 
     @Override
-    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        System.out.println("【message】：" + message);
-        System.out.println("【replyCode】：" + replyCode);
-        System.out.println("【replyText】：" + replyText);
-        System.out.println("【exchange】：" + exchange);
-        System.out.println("【routingKey】：" + routingKey);
+    public void returnedMessage(ReturnedMessage returnedMessage) {
+        log.error("receive return message：{} from broker server，reply code：{}，reply text：{}，" +
+                        "exchange：{}，routing key：{}", returnedMessage.getMessage().toString(), returnedMessage.getReplyCode(),
+                returnedMessage.getReplyText(), returnedMessage.getExchange(), returnedMessage.getRoutingKey());
     }
 }

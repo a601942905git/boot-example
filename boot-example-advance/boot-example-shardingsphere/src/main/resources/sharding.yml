@@ -1,0 +1,84 @@
+mode:
+  type: Cluster
+  repository:
+    type: zookeeper
+    props:
+      namespace: governance_ds
+      server-lists: localhost:2181
+      retryIntervalMilliseconds: 500
+      timeToLiveSeconds: 60
+      maxRetries: 3
+      operationTimeoutMilliseconds: 500
+
+#mode:
+#  type: Cluster
+#  repository:
+#    type: consul
+#    props:
+#      namespace: governance_ds
+#      server-lists: localhost
+#      timeToLiveSeconds: 30
+#      blockQueryTimeToSeconds: 60
+
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3310/test?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3311/test?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+rules:
+  - !SHARDING
+    tables:
+      t_order: # 逻辑表
+        actualDataNodes: ds_${0..1}.t_order_${0..1} # 真实数据节点，由数据中心.表名组成 多个之间可以使用逗号隔开，例如：ds_${0..1}.t_order_${0..1},ds_${2..3}.t_order_${2..3},参考：org.apache.shardingsphere.infra.expr.groovy.GroovyInlineExpressionParser.split
+        tableStrategy: # 分表策略
+          standard: # 标准分表策略
+            shardingColumn: order_id # 分片字段
+            shardingAlgorithmName: t_order_inline # 分片算法
+        keyGenerateStrategy: # 分布式序列生成策略
+          column: order_id # 自增列
+          keyGeneratorName: snowflake # 序列生成器
+      t_order_item:
+        actualDataNodes: ds_${0..1}.t_order_item_${0..1}
+        tableStrategy:
+          standard:
+            shardingColumn: order_id
+            shardingAlgorithmName: t_order_item_inline
+        keyGenerateStrategy:
+          column: order_item_id
+          keyGeneratorName: snowflake
+    bindingTables: # 绑定表
+      - t_order,t_order_item
+    defaultDatabaseStrategy: # 默认分库策略
+      standard:
+        shardingColumn: user_id
+        shardingAlgorithmName: database_inline
+    defaultTableStrategy: # 默认分表策略
+      none:
+
+    shardingAlgorithms:
+      database_inline:
+        type: INLINE
+        props:
+          algorithm-expression: ds_${user_id % 2}
+      t_order_inline:
+        type: INLINE
+        props:
+          algorithm-expression: t_order_${order_id % 2}
+      t_order_item_inline:
+        type: INLINE
+        props:
+          algorithm-expression: t_order_item_${order_id % 2}
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+props:
+  sql-show: true

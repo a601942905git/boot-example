@@ -52,4 +52,9 @@ public class IdWorkerTest {
             System.out.println("==========================");
         }
     }
+
+    @Test
+    public void testMaxId() throws InterruptedException {
+        System.out.println(86400L << (10 + 12) | (1024 << 12) | 4096);
+    }
 }

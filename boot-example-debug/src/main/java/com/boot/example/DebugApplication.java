@@ -31,7 +31,6 @@ public class DebugApplication {
         DebugApplication.tiger = tiger;
     }
 
-
     public static void main(String[] args) {
         // 设置应用启动的缓存大小，用于记录启动过程中耗时情况
         ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(DebugApplication.class)
