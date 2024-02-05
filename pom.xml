@@ -45,7 +45,7 @@
         <spring.statemachine.core.version>2.0.3.RELEASE</spring.statemachine.core.version>
         <disruptor.version>3.4.2</disruptor.version>
         <curator.version>5.4.0</curator.version>
-        <fastjson.version>1.2.51</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <spring.cloud.context.version>3.0.2</spring.cloud.context.version>
         <commons.collections.version>4.4</commons.collections.version>
         <commons.pool.version>2.11.1</commons.pool.version>
