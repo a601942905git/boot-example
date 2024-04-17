@@ -98,7 +98,7 @@ public class BusinessCodeWorkerTest {
     }
 
     @Test
-    public void test004() {
+    public void test003() {
         IdWorker idWorker = new IdWorker(5, 5);
         for (int i = 0; i < 100; i++) {
             log.info("business code：" + Long.toString(idWorker.nextId(), 33));
