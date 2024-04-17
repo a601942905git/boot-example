@@ -23,6 +23,7 @@
         <module>boot-example-dynamic-datasource</module>
         <module>boot-example-leaf</module>
         <module>boot-example-shardingsphere</module>
+        <module>boot-example-ai</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>

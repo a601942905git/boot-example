@@ -30,7 +30,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.version>3.2</maven.compiler.version>
         <java.version>17</java.version>
-        <spring.boot.version>3.0.5</spring.boot.version>
+        <spring.boot.version>3.2.3</spring.boot.version>
+        <spring.boot.ai.version>0.8.1</spring.boot.ai.version>
         <druid.starter.version>1.2.8</druid.starter.version>
         <mybatis.starter.version>3.0.1</mybatis.starter.version>
         <admin.server.version>2.3.1</admin.server.version>
@@ -59,6 +60,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring.boot.ai.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -224,6 +233,21 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>download-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>sources</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
