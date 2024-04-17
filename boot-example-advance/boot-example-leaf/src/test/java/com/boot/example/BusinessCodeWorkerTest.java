@@ -97,14 +97,6 @@ public class BusinessCodeWorkerTest {
         }
     }
 
-    @Test
-    public void test005() {
-        IdWorker idWorker = new IdWorker(5, 5);
-        for (int i = 0; i < 100; i++) {
-            log.info("business code：" + Long.toString(idWorker.nextId(), 33));
-        }
-    }
-
     public static void main(String[] args) {
         System.out.println("next id：" + Long.toString(421054244322415195L, 33));
         System.out.println("next id：" + Long.toString(421054244322415196L, 33));
