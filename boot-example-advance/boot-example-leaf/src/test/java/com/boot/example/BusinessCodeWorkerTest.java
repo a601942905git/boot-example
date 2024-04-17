@@ -1,11 +1,9 @@
 package com.boot.example;
 
 import com.boot.example.snow.IdWorker;
-import com.boot.example.util.LongUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.jdbc.support.incrementer.PostgresSequenceMaxValueIncrementer;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -93,6 +91,14 @@ public class BusinessCodeWorkerTest {
 
     @Test
     public void test1() {
+        IdWorker idWorker = new IdWorker(5, 5);
+        for (int i = 0; i < 100; i++) {
+            log.info("business code：" + Long.toString(idWorker.nextId(), 33));
+        }
+    }
+
+    @Test
+    public void test2() {
         IdWorker idWorker = new IdWorker(5, 5);
         for (int i = 0; i < 100; i++) {
             log.info("business code：" + Long.toString(idWorker.nextId(), 33));
