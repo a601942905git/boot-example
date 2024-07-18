@@ -41,4 +41,10 @@ public class KafkaApplicationTest {
             TimeUnit.SECONDS.sleep(10);
         }
     }
+
+    @Test
+    public void sendCreateTopicMessage() throws InterruptedException {
+        kafkaSender.sendSimpleMessage("create-order", "i create a order");
+        TimeUnit.SECONDS.sleep(100);
+    }
 }

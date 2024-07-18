@@ -26,14 +26,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.version>3.2</maven.compiler.version>
-        <java.version>17</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <java.version>21</java.version>
         <spring.boot.version>3.2.3</spring.boot.version>
         <spring.boot.ai.version>0.8.1</spring.boot.ai.version>
         <druid.starter.version>1.2.8</druid.starter.version>
-        <mybatis.starter.version>3.0.1</mybatis.starter.version>
+        <mybatis.starter.version>3.0.3</mybatis.starter.version>
         <admin.server.version>2.3.1</admin.server.version>
         <admin.client.version>2.3.1</admin.client.version>
         <hystrix.version>1.5.12</hystrix.version>
@@ -52,6 +52,7 @@
         <commons.pool.version>2.11.1</commons.pool.version>
         <shardingsphere.version>5.4.1</shardingsphere.version>
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+        <gson.version>2.11.0</gson.version>
     </properties>
 
     <dependencyManagement>
@@ -208,6 +209,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

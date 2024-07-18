@@ -4,6 +4,8 @@ spring:
   kafka:
     bootstrap-servers: # 设置kafka服务器列表
       - localhost:9092
+      - localhost:9093
+      - localhost:9094
     consumer:
       properties:
         max:
