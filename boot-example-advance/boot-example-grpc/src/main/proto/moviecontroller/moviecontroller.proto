@@ -1,6 +1,6 @@
 // 指定proto版本
 syntax = "proto3";
-// proto报名
+// 管理proto文件的包名
 package moviecontroller;
 // 导入common.proto
 import "common/common.proto";
