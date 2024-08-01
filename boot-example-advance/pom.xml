@@ -25,6 +25,7 @@
         <module>boot-example-shardingsphere</module>
         <module>boot-example-ai</module>
         <module>boot-example-java</module>
+        <module>boot-example-grpc</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>

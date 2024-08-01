@@ -53,6 +53,8 @@
         <shardingsphere.version>5.4.1</shardingsphere.version>
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
         <gson.version>2.11.0</gson.version>
+        <grpc-java.version>1.65.0</grpc-java.version>
+        <apache-tomcat-annotation-api.version>6.0.53</apache-tomcat-annotation-api.version>
     </properties>
 
     <dependencyManagement>
@@ -216,6 +218,33 @@
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-netty-shaded</artifactId>
+                <version>${grpc-java.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-protobuf</artifactId>
+                <version>${grpc-java.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-stub</artifactId>
+                <version>${grpc-java.version}</version>
+            </dependency>
+
+            <dependency> <!-- necessary for Java 9+ -->
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>annotations-api</artifactId>
+                <version>${apache-tomcat-annotation-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

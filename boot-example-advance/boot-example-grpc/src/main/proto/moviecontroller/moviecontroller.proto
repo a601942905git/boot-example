@@ -1,0 +1,24 @@
+// 指定proto版本
+syntax = "proto3";
+// proto报名
+package moviecontroller;
+// 导入common.proto
+import "common/common.proto";
+// 生成java代码的包名
+option java_package = "com.proto.moviecontroller";
+// 生成多个java文件
+option java_multiple_files = true;
+
+message MovieRequest {
+  string userid = 1;
+  common.Genre genre = 2;
+}
+
+message MovieResponse {
+  common.Movie movie = 1;
+}
+
+service MovieControllerService {
+  // unary rpc call to retrieve a movie
+  rpc getMovie(MovieRequest) returns (MovieResponse) {};
+}

@@ -1,0 +1,26 @@
+// 声明 proto 语法版本
+syntax = "proto3";
+
+// 生成多个文件
+option java_multiple_files = true;
+// 生成java代码后的包名
+option java_package = "com.boot.example.helloworld";
+// 生成java代码后的类名
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+// proto 包名
+package helloworld;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (stream HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
