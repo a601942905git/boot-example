@@ -3,12 +3,15 @@ package common;
 option java_package = "com.proto.common";
 option java_multiple_files = true;
 
+// 0、1、2、3代表字段的编号，枚举类型从0开始
 enum Genre {
   COMEDY = 0;
   ACTION = 1;
   THRILLER = 2;
   DRAMA = 3;
 }
+
+// 1、2、3、4代表字段的编号，从1开始
 message Movie {
   string title = 1;
   float rating = 2;
