@@ -1,0 +1,32 @@
+// 指定proto版本
+syntax = "proto3";
+// 管理proto文件的包名
+package hello;
+// 生成java代码的包名
+option java_package = "com.proto.hello";
+/*
+  是否生成多个java文件
+  如果是的话，MovieRequest、MovieResponse会分别生成一个java文件
+  如果不是的话，MovieRequest、MovieResponse会生成在同一个java文件中
+*/
+option java_multiple_files = true;
+/*
+  生成java代码后的最外面的类名，默认情况会以.proto文件名为准
+  如果java_multiple_files设置为false,MovieRequest、MovieResponse会放在该类中
+*/
+option java_outer_classname = "HelloProto";
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string msg = 1;
+}
+
+service HelloService {
+  rpc sayHello1(HelloRequest) returns (HelloResponse) {};
+  rpc sayHello2(HelloRequest) returns (stream HelloResponse) {};
+  rpc sayHello3(stream HelloRequest) returns (HelloResponse) {};
+  rpc sayHello4(stream HelloRequest) returns (stream HelloResponse) {};
+}
