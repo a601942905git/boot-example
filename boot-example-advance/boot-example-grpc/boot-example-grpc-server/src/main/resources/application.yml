@@ -1,0 +1,7 @@
+grpc:
+  server:
+    port: 9090
+
+spring:
+  main:
+    web-application-type: none

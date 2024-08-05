@@ -13,7 +13,6 @@
     <artifactId>boot-example-actuator-admin-server</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>boot-example-actuator-admin-server</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <dependencies>

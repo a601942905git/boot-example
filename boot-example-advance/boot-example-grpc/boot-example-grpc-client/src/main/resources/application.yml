@@ -1,0 +1,5 @@
+grpc:
+  client:
+    helloClient:
+        address: static://localhost:9090
+        negotiation-type: plaintext

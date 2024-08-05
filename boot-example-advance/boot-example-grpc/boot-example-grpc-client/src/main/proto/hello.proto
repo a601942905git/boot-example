@@ -1,0 +1,18 @@
+syntax = "proto3";
+package hello;
+option java_package = "com.boot.example.hello";
+option java_multiple_files = false;
+option java_outer_classname = "HelloProto";
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string msg = 1;
+  repeated string names = 2;
+}
+
+service HelloService {
+  rpc sayHello(HelloRequest) returns (HelloResponse) {};
+}

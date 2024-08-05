@@ -18,14 +18,16 @@
         <module>boot-example-rate-limit</module>
         <module>boot-example-zookeeper</module>
         <module>boot-example-shutdown</module>
-        <module>boot-example-redis</module>
+<!--        <module>boot-example-redis</module>-->
         <module>boot-example-configuration</module>
         <module>boot-example-dynamic-datasource</module>
         <module>boot-example-leaf</module>
         <module>boot-example-shardingsphere</module>
-        <module>boot-example-ai</module>
+<!--        <module>boot-example-ai</module>-->
         <module>boot-example-java</module>
         <module>boot-example-grpc</module>
+        <module>boot-example-grpc/boot-example-grpc-client</module>
+        <module>boot-example-grpc/boot-example-grpc-server</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
