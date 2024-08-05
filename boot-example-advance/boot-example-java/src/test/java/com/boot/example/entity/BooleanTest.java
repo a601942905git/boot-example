@@ -3,6 +3,7 @@ package com.boot.example.entity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import lombok.Data;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -48,5 +49,83 @@ public class BooleanTest {
         Gson gson = new Gson();
         Person3 person3FromJson = gson.fromJson(jsonStr, Person3.class);
         System.out.println("反序列化结果：" + person3FromJson.toString());
+    }
+
+    @Test
+    public void test04() throws JsonProcessingException {
+        Person4 person4 = new Person4();
+        person4.setIsDeleted(true);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonStr = objectMapper.writeValueAsString(person4);
+        System.out.println("序列化结果：" + jsonStr);
+        Gson gson = new Gson();
+        Person4 person4FromJson = gson.fromJson(jsonStr, Person4.class);
+        System.out.println("反序列化结果：" + person4FromJson.toString());
+    }
+
+    public static class Person1 {
+
+        private boolean isDeleted;
+
+        public boolean isDeleted() {
+            return isDeleted;
+        }
+
+        public void setDeleted(boolean deleted) {
+            isDeleted = deleted;
+        }
+
+        @Override
+        public String toString() {
+            return "Person1{" +
+                    "isDeleted=" + isDeleted +
+                    '}';
+        }
+    }
+
+    public static class Person2 {
+
+        private boolean deleted;
+
+        public boolean isDeleted() {
+            return deleted;
+        }
+
+        public void setDeleted(boolean deleted) {
+            this.deleted = deleted;
+        }
+
+        @Override
+        public String toString() {
+            return "Person2{" +
+                    "deleted=" + deleted +
+                    '}';
+        }
+    }
+
+    public static class Person3 {
+
+        Boolean isDeleted;
+
+        public Boolean getDeleted() {
+            return isDeleted;
+        }
+
+        public void setDeleted(Boolean deleted) {
+            isDeleted = deleted;
+        }
+
+        @Override
+        public String toString() {
+            return "Person3{" +
+                    "isDeleted=" + isDeleted +
+                    '}';
+        }
+    }
+
+    @Data
+    public static class Person4 {
+        Boolean isDeleted;
     }
 }
