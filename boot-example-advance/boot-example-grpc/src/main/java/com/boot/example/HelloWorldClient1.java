@@ -6,6 +6,7 @@ import com.boot.example.helloworld.HelloRequest;
 import io.grpc.*;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,12 +14,12 @@ import java.util.concurrent.TimeUnit;
  * &#064;date 2024/7/30 15:12:04
  */
 @Slf4j
-public class HelloWorldClient {
+public class HelloWorldClient1 {
 
     private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
     /** Construct client for accessing HelloWorld server using the existing channel. */
-    public HelloWorldClient(Channel channel) {
+    public HelloWorldClient1(Channel channel) {
         // 'channel' here is a Channel, not a ManagedChannel, so it is not this code's responsibility to
         // shut it down.
 
@@ -31,9 +32,12 @@ public class HelloWorldClient {
         log.info("Will try to greet " + name + " ...");
         HelloRequest request = HelloRequest.newBuilder().setName(name).build();
         try {
-            // 服务端不调用responseObserver.onCompleted(); 客户端会一直阻塞
-            HelloReply helloReply = blockingStub.sayHello(request);
-            log.info("Greeting: " + helloReply.getMessage());
+            // 服务端每响应一个数据，客户端会往下进行处理，之后会阻塞
+            Iterator<HelloReply> helloReplyIterator = blockingStub.sayHello1(request);
+            while (helloReplyIterator.hasNext()) {
+                HelloReply helloReply = helloReplyIterator.next();
+                log.info("Greeting: " + helloReply.getMessage());
+            }
         } catch (StatusRuntimeException e) {
             log.warn("RPC failed: {}", e.getStatus());
         }
@@ -71,7 +75,7 @@ public class HelloWorldClient {
         ManagedChannel channel = Grpc.newChannelBuilder(target, InsecureChannelCredentials.create())
                 .build();
         try {
-            HelloWorldClient client = new HelloWorldClient(channel);
+            HelloWorldClient1 client = new HelloWorldClient1(channel);
             client.greet(user);
         } finally {
             // ManagedChannels use resources like threads and TCP connections. To prevent leaking these

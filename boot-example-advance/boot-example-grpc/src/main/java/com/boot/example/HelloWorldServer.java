@@ -71,11 +71,24 @@ public class HelloWorldServer {
     static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
 
         @Override
-        public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+        public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
+            HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request.getName()).build();
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void sayHello1(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
             for (int i = 0; i < 10; i++) {
-                HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName() + " " + (i + 1)).build();
+                HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request.getName() + ":" + (i + 1)).build();
                 responseObserver.onNext(reply);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+
             responseObserver.onCompleted();
         }
     }

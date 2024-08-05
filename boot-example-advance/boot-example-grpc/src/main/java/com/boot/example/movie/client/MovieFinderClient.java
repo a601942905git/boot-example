@@ -18,13 +18,11 @@ public class MovieFinderClient {
 
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder
-                .forAddress("localhost",
-                        MOVIE_CONTROLLER_SERVICE_PORT)
+                .forAddress("localhost", MOVIE_CONTROLLER_SERVICE_PORT)
                 .usePlaintext()
                 .build();
-        MovieControllerServiceGrpc.MovieControllerServiceBlockingStub
-                movieFinderClient = MovieControllerServiceGrpc
-                .newBlockingStub(channel);
+        MovieControllerServiceGrpc.MovieControllerServiceBlockingStub movieFinderClient =
+                MovieControllerServiceGrpc.newBlockingStub(channel);
         try {
             MovieResponse movieResponse = movieFinderClient
                     .getMovie(MovieRequest.newBuilder()

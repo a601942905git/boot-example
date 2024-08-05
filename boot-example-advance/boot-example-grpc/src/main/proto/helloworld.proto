@@ -13,7 +13,10 @@ option objc_class_prefix = "HLW";
 package helloworld;
 
 service Greeter {
-  rpc SayHello (HelloRequest) returns (stream HelloReply) {}
+  // 一元rpc
+  rpc sayHello (HelloRequest) returns (HelloReply) {}
+  // 服务端流式rpc
+  rpc sayHello1 (HelloRequest) returns (stream HelloReply) {}
 }
 
 message HelloRequest {
