@@ -28,6 +28,7 @@
         <module>boot-example-grpc</module>
         <module>boot-example-grpc/boot-example-grpc-client</module>
         <module>boot-example-grpc/boot-example-grpc-server</module>
+        <module>boot-example-flowable</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>

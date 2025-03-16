@@ -56,6 +56,7 @@
         <grpc-java.version>1.65.0</grpc-java.version>
         <apache-tomcat-annotation-api.version>6.0.53</apache-tomcat-annotation-api.version>
         <grpc-spring-boot-starter.version>3.1.0.RELEASE</grpc-spring-boot-starter.version>
+        <flowable-spring-boot-starter.version>7.0.1</flowable-spring-boot-starter.version>
     </properties>
 
     <dependencyManagement>
@@ -256,6 +257,12 @@
                 <groupId>net.devh</groupId>
                 <artifactId>grpc-server-spring-boot-starter</artifactId>
                 <version>${grpc-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter</artifactId>
+                <version>${flowable-spring-boot-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

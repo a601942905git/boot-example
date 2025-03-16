@@ -2,12 +2,12 @@
 syntax = "proto3";
 // 管理proto文件的包名
 package hello;
-// 生成java代码的包名
+// 生成java代码的包名，如果没有指定java_package，java会生成在package指定的包下面
 option java_package = "com.proto.hello";
 /*
   是否生成多个java文件
-  如果是的话，MovieRequest、MovieResponse会分别生成一个java文件
-  如果不是的话，MovieRequest、MovieResponse会生成在同一个java文件中
+  如果是的话，HelloRequest、HelloResponse会分别生成一个java文件
+  如果不是的话，HelloRequest、HelloResponse会生成在同一个java文件中
 */
 option java_multiple_files = true;
 /*
