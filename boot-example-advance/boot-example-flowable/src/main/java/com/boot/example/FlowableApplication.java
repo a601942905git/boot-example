@@ -1,5 +1,6 @@
 package com.boot.example;
 
+import com.boot.example.task.SendEmailServiceTask;
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
@@ -20,13 +21,12 @@ public class FlowableApplication {
     }
 
     @Bean
-    public CommandLineRunner init(RepositoryService repositoryService, RuntimeService runtimeService, TaskService taskService) {
+    public CommandLineRunner init(RepositoryService repositoryService, RuntimeService runtimeService, TaskService taskService, SendEmailServiceTask sendEmailServiceTask) {
         return args -> {
             System.out.println("Number of process definitions: " + repositoryService.createProcessDefinitionQuery().count());
             System.out.println("Number of tasks: " + taskService.createTaskQuery().count());
             runtimeService.startProcessInstanceByKey("simple");
             System.out.println("Number of tasks after process start: " + taskService.createTaskQuery().count());
         };
-
     }
 }
